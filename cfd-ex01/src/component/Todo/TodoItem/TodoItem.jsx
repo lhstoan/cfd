@@ -1,21 +1,20 @@
 import Button from "../Button";
 import Form from "../Form";
 
-const TodoItem = ({todo, handleDelete, handleEdit, handleDone,...restProps}) => {
-
-	const { label, isDone, isEditting } = todo || "";
+const TodoItem = ({todo, handleDelete,handleDone,handleEdit,handleEditMode,...restProps}) => {
+	const {id, label, isDone, isEditting } = todo || "";
 
 	return (
 		<li className={`todo-item ${isDone ? "done" : ""}`} {...restProps}>
 			{isEditting ? (
-				<Form btnText="Save" />
+				<Form value={label} btnText="Save" handleSubmit={(editInput) => handleEdit?.(id,editInput)} />
 			) : (
 				<>
 					<span className="todo-label">{label}</span>
 					<div className="todo-action">
-						<Button className="btn-delete">Delete</Button>
-						{!isDone && <Button className="btn-edit">Edit</Button>}
-						<Button className="btn-done">
+						<Button className="btn-delete" handleAction={()=>{handleDelete?.(id)}}>Delete</Button>
+						{!isDone && <Button className="btn-edit" handleAction={()=>{handleEditMode?.(id)}}>Edit</Button>}
+						<Button className="btn-done" handleAction={()=>{handleDone?.(id)}}>
 							{isDone ? "Undone" : "Done"}
 						</Button>
 					</div>
