@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Button from "../Button";
 
-const Form = ({handleSubmit,btnText,value = "",...restProps}) => {
+const Form = ({handleSubmit,handleChangeInput,btnText,value = "",...restProps}) => {
 	const [input, setInput] = useState(value)
 
 	const _onChange=(e)=>{

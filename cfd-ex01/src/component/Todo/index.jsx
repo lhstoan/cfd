@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./Form";
 import TodoItem from "./TodoItem/TodoItem";
 import Button from "./Button";
@@ -8,6 +8,7 @@ const Filter = styled.ul`
 	display: flex;
 	justify-content: center;
 	list-style: none;
+	padding-left: 0;
 `;
 const FilterLi = styled.li`
 	margin: 0 10px;
@@ -16,6 +17,9 @@ const FilterLi = styled.li`
 const TodoContainer = () => {
 	const [todo, setTodo] = useState([]);
 	const [arrange, setArrange] = useState(true);
+	const [searchText, setSearchText] = useState("");
+	const [filteredTasks, setFilteredTasks] = useState(todo);
+	
 	const handleAdd = (newInput) => {
 		const newRow = {
 			id: Date.now(),
@@ -28,13 +32,13 @@ const TodoContainer = () => {
 
 	const handleDelete = (idDelete) => {
 		setTodo((prevState) =>
-			prevState.filter((todo) => todo.id !== idDelete)
+			[...prevState].filter((todo) => todo.id !== idDelete)
 		);
 	};
 
 	const handleDone = (idDone) => {
 		setTodo((prevState) =>
-			prevState.map((todo) => {
+			[...prevState].map((todo) => {
 				return todo.id === idDone
 					? { ...todo, isDone: !todo.isDone }
 					: todo;
@@ -44,7 +48,7 @@ const TodoContainer = () => {
 
 	const handleEditMode = (idEdit) => {
 		setTodo((prevState) =>
-			prevState.map((todo) => {
+			[...prevState].map((todo) => {
 				return todo.id === idEdit
 					? { ...todo, isEditting: !todo.isEditting }
 					: todo;
@@ -54,13 +58,22 @@ const TodoContainer = () => {
 
 	const handleEdit = (idEdit, editInput) => {
 		setTodo((prevState) =>
-			prevState.map((todo) => {
+			[...prevState].map((todo) => {
 				return todo.id === idEdit
 					? { ...todo, label: editInput, isEditting: false }
 					: todo;
 			})
 		);
 	};
+
+	const handleSearch = (e) => {
+		setSearchText(e.target.value);
+	};
+	useEffect(() => {
+		setFilteredTasks((tasks) =>
+			tasks.filter((t) => t.includes(searchText))
+		);
+	}, [searchText]);
 
 	const todoActions = {
 		handleDelete,
@@ -74,8 +87,8 @@ const TodoContainer = () => {
 
 	const todoArrage = () => {
 		setTodo((prevState) =>
-			[...prevState].sort((a, b) => {
-				if (arrange) {
+			[...prevState]?.sort((a, b) => {
+				if (!arrange) {
 					if (a.isDone && !b.isDone) {
 						return -1;
 					} else if (!a.isDone && b.isDone) {
@@ -99,16 +112,20 @@ const TodoContainer = () => {
 
 	return (
 		<div className="container">
-			<h1 className="title">Todo List <span>{todoLength}</span></h1>
+			<h1 className="title">
+				Todo List <span>{todoLength}</span>
+			</h1>
 			<Filter>
-				<FilterLi>
-					<Button
-						className={arrange ? "btn-delete" : "btn-done"}
-						handleAction={todoArrage}
-					>
-						Arrange
-					</Button>
-				</FilterLi>
+				{todoDone > 0 && (
+					<FilterLi>
+						<Button
+							className={arrange ? "btn-delete" : "btn-done"}
+							handleAction={todoArrage}
+						>
+							Arrange
+						</Button>
+					</FilterLi>
+				)}
 				<FilterLi>
 					<Button className="btn-delete">
 						Task Done = {todoDone}
@@ -116,6 +133,9 @@ const TodoContainer = () => {
 				</FilterLi>
 			</Filter>
 			<Form btnText="Add" handleSubmit={handleAdd} />
+			<br />
+			<input type="text" onChange={handleSearch} className="input" />
+
 			<ul className="todo-list" id="todoList">
 				{todo?.map((todo, i) => {
 					const { id } = todo;
