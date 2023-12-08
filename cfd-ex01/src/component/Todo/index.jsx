@@ -3,6 +3,7 @@ import Form from "./Form";
 import TodoItem from "./TodoItem/TodoItem";
 import Button from "./Button";
 import styled from "styled-components";
+import axios from "axios";
 
 const Filter = styled.ul`
 	display: flex;
@@ -13,37 +14,102 @@ const Filter = styled.ul`
 const FilterLi = styled.li`
 	margin: 0 10px;
 `;
+const LOCAL_TODOS = "todo";
 
 const TodoContainer = () => {
 	const [todo, setTodo] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const [arrange, setArrange] = useState(true);
-	const [searchText, setSearchText] = useState("");
-	const [filteredTasks, setFilteredTasks] = useState(todo);
+
 	
-	const handleAdd = (newInput) => {
+	const queryTodos = async () => {
+		setLoading(true);
+		try {
+			const res = await axios.get(
+				"https://65092931f6553137159b0494.mockapi.io/todos"
+			);
+			if (res?.data?.length > 0) {
+				setTodo(res.data.reverse());
+			}
+		} catch (error) {
+			alert("Error", error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		// call api get list todos
+		queryTodos();
+	}, []);
+
+	const handleAdd = async (newInput) => {
+		if (!newInput) return;
+
 		const newRow = {
-			id: Date.now(),
 			label: newInput,
-			isEditting: false,
 			isDone: false,
 		};
-		setTodo((prevState) => [newRow, ...prevState]);
+
+		setLoading(true);
+		try {
+			const res = await axios.post(
+				"https://65092931f6553137159b0494.mockapi.io/todos",
+				newRow
+			);
+			if (res?.data?.length > 0) {
+				setTodo((prevState) => [res?.data, ...prevState]);
+			}
+		} catch (error) {
+			alert("Error", error);
+		} finally {
+			setLoading(false);
+		}
 	};
 
-	const handleDelete = (idDelete) => {
-		setTodo((prevState) =>
-			[...prevState].filter((todo) => todo.id !== idDelete)
-		);
+	const handleDelete = async (idDelete) => {
+		if (!idDelete) return;
+		setLoading(true);
+		try {
+			const res = await axios.delete(
+				`https://65092931f6553137159b0494.mockapi.io/todos/${idDelete}`
+			);
+
+			if (res?.data?.length > 0) {
+				setTodo((prevTodos) =>
+					prevTodos.filter((todo) => todo.id !== idDelete)
+				);
+			}
+		} catch (error) {
+			alert("Error", error);
+		} finally {
+			setLoading(false);
+		}
 	};
 
-	const handleDone = (idDone) => {
-		setTodo((prevState) =>
-			[...prevState].map((todo) => {
-				return todo.id === idDone
-					? { ...todo, isDone: !todo.isDone }
-					: todo;
-			})
-		);
+	const handleDone = async (idDone) => {
+		if (!idDone) return;
+
+		setLoading(true);
+		try {
+			const changedTodo = todo.find((todo) => todo.id === idDone) || {};
+			const payload = { isDone: !changedTodo.isDone };
+			const res = await axios.put(
+				`https://65092931f6553137159b0494.mockapi.io/todos/${idDone}`,
+				payload
+			);
+			if (res.data) {
+				setTodo((prevTodos) =>
+					prevTodos.map((todo) =>
+						todo.id === res.data.id ? res.data : todo
+					)
+				);
+			}
+		} catch (error) {
+			alert("Error", error);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	const handleEditMode = (idEdit) => {
@@ -56,24 +122,39 @@ const TodoContainer = () => {
 		);
 	};
 
-	const handleEdit = (idEdit, editInput) => {
-		setTodo((prevState) =>
-			[...prevState].map((todo) => {
-				return todo.id === idEdit
-					? { ...todo, label: editInput, isEditting: false }
-					: todo;
-			})
-		);
+	const handleEdit = async (idEdit, editInput) => {
+		if (!idEdit && !editInput) return;
+
+		setLoading(true);
+		try {
+			const payload = { label: editInput };
+
+			const res = await axios.put(
+				`https://65092931f6553137159b0494.mockapi.io/todos/${idEdit}`,
+				payload
+			);
+
+			if (res?.data) {
+				setTodo((prevTodos) =>
+					prevTodos.map((todo) =>
+						todo.id === res.data.id ? res.data : todo
+					)
+				);
+			}
+		} catch (error) {
+
+			alert("Error", error);
+
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	const handleSearch = (e) => {
-		setSearchText(e.target.value);
+		console.log("handleSearch", e?.target.value);
 	};
-	useEffect(() => {
-		setFilteredTasks((tasks) =>
-			tasks.filter((t) => t.includes(searchText))
-		);
-	}, [searchText]);
+
+	const handleTop = (idTop) => {};
 
 	const todoActions = {
 		handleDelete,
@@ -133,22 +214,20 @@ const TodoContainer = () => {
 				</FilterLi>
 			</Filter>
 			<Form btnText="Add" handleSubmit={handleAdd} />
-			<br />
-			<input type="text" onChange={handleSearch} className="input" />
+			{/* <input type="text" onChange={handleSearch} className="input" /> */}
 
 			<ul className="todo-list" id="todoList">
 				{todo?.map((todo, i) => {
-					const { id } = todo;
 					return (
 						<TodoItem
 							todo={todo}
-							id={id || i}
-							key={id || i}
+							key={todo?.id || i}
 							{...todoActions}
 						/>
 					);
 				})}
 			</ul>
+			{loading && <div className="loading" />}
 		</div>
 	);
 };
