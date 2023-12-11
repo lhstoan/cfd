@@ -5,6 +5,26 @@ import Button from "./Button";
 import styled from "styled-components";
 import axios from "axios";
 
+const Container = styled.div`
+    max-width: 600px;
+    padding: 20px;
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+`;
+
+const H1 = styled.h1`
+   text-align: center;
+`;
+
+const TodoList = styled.ul`
+    min-height: 200px;
+    list-style: none;
+    padding: 0;
+    margin-top: 50px;
+`;
+
 const Filter = styled.ul`
 	display: flex;
 	justify-content: center;
@@ -14,6 +34,20 @@ const Filter = styled.ul`
 const FilterLi = styled.li`
 	margin: 0 10px;
 `;
+
+const Loading = styled.div`
+	height: 100%;
+	border-radius: 8px;
+	background: black;
+	cursor: not-allowed;
+	opacity: 0.5;
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+`;
+
 const LOCAL_TODOS = "todo";
 
 const TodoContainer = () => {
@@ -21,12 +55,11 @@ const TodoContainer = () => {
 	const [loading, setLoading] = useState(false);
 	const [arrange, setArrange] = useState(true);
 
-	
 	const queryTodos = async () => {
 		setLoading(true);
 		try {
 			const res = await axios.get(
-				"https://65092931f6553137159b0494.mockapi.io/todos"
+				"https://65768ca72e1519bfb1295166.mockapi.io/todo/todos"
 			);
 			if (res?.data?.length > 0) {
 				setTodo(res.data.reverse());
@@ -54,7 +87,7 @@ const TodoContainer = () => {
 		setLoading(true);
 		try {
 			const res = await axios.post(
-				"https://65092931f6553137159b0494.mockapi.io/todos",
+				"https://65768ca72e1519bfb1295166.mockapi.io/todo/todos",
 				newRow
 			);
 			if (res?.data?.length > 0) {
@@ -72,7 +105,7 @@ const TodoContainer = () => {
 		setLoading(true);
 		try {
 			const res = await axios.delete(
-				`https://65092931f6553137159b0494.mockapi.io/todos/${idDelete}`
+				`https://65768ca72e1519bfb1295166.mockapi.io/todo/todos/${idDelete}`
 			);
 
 			if (res?.data?.length > 0) {
@@ -95,7 +128,7 @@ const TodoContainer = () => {
 			const changedTodo = todo.find((todo) => todo.id === idDone) || {};
 			const payload = { isDone: !changedTodo.isDone };
 			const res = await axios.put(
-				`https://65092931f6553137159b0494.mockapi.io/todos/${idDone}`,
+				`https://65768ca72e1519bfb1295166.mockapi.io/todo/todos/${idDone}`,
 				payload
 			);
 			if (res.data) {
@@ -130,7 +163,7 @@ const TodoContainer = () => {
 			const payload = { label: editInput };
 
 			const res = await axios.put(
-				`https://65092931f6553137159b0494.mockapi.io/todos/${idEdit}`,
+				`https://65768ca72e1519bfb1295166.mockapi.io/todo/todos/${idEdit}`,
 				payload
 			);
 
@@ -142,9 +175,7 @@ const TodoContainer = () => {
 				);
 			}
 		} catch (error) {
-
 			alert("Error", error);
-
 		} finally {
 			setLoading(false);
 		}
@@ -192,43 +223,45 @@ const TodoContainer = () => {
 	};
 
 	return (
-		<div className="container">
-			<h1 className="title">
-				Todo List <span>{todoLength}</span>
-			</h1>
-			<Filter>
-				{todoDone > 0 && (
+		<>
+			<Container className="container">
+				<H1 className="title">
+					Todo List <span>{todoLength}</span>
+				</H1>
+				<Filter>
+					{todoDone > 0 && (
+						<FilterLi>
+							<Button
+								className={arrange ? "btn-delete" : "btn-done"}
+								handleAction={todoArrage}
+							>
+								Arrange
+							</Button>
+						</FilterLi>
+					)}
 					<FilterLi>
-						<Button
-							className={arrange ? "btn-delete" : "btn-done"}
-							handleAction={todoArrage}
-						>
-							Arrange
+						<Button className="btn-delete">
+							Task Done = {todoDone}
 						</Button>
 					</FilterLi>
-				)}
-				<FilterLi>
-					<Button className="btn-delete">
-						Task Done = {todoDone}
-					</Button>
-				</FilterLi>
-			</Filter>
-			<Form btnText="Add" handleSubmit={handleAdd} />
-			{/* <input type="text" onChange={handleSearch} className="input" /> */}
+				</Filter>
+				<Form btnText="Add" handleSubmit={handleAdd} />
+				{/* <input type="text" onChange={handleSearch} className="input" /> */}
 
-			<ul className="todo-list" id="todoList">
-				{todo?.map((todo, i) => {
-					return (
-						<TodoItem
-							todo={todo}
-							key={todo?.id || i}
-							{...todoActions}
-						/>
-					);
-				})}
-			</ul>
-			{loading && <div className="loading" />}
-		</div>
+				<TodoList className="todo-list" id="todoList">
+					{todo?.map((todo, i) => {
+						return (
+							<TodoItem
+								todo={todo}
+								key={todo?.id || i}
+								{...todoActions}
+							/>
+						);
+					})}
+				</TodoList>
+			</Container>
+			{loading && <Loading className="loading" />}
+		</>
 	);
 };
 
