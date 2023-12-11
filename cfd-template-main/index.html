@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1.0, user-scalable=0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>CFD Circle</title>
+	<meta name="title" content="CFD Circle" />
+	<meta name="description" content="" />
+	<meta name="keyword" content="" />
+
+	<link rel="canonical" href="https://cfdcircle.vn" />
+	<link rel="icon" href="favicon.ico">
+
+	<!-- Meta Tag Facebook -->
+	<meta property="og:locale" content="vi" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="CFD Circle" />
+	<meta property="og:description" content="" />
+	<meta property="og:url" content="" />
+	<meta property="og:site_name" content="CFD Circle" />
+	<meta property="og:image" content="" />
+
+	<!-- Meta Tag Twitter -->
+	<meta name="twitter:card" content="" />
+	<meta name="twitter:site" content="" />
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:description" content="" />
+	<meta name="twitter:image" content="" />
+
+	<style>
+		.loading {
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			position: fixed;
+			background: #fff;
+			z-index: 900;
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.loading.--hide {
+			opacity: 0;
+			visibility: hidden;
+			transition: 0.3s;
+			-webkit-transition: 0.3s;
+		}
+	</style>
+
+	<link rel="stylesheet" href="dest/style.min.css">
+	<link rel="stylesheet" href="dest/fonts.css">
+</head>
+
+<body>
+	<div class="loading"></div>
+	<header class="header --transparent">
+		<div class="container-fluid">
+			<div class="header__humburger">
+				<div class="header__humburger-button">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class="header__humburger-text">
+					<span>Menu</span>
+					<span>Đóng</span>
+				</div>
+			</div>
+			<div class="header__logo">
+				<a href="./">
+					<svg viewBox="0 0 354 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M333.561 29.3571H351.921V20.0714H333.561V9.42857H353.654V0H324V50H354V40.5714H333.561V29.3571Z"
+							fill="black" />
+						<path d="M300.541 0H291V50H319V40.5714H300.541V0Z" fill="black" />
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M274.963 17C272.268 12.745 267.704 10 262.5 10C254.492 10 248 16.7157 248 25C248 33.2843 254.492 40 262.5 40C267.613 40 272.312 37.146 275.041 33H286C284.523 37.9393 281.61 42.1772 277.262 45.3228C272.913 48.441 268.126 50 262.903 50C259.812 50 256.708 49.3791 253.59 48.1374C250.499 46.8681 247.832 45.1435 245.59 42.9636C243.101 40.5353 241.214 37.7621 239.928 34.644C238.643 31.5259 238 28.2009 238 24.6689C238 17.8532 240.421 12.0447 245.262 7.24338C250.13 2.41446 255.983 0 262.821 0C267.962 0 272.762 1.58664 277.221 4.75993C281.679 7.93322 284.605 11.9503 286 17H274.963Z"
+							fill="black" />
+						<path
+							d="M236 50L225.24 31.1429C230.863 28.5 234.612 22.7857 234.612 16.5714C234.612 12 233.015 8.07143 229.891 4.85714C226.767 1.64286 222.949 0 218.437 0H199V50H208.58V32.6429H215.869L225.657 50H236ZM218.437 9.21429C222.047 9.21429 225.032 12.5 225.032 16.5714C225.032 20.6429 222.047 24 218.437 24H208.58V9.21429H218.437Z"
+							fill="black" />
+						<path d="M184 50H194V0H184V50Z" fill="black" />
+						<path d="M63 20H74V30H63V20Z" fill="black" />
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M36.963 17C34.2678 12.745 29.7041 10 24.5 10C16.4919 10 10 16.7157 10 25C10 33.2843 16.4919 40 24.5 40C29.6134 40 34.3125 37.146 37.0415 33H48C46.5231 37.9393 43.6103 42.1772 39.2615 45.3228C34.9128 48.441 30.1265 50 24.9026 50C21.812 50 18.7077 49.3791 15.5897 48.1374C12.4991 46.8681 9.83248 45.1435 7.58974 42.9636C5.10085 40.5353 3.21368 37.7621 1.92821 34.644C0.642735 31.5259 0 28.2009 0 24.6689C0 17.8532 2.42051 12.0447 7.26154 7.24338C12.1299 2.41446 17.9829 0 24.8205 0C29.9624 0 34.7624 1.58664 39.2205 4.75993C43.6786 7.93322 46.6051 11.9503 48 17H36.963Z"
+							fill="black" />
+						<path
+							d="M83.4211 0V50H99.0461C114.946 50 126.621 39.225 126.621 24.6C126.621 9.825 115.596 0 99.6961 0H83.4211ZM99.6211 9.15C109.596 9.15 116.271 14.85 116.271 24.6C116.271 34.125 109.596 40.35 99.6211 40.35H93.5461V9.15H99.6211Z"
+							fill="black" />
+						<path d="M84 1.52771e-05L53 0V50H63.385L63.4625 30.7119V21.5509V9.16099L84 9.16097V1.52771e-05Z"
+							fill="black" />
+						<path id="rect" d="M168.463 19.9025H179V30.4391H168.463V19.9025Z" fill="#00AFAB" />
+						<path id="ccenter" fill-rule="evenodd" clip-rule="evenodd"
+							d="M168.463 17C165.768 12.745 160.704 10 155.5 10C147.492 10 141 16.7157 141 25C141 33.2843 147.492 40 155.5 40C160.613 40 165.734 37.5118 168.463 33.3659H179C177.523 38.3051 174.61 42.1772 170.262 45.3228C165.913 48.4409 161.126 50 155.903 50C152.812 50 149.708 49.3791 146.59 48.1374C143.499 46.8681 140.832 45.1435 138.59 42.9636C136.101 40.5353 134.214 37.7621 132.928 34.644C131.643 31.5259 131 28.2009 131 24.6689C131 17.8532 133.421 12.0447 138.262 7.24338C143.13 2.41446 148.983 0 155.821 0C160.962 0 165.762 1.58664 170.221 4.75993C174.679 7.93322 177.605 11.9503 179 17H168.463Z"
+							fill="black" />
+					</svg>
+				</a>
+			</div>
+			<!-- <div class="header__auth">
+				<a href="javascript:void(0)" class="btn btn--transparent btnmodal" data-modal="mdlogin">
+					<span>Đăng ký /&nbsp;</span><span>Đăng nhập</span>
+				</a>
+			</div> -->
+			<!-- user logged -->
+			<div class="header__logged">
+				<div class="userlogged">
+					<div class="userlogged__avatar user" data-dropdown="userlogged__dropdown">
+						<div class="userlogged__avatar-img user__img">
+							<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+						</div>
+						<i class="userlogged__avatar-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path d="M0 3.5L7.00003 10.5L14 3.5H0Z" fill="white" />
+							</svg>
+						</i>
+					</div>
+					<div class="userlogged__dropdown dropdown">
+						<div class="userlogged__dropdown-info">
+							<div class="user__img">
+								<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+							</div>
+							<a href="student-profile.html" class="user__info">
+								<p class="title --t4"><strong>Trần Nghĩa</strong></p>
+								<span class="email">Thông tin tài khoản</span>
+							</a>
+						</div>
+						<div class="userlogged__dropdown-list">
+							<a href="student-profile.html">Khóa học của tôi</a>
+							<a href="student-profile.html">Lịch sử thanh toán</a>
+							<a href="contact.html">Hỗ trợ</a>
+							<a href="#">Đăng xuất <i><img src="img/iconlogout.svg" alt=""></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<nav class="navbar">
+		<ul class="navbar__main">
+			<li class="navbar__link">
+				<a href="./" class="navbar__item active">Trang chủ</a>
+			</li>
+			<li class="navbar__link">
+				<a href="about.html" class="navbar__item">Về CFD Circle</a>
+			</li>
+			<li class="navbar__link">
+				<a href="courses.html" class="navbar__item">Khóa học</a>
+			</li>
+			<li class="navbar__link">
+				<a href="blog.html" class="navbar__item">Bài viết</a>
+			</li>
+			<li class="navbar__link">
+				<a href="contact.html" class="navbar__item">Liên hệ</a>
+			</li>
+		</ul>
+		<div class="navbar__overlay"></div>
+	</nav>
+	<div class="overlay"></div>
+	<main class="mainwrapper">
+		<section class="hero">
+			<div class="hero__content">
+				<div class="container">
+					<h1 class="title --white">Học Viện Đào Tạo<br> Lập Trình Front-End Thực Chiến</h1>
+					<p class="text">Dạy từ kinh nghiệm, học từ thực tế để tạo ra sản phẩm có giá trị.</p>
+					<div class="btn btn--primary btnmodal" data-modal="mdlogin">Bắt đầu học</div>
+				</div>
+			</div>
+			<div class="hero__bottom">
+				<div class="container-fluid">
+					<div class="hero__bottom-social">
+						<a href="https://www.facebook.com/cfdcircle" target="_blank"><img src="img/icon-facebook.svg"
+								alt="Facebook CFD" /></a>
+						<a href="https://www.youtube.com/cfdcircle" target="_blank"><img src="img/icon-youtube.svg"
+								alt="Youtube CFD" /></a>
+					</div>
+				</div>
+			</div>
+			<div class="hero__background">
+				<img class="hero__background-img" src="img/bg-hero-home.jpg" alt="CFD Training Background" />
+				<div class="hero__background-video" data-src="video/CFD-video-bg2.mp4"></div>
+			</div>
+		</section>
+		<section class="coursecoming --scpadding">
+			<div class="container">
+				<div class="heading">
+					<h2 class="heading__title title --t2">Khoá học <span class="color--primary">sắp khai giảng</span>
+					</h2>
+					<div class="control">
+						<div class="control__prev">
+							<img src="img/icon-btn-control.svg" alt="icon prev" />
+						</div>
+						<div class="control__next">
+							<img src="img/icon-btn-control.svg" alt="icon next" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="coursecoming__list" id="coursecoming__slider">
+				<div class="coursecoming__item">
+					<div class="coursecoming__item-img">
+						<a href="course-detail.html">
+							<img src="https://cfdcircle.vn/files/thumbnails/JUVoVxn36lQtCl20hHoEPMo8JJENBX5qXfI1U13k.jpg"
+								alt="Khóa học sắp ra mắt CFD" />
+						</a>
+					</div>
+					<div class="coursecoming__item-content">
+						<p class="category label">Front-end</p>
+						<h2 class="title --t2"><a href="course-detail.html">Frontend Master</a></h2>
+						<div class="user">
+							<div class="user__img">
+								<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+							</div>
+							<p class="user__name">Trần Nghĩa</p>
+						</div>
+						<div class="info">
+							<div class="labeltext">
+								<span class="label --blue">Ngày khai giảng</span>
+								<p class="title --t2">04/05/2023</p>
+							</div>
+							<div class="labeltext">
+								<span class="label --blue">Hình thức học</span>
+								<p class="title --t2">Offline | Online</p>
+							</div>
+						</div>
+						<div class="btnwrap">
+							<a href="course-order.html" class="btn btn--primary">Đăng Ký Học</a>
+							<a href="course-detail.html" class="btn btn--border --black">Xem chi tiết</a>
+						</div>
+					</div>
+				</div>
+				<div class="coursecoming__item">
+					<div class="coursecoming__item-img">
+						<a href="course-detail.html">
+							<img src="https://cfdcircle.vn/files/thumbnails/9VVXxGDc4ujKCegv4zcejuxJ4gC8C1qeXnECvy7s.jpg"
+								alt="Khóa học sắp ra mắt CFD" />
+						</a>
+					</div>
+					<div class="coursecoming__item-content">
+						<p class="category label">Front-End</p>
+						<h2 class="title --t2"><a href="course-detail.html">Web Responsive</a></h2>
+						<div class="user">
+							<div class="user__img">
+								<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+							</div>
+							<p class="user__name">Trần Nghĩa</p>
+						</div>
+						<div class="info">
+							<div class="labeltext">
+								<span class="label --blue">Ngày khai giảng</span>
+								<p class="title --t2">04/05/2023</p>
+							</div>
+							<div class="labeltext">
+								<span class="label --blue">Hình thức học</span>
+								<p class="title --t2">Offline | Online</p>
+							</div>
+						</div>
+						<div class="btnwrap">
+							<a href="course-order.html" class="btn btn--primary">Đăng Ký Học</a>
+							<a href="course-detail.html" class="btn btn--border --black">Xem chi tiết</a>
+						</div>
+					</div>
+				</div>
+				<div class="coursecoming__item">
+					<div class="coursecoming__item-img">
+						<a href="course-detail.html">
+							<img src="https://cfdcircle.vn/files/thumbnails/ahvVmtDlrzUPhKLDrc4YkdA8iFbACauYCN76TSGs.jpg"
+								alt="Khóa học sắp ra mắt CFD" />
+						</a>
+					</div>
+					<div class="coursecoming__item-content">
+						<p class="category label">Front-end</p>
+						<h2 class="title --t2"><a href="course-detail.html">Frontend Newbie</a></h2>
+						<div class="user">
+							<div class="user__img">
+								<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+							</div>
+							<p class="user__name">Trần Nghĩa</p>
+						</div>
+						<div class="info">
+							<div class="labeltext">
+								<span class="label --blue">Ngày khai giảng</span>
+								<p class="title --t2">04/05/2023</p>
+							</div>
+							<div class="labeltext">
+								<span class="label --blue">Hình thức học</span>
+								<p class="title --t2">Offline | Online</p>
+							</div>
+						</div>
+						<div class="btnwrap">
+							<a href="course-order.html" class="btn btn--primary">Đăng Ký Học</a>
+							<a href="course-detail.html" class="btn btn--border --black">Xem chi tiết</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="courses">
+			<div class="container">
+				<div class="heading">
+					<h2 class="heading__title title --t2">Tất cả <span class="color--primary">khóa học</span></h2>
+				</div>
+				<div class="courses__list">
+					<div class="courses__list-item">
+						<div class="img">
+							<a href="course-detail.html">
+								<img src="https://cfdcircle.vn/files/thumbnails/ahvVmtDlrzUPhKLDrc4YkdA8iFbACauYCN76TSGs.jpg"
+									alt="Khóa học CFD" class="course__thumbnail" />
+								<span class="course__img-badge badge">Offline | Online</span>
+							</a>
+						</div>
+						<div class="content">
+							<p class="label">Front-End</p>
+							<h3 class="title --t3"><a href="course-detail.html">Frontend Newbie</a></h3>
+							<div class="content__info">
+								<div class="user">
+									<div class="user__img"><img src="img/avatar_nghia.jpg" alt="Avatar teacher" /></div>
+									<p class="user__name">Trần Nghĩa</p>
+								</div>
+								<div class="price"><strong>4.500.000đ</strong></div>
+							</div>
+							<div class="content__action">
+								<a href="course-order.html" class="btn btn--primary">Đăng ký ngay</a>
+								<a href="course-detail.html" class="btn btn--default"><img src="img/icon-paper.svg"
+										alt="icon paper" /></a>
+							</div>
+						</div>
+					</div>
+					<div class="courses__list-item">
+						<div class="img">
+							<a href="course-detail.html">
+								<img src="https://cfdcircle.vn/files/thumbnails/9VVXxGDc4ujKCegv4zcejuxJ4gC8C1qeXnECvy7s.jpg"
+									alt="Khóa học CFD" class="course__thumbnail" />
+								<span class="course__img-badge badge">Offline | Online</span>
+							</a>
+						</div>
+						<div class="content">
+							<p class="label">Front-End</p>
+							<h3 class="title --t3"><a
+									href="https://cfdcircle.vn/files/thumbnails/9VVXxGDc4ujKCegv4zcejuxJ4gC8C1qeXnECvy7s.jpg">Web
+									Responsive</a></h3>
+							<div class="content__info">
+								<div class="user">
+									<div class="user__img">
+										<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+									</div>
+									<p class="user__name">Trần Nghĩa</p>
+								</div>
+								<div class="price"><strong>4.900.000đ</strong></div>
+							</div>
+							<div class="content__action">
+								<a href="course-order.html" class="btn btn--primary">Đăng ký ngay</a>
+								<a href="course-detail.html" class="btn btn--default"><img src="img/icon-paper.svg"
+										alt="icon paper" /></a>
+							</div>
+						</div>
+					</div>
+					<div class="courses__list-item">
+						<div class="img">
+							<a href="course-detail.html">
+								<img src="https://cfdcircle.vn/files/thumbnails/JUVoVxn36lQtCl20hHoEPMo8JJENBX5qXfI1U13k.jpg"
+									alt="Khóa học CFD" class="course__thumbnail" />
+								<span class="course__img-badge badge">Offline | Online</span>
+							</a>
+						</div>
+						<div class="content">
+							<p class="label">Front-End</p>
+							<h3 class="title --t3"><a href="#">Frontend Master</a></h3>
+							<div class="content__info">
+								<div class="user">
+									<div class="user__img">
+										<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+									</div>
+									<p class="user__name">Trần Nghĩa</p>
+								</div>
+								<div class="price"><strong>14.700.000đ</strong></div>
+							</div>
+							<div class="content__action">
+								<a href="course-order.html" class="btn btn--primary">Đăng ký ngay</a>
+								<a href="course-detail.html" class="btn btn--default"><img src="img/icon-paper.svg"
+										alt="icon paper" /></a>
+							</div>
+						</div>
+					</div>
+					<div class="courses__list-item">
+						<div class="img">
+							<a href="course-detail.html">
+								<img src="https://cfdcircle.vn/files/thumbnails/ZUTudJyluuW4DGhZ6iXS2z6jRnEe7RnKTKhDTR6h.jpg"
+									alt="Khóa học CFD" class="course__thumbnail" />
+								<span class="course__img-badge badge">Offline | Online</span>
+							</a>
+						</div>
+						<div class="content">
+							<p class="label">Front-End</p>
+							<h3 class="title --t3"><a href="course-detail.html">ReactJS Master</a></h3>
+							<div class="content__info">
+								<div class="user">
+									<div class="user__img">
+										<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+									</div>
+									<p class="user__name">Trần Nghĩa</p>
+								</div>
+								<div class="price"><strong>6.000.000đ</strong></div>
+							</div>
+							<div class="content__action">
+								<a href="course-order.html" class="btn btn--primary">Đăng ký ngay</a>
+								<a href="course-detail.html" class="btn btn--default"><img src="img/icon-paper.svg"
+										alt="icon paper" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="courses__btnall">
+					<a href="courses.html" class="course__btn btn btn--grey">Tất cả khoá học</a>
+				</div>
+			</div>
+		</section>
+		<section class="teacher --scpadding">
+			<div class="container">
+				<div class="heading">
+					<h2 class="heading__title title --t2">Đội Ngũ <span class="color--primary">CFD Circle</span></h2>
+					<div class="heading__content">
+						<p class="text">
+							Đội ngủ giảng viên và mentor tâm huyết nhiều kinh nghiệm được tích luỹ từ những dự án thực
+							tế sẽ đồng hành cùng bạn
+							xuyên suốt quá trình học và con đường phát triển sự nghiệp.
+						</p>
+						<div class="control">
+							<div class="control__prev">
+								<img src="img/icon-btn-control.svg" alt="icon prev" />
+							</div>
+							<div class="control__next">
+								<img src="img/icon-btn-control.svg" alt="icon next" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="teacher__list">
+				<div class="container">
+					<div class="teacher__list-inner">
+						<div class="teacher__list-item">
+							<div class="img">
+								<img src="https://cfdcircle.vn/files/teachers/trannghia.jpg" alt="Giảng viên CFD" />
+							</div>
+							<div class="info">
+								<p class="label">Creative Front-End Dev</p>
+								<h3 class="title --t3">Trần Nghĩa</h3>
+							</div>
+						</div>
+						<div class="teacher__list-item">
+							<div class="img">
+								<img src="https://cfdcircle.vn/files/teachers/huy.jpg" alt="Giảng viên CFD" />
+							</div>
+							<div class="info">
+								<p class="label">Fullstack Dev</p>
+								<h3 class="title --t3">Nguyễn Đức Huy</h3>
+							</div>
+						</div>
+						<div class="teacher__list-item">
+							<div class="img">
+								<img src="https://cfdcircle.vn/files/teachers/thien.jpg" alt="Giảng viên CFD" />
+							</div>
+							<div class="info">
+								<p class="label">Senior Front-end Dev</p>
+								<h3 class="title --t3">Lê Châu Hữu Thiện</h3>
+							</div>
+						</div>
+						<div class="teacher__list-item">
+							<div class="img">
+								<img src="https://cfdcircle.vn/files/teachers/kiet.jpg" alt="Giảng viên CFD" />
+							</div>
+							<div class="info">
+								<p class="label">Front-end Dev</p>
+								<h3 class="title --t3">Huỳnh Anh Kiệt</h3>
+							</div>
+						</div>
+						<div class="teacher__list-item">
+							<div class="img">
+								<img src="https://cfdcircle.vn/files/teachers/an.jpg" alt="Giảng viên CFD" />
+							</div>
+							<div class="info">
+								<p class="label">Senior Front-End Dev</p>
+								<h3 class="title --t3">Nguyễn Văn Thái An</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="featured">
+			<img src="img/icon-cfd.svg" alt="" class="featured__c">
+			<div class="container">
+				<div class="featured__title">
+					<h2 class="title --t2 --white">Những điều <br><span>Đặc biệt</span> Tại CFD</h2>
+				</div>
+				<div class="featured__content">
+					<div class="featured__content-item">
+						<h3 class="title --t3 --white">Chương trình học thực chiến</h3>
+						<p>
+							CFD Circle đào tạo thực chiến trên dự án, đi thẳng vào trọng tâm, sát với yêu cầu thực tế,
+							được truyền đạt từ những
+							giảng viên giàu kinh nghiệm và tâm huyết.
+						</p>
+					</div>
+					<div class="featured__content-item">
+						<h3 class="title --t3 --white">Đồng hành và hỗ trợ 24/7</h3>
+						<p>
+							Giảng viên, mentor và học viên là một team gắn kết, cùng nhau hỗ trợ, kết nối và giúp đỡ lẫn
+							nhau trong suốt quá trình
+							học và phát triển sự nghiệp.
+						</p>
+					</div>
+					<div class="featured__content-item">
+						<h3 class="title --t3 --white">Hình thức học đa dạng</h3>
+						<p>
+							Học offline hoặc online cùng lớp offline thông qua Google Meet, học viên được hỗ trợ và đánh
+							giá như học viên học
+							offline.
+						</p>
+					</div>
+					<div class="featured__content-item">
+						<h3 class="title --t3 --white">Đặt chữ "Tâm" trong tất cả mọi việc</h3>
+						<p>
+							Cái tâm của người dạy, cùng sự tâm huyết của người học, ắt sẽ thành công trên con đường sự
+							nghiệp của mỗi chúng ta.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- --------------------------------Testimonial-------------------------------- -->
+		<section class="testimonial --scpadding">
+			<div class="container">
+				<div class="testimonial__inner">
+					<div class="heading --white">
+						<h2 class="heading__title title --t2 --white">Cảm nhận <span class="color--primary">học
+								viên</span></h2>
+						<div class="control">
+							<div class="control__prev">
+								<svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<path d="M30 39L15 24L30 9" stroke="#fff" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" />
+								</svg>
+
+							</div>
+							<div class="control__next">
+								<svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<path d="M30 39L15 24L30 9" stroke="#fff" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" />
+								</svg>
+
+							</div>
+						</div>
+					</div>
+					<div class="testimonial__slider">
+						<div class="testimonial__slider-list">
+							<div class="item">
+								<div class="text">
+									<div class="ct ct-1 active">
+										<div class="info">
+											<div class="name">
+												<h4 class="title --t3 --white">Nguyễn Thanh Tùng</h4>
+											</div>
+										</div>
+										<div class="content">
+											Khoá học này thực sự rất chất lượng. Mình từ một người làm Sale, chưa biết
+											gì về HTML, CSS, JS, mà giờ code được một web
+											hoàn chỉnh và đã đi làm front-end dev. Mentor hỗ trợ nhiệt tình, lên lớp học
+											lý thuyết xong là thực chiến luôn. Sau khoá
+											học thì được giảng viên chia sẻ kinh nghiệm.
+										</div>
+										<div class="bottom">
+											<span class="label">Học viên CFD1</span>
+											<a href="https://www.facebook.com/" target="_blank"><img
+													src="img/facebook.svg" alt=""></a>
+										</div>
+									</div>
+									<div class="ct ct-2">
+										<div class="info">
+											<div class="name">
+												<h4 class="title --t3 --white">Huỳnh Anh Kiệt</h4>
+											</div>
+										</div>
+										<div class="content">
+											Là một nơi truyền cảm hứng cho mình thực hiện tiếp ước mơ và hoài bảo! Cảm
+											ơn các thầy đã nổ lực hỗ trợ để mình có thể
+											tiếp cận ước mơ của mình gần hơn.
+										</div>
+										<div class="bottom">
+											<span class="label">Học viên CFD2</span>
+											<a href="https://www.facebook.com/" target="_blank"><img
+													src="img/facebook.svg" alt=""></a>
+										</div>
+									</div>
+									<div class="ct ct-3">
+										<div class="info">
+											<div class="name">
+												<h4 class="title --t3 --white">Nguyễn Anh Tuấn</h4>
+											</div>
+										</div>
+										<div class="content">
+											Mình đã từng tự học nhưng bị mất phương hướng trầm trọng, sau khóa học mình
+											đã tự code được 2 dự án riêng, 4 mentor dạy
+											và hỗ trợ học viên rất có tâm, chuyện livestream giải đáp thắc mắc cho học
+											viên tới khuya là thường xuyên. Sau khóa học
+											mình học được cách tạo giao diện sao cho đẹp tinh tế, thân thiện với người
+											dùng.
+										</div>
+										<div class="bottom">
+											<span class="label">Học viên CFD1</span>
+											<a href="https://www.facebook.com/" target="_blank"><img
+													src="img/facebook.svg" alt=""></a>
+										</div>
+									</div>
+									<div class="ct ct-4">
+										<div class="info">
+											<div class="name">
+												<h4 class="title --t3 --white">Nguyễn Văn Tuấn</h4>
+											</div>
+										</div>
+										<div class="content">
+											Khóa học thực sự chất lượng, anh Nghĩa và mentor hỗ trợ rất nhiệt tình. Sau
+											khóa học riêng mình cảm thấy học hỏi được
+											rất nhiều.
+										</div>
+										<div class="bottom">
+											<span class="label">Học viên CFD1</span>
+											<a href="https://www.facebook.com/" target="_blank"><img
+													src="img/facebook.svg" alt=""></a>
+										</div>
+									</div>
+								</div>
+								<div class="images">
+									<div class="list">
+										<div class="carousel-cell">
+											<div class="img">
+												<picture>
+													<source media="(max-width: 767px)"
+														srcset="https://cfdcircle.vn/files/testimonial/1648229180-thanh-tung.jpg">
+													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/1648229180-thanh-tung.jpg"
+														alt="">
+												</picture>
+											</div>
+											<div class="ct_m">
+												<div class="info">
+													<div class="name">
+														<h4 class="title --t3 --white">Nguyễn Thanh Tùng</h4>
+													</div>
+												</div>
+												<div class="content">
+													Khoá học này thực sự rất chất lượng. Mình từ một người làm Sale,
+													chưa biết
+													gì về HTML, CSS, JS, mà giờ code được một web
+													hoàn chỉnh và đã đi làm front-end dev. Mentor hỗ trợ nhiệt tình, lên
+													lớp học
+													lý thuyết xong là thực chiến luôn. Sau khoá
+													học thì được giảng viên chia sẻ kinh nghiệm.
+												</div>
+												<div class="bottom">
+													<span class="label">Học viên CFD1</span>
+													<a href="https://www.facebook.com/" target="_blank"><img
+															src="img/facebook.svg" alt=""></a>
+												</div>
+											</div>
+										</div>
+										<div class="carousel-cell">
+											<div class="img">
+												<picture>
+													<source media="(max-width: 767px)"
+														srcset="https://cfdcircle.vn/files/testimonial/kiet.jpg">
+													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/kiet.jpg"
+														alt="">
+												</picture>
+											</div>
+											<div class="info">
+												<div class="name">
+													<h4 class="title --t3 --white">Huỳnh Anh Kiệt</h4>
+												</div>
+											</div>
+											<div class="content">
+												Là một nơi truyền cảm hứng cho mình thực hiện tiếp ước mơ và hoài bảo!
+												Cảm
+												ơn các thầy đã nổ lực hỗ trợ để mình có thể
+												tiếp cận ước mơ của mình gần hơn.
+											</div>
+											<div class="bottom">
+												<span class="label">Học viên CFD2</span>
+												<a href="https://www.facebook.com/" target="_blank"><img
+														src="img/facebook.svg" alt=""></a>
+											</div>
+										</div>
+										<div class="carousel-cell">
+											<div class="img">
+												<picture>
+													<source media="(max-width: 767px)"
+														srcset="https://cfdcircle.vn/files/testimonial/1648229287-anh-tuan.jpg">
+													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/1648229287-anh-tuan.jpg"
+														alt="">
+												</picture>
+											</div>
+											<div class="ct_m">
+												<div class="info">
+													<div class="name">
+														<h4 class="title --t3 --white">Nguyễn Anh Tuấn</h4>
+													</div>
+												</div>
+												<div class="content">
+													Mình đã từng tự học nhưng bị mất phương hướng trầm trọng, sau khóa
+													học mình
+													đã tự code được 2 dự án riêng, 4 mentor dạy
+													và hỗ trợ học viên rất có tâm, chuyện livestream giải đáp thắc mắc
+													cho học
+													viên tới khuya là thường xuyên. Sau khóa học
+													mình học được cách tạo giao diện sao cho đẹp tinh tế, thân thiện với
+													người
+													dùng.
+												</div>
+												<div class="bottom">
+													<span class="label">Học viên CFD1</span>
+													<a href="https://www.facebook.com/" target="_blank"><img
+															src="img/facebook.svg" alt=""></a>
+												</div>
+											</div>
+										</div>
+										<div class="carousel-cell">
+											<div class="img">
+												<picture>
+													<source media="(max-width: 767px)"
+														srcset="https://cfdcircle.vn/files/testimonial/tuan.jpg">
+													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/tuan.jpg"
+														alt="">
+												</picture>
+											</div>
+											<div class="ct_m">
+												<div class="info">
+													<div class="name">
+														<h4 class="title --t3 --white">Nguyễn Văn Tuấn</h4>
+													</div>
+												</div>
+												<div class="content">
+													Khóa học thực sự chất lượng, anh Nghĩa và mentor hỗ trợ rất nhiệt
+													tình. Sau
+													khóa học riêng mình cảm thấy học hỏi được
+													rất nhiều.
+												</div>
+												<div class="bottom">
+													<span class="label">Học viên CFD1</span>
+													<a href="https://www.facebook.com/" target="_blank"><img
+															src="img/facebook.svg" alt=""></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="dots"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- --------------------------------faq-------------------------------- -->
+		<section class="faq --scpadding">
+			<div class="container">
+				<div class="faq__inner">
+					<div class="heading --noline --center">
+						<h2 class="heading__title title --t2">Câu hỏi <span class="color--primary">thường gặp</span>
+						</h2>
+					</div>
+					<div class="faq__list">
+						<div class="accordion">
+							<h3 class="accordion__title label">Thông tin chung</h3>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>Muốn đặt câu hỏi với giảng viên, thì phải làm sao?</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									I'd like to demonstrate a powerful little pattern called “Server-Fetched Partials”
+									that
+									offers
+									some tangible benefits over alternatives like VueJS for simple page interactions.
+								</div>
+							</div>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>Thành viên sáng lập CFD gồm những ai?</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									Đối với hình thức học Offline hoặc Online cùng lớp offline thông qua Google Meet thì
+									học viên có thể hỏi trực tiếp trong
+									lúc học, cũng như là hỏi trên nhóm chat Facebook của lớp bạn đang học, giảng viên và
+									mentor sẽ hỗ trợ 24/7. <br><br>
+									Đối với hình thức học Video Mentor, học viên có thể đặt câu hỏi trong các buổi dạy
+									online của giảng viên, cũng như là
+									hỏi trên nhóm chat Telegram của lớp bạn đang học, giảng viên và mentor sẽ hỗ trợ
+									24/7. <br><br>
+									Đối với hình thức học Video, học viên có thể đặt câu hỏi thông qua nhóm chat
+									Facebook hỗ trợ học viên của đội ngũ giảng
+									viên và mentor CFD Circle.
+								</div>
+							</div>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>Học tại CFD Circle xong có đi làm hay thực tập được không?</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									Khóa học thực chiến tại CFD Circle giúp học viên trải nghiệm dự án, quy trình làm
+									việc và kỹ năng thực tế cần có để
+									không chỉ xin thực tập mà còn có thể ứng tuyển các vị trí chính thức cao hơn như ở
+									các công ty.
+								</div>
+							</div>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>CFD Circle có cam kết đầu ra và cấp chứng chỉ không?</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									Hiện tại, CFD Circle không quảng cáo bằng cách cam kết đầu ra 100% để thu hút học
+									viên, vì thế, CFD không cam kết đầu ra
+									và chứng chỉ, điều chúng tôi làm là cố gắng hết sức để truyền đạt và giúp cho tất cả
+									học viên có thể làm được việc và
+									các kỹ năng thực tế cần có sau khóa học và ứng tuyển ít nhất là vị trí fresher cho
+									các công ty.
+								</div>
+							</div>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>Học tại CFD Circle sao cho hiệu quả nhất?</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									Học viên cần chuẩn bị đủ thời gian để học Offline hoặc Online, cũng như thời gian để
+									hoàn thành bài tập, tự học tại
+									nhà.<br><br> Tự tin vào bản thân, kiên trì, cố gắng và sức chiến đấu cao không lùi
+									bước, chủ động hỏi những vấn đề chưa
+									rõ để được giải đáp và hỗ trợ. <br><br> Hạn chế tối đa việc nghỉ học, nếu có nghỉ
+									thì phải xin và xem lại video được ghi
+									lại trong lúc học để hoàn thành bài tập và kiến thức ngày hôm đó.
+								</div>
+							</div>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>Sau mỗi buổi học có quay video để xem lại không?</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									CFD Circle sẽ quay lại video buổi học offline để các bạn không tham gia được có thể
+									xem lại bằng cách đăng nhập vào
+									website CFD, chọn mục Khóa Học Của Tôi, chọn Khóa Đang Học và xem lại
+									video.<br><br>Bản quyền video thuộc về CFD Circle,
+									nên nếu học viên tìm cách tải video về và chia sẻ thì sẽ bị khóa tài khoản vĩnh
+									viễn.
+								</div>
+							</div>
+						</div>
+						<div class="accordion">
+							<h3 class="accordion__title label">Đăng ký, thanh toán</h3>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>Đăng ký khóa học tại CFD Circle như thế nào?</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									Bạn đăng ký tài khoản, chọn khóa học muốn học, điền đầy đủ thông tin và bấm đăng ký
+									học.<br><br>
+									Đối với khoá học Offline: Bạn có thể thanh toán bằng chuyển khoản ngân hàng, ví điện
+									tử Momo hoặc đóng tiền mặt tại văn
+									phòng CFD Circle. Đội ngũ CFD Circle sẽ gửi email cho bạn để xác nhận khi bạn đăng
+									ký khoá học thành công.<br><br>
+									Đối với khoá học Online hoặc Video: Bạn có thể thanh toán bằng chuyển khoản ngân
+									hàng hoặc ví điện tử Momo.<br><br>
+									Thông tin chuyển khoản sẽ được gửi đến email của bạn ngay khi bạn đăng ký khoá học,
+									khoá học sẽ được kích hoạt khi bạn
+									thanh toán thành công.
+								</div>
+							</div>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>Làm sao để được giảm giá khoá học?</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									Đối với khoá học Offline hoặc Online cùng lớp Offline:<br>
+									- Giảm giá cho mỗi học viên khi học theo nhóm 2 người trở lên (áp dụng trên từng
+									khoá học cụ thể).<br>
+									Đối với khoá học video:<br>
+									- Chương trình giảm giá tuỳ từng mỗi khoá học khác nhau.
+								</div>
+							</div>
+							<div class="accordion__content">
+								<div class="accordion__content-title">
+									<h4><strong>Làm sao để đăng ký làm giảng viên/đối tác hoặc mentor tại CFD
+											Circle</strong></h4>
+								</div>
+								<div class="accordion__content-text">
+									Đối với giảng viên/đối tác:<br>
+									Bạn có thể đăng ký trở thành giảng viên/đối tác nội dung cho CFD Circle thì vui lòng
+									bấm <a href="https://cfdcircle.vn/dang-ky-giang-vien" target="_blank"><strong>đăng
+											ký giảng viên</strong></a>. <br><br>
+									Đối với mentor:<br>
+									CFD Circle sẽ thông báo tuyển dụng mentor rộng rãi thông qua website và nhóm Cộng
+									đồng CFD Circle để các bạn có thể ứng
+									tuyển.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="gallery">
+			<div class="heading --noline --center">
+				<h2 class="heading__title title --t2"><span class="color--primary">CFD Circle</span> Là Một Team</h2>
+			</div>
+			<div class="list">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc01129.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc00541.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc00545.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc00662-1.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/beauty-1618471253214-2.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc6912.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc01147.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc00677.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc00678-1.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc6977.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc00688.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc01114.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/img-001-(1).jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc5918-2.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc5506.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc5511.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc5587-2.jpg" alt="">
+				<img data-flickity-lazyload="https://cfdcircle.vn/files/about/Team/dsc5637-1.jpg" alt="">
+			</div>
+			<div class="controls">
+				<div class="btn_ctr prev"></div>
+				<span>Trượt qua</span>
+				<div class="timeline">
+					<div class="process"></div>
+				</div>
+				<div class="btn_ctr next"></div>
+			</div>
+		</section>
+		<section class="callregister">
+			<div class="container">
+				<div class="callregister__content">
+					<h3 class="title --t2"><span class="color--primary">trở thành một phần</span> của CFD Circle
+					</h3>
+					<p>
+						Chúng tôi rất vui khi bạn quyết định trở thành một phần của CFD Circle để cùng nhau học hỏi, lan
+						toả và chia sẻ những kinh nghiệm quý giá cho cộng đồng.
+					</p>
+					<a href="courses.html" class="btn btn--primary">Tham gia Khoá học</a>
+					<a href="contact.html" class="btn btn--border --black">Liên hệ tư vấn</a>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div class="container">
+			<div class="content">
+				<div class="content-item">
+					<h3 class="label">Thông tin</h3>
+					<ul>
+						<li><a href="about.html">Về CFD Circle</a></li>
+						<li><a href="courses.html">Khóa học</a></li>
+						<li><a href="blog.html">Bài viết</a></li>
+					</ul>
+				</div>
+				<div class="content-item">
+					<h3 class="label">Hỗ trợ</h3>
+					<ul>
+						<li><a href="contact.html">Trung tâm hỗ trợ</a></li>
+						<li><a href="payment-method.html">Phương thức thanh toán</a></li>
+						<li><a href="privacy.html">Chính sách và điều khoản</a></li>
+					</ul>
+				</div>
+				<div class="content-item">
+					<h3 class="label">Kết nối</h3>
+					<ul>
+						<li><a href="https://www.facebook.com/groups/cfdteam" target="_blank"><i><img
+										src="img/icon-cfd-footer.svg" alt=""></i><span>Cộng đồng</span></a>
+						</li>
+						<li><a href="https://www.facebook.com/cfdcircle" target="_blank"><i><img
+										src="img/icon-fb-footer.svg" alt=""></i><span>Facebook</span></a></li>
+						<li><a href="https://www.youtube.com/cfdcircle" target="_blank"><i><img
+										src="img/icon-ytb-ft.svg" alt=""></i><span>Youtube</span></a></li>
+					</ul>
+				</div>
+				<div class="content-item">
+					<h3 class="label">Liên hệ</h3>
+					<ul>
+						<li><a href="https://goo.gl/maps/RnCAPv3CBjUgTUFd8" target="_blank"><i><img
+										src="img/icon-address.svg" alt=""></i><span>666/46/29 Ba Tháng Hai,
+									phường 14, quận
+									10, TPHCM</span></a></li>
+						<li><a href="tel:0989596913"><i><img src="img/icon-phone.svg" alt=""></i><span>(+84) 98 9596
+									913</span></a>
+						</li>
+						<li><a href="mailto:info@cfdcircle.vn"><i><img src="img/icon-mail.svg"
+										alt=""></i><span>info@cfdcircle.vn</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="copyright">
+					<img src="img/icon-footer-copy.svg" alt=""><span>&copy; 2023 CFD Circle</span>
+				</div>
+				<a href="./" target="_blank" class="logobct"><img src="img/logo-bo-cong-thuong.png" alt=""></a>
+			</div>
+		</div>
+	</footer>
+	<!-- Modal Đăng Nhập / Đăng Ký -->
+	<div class="modal modallogin">
+		<div class="modal__wrapper">
+			<div class="modal__wrapper-close">
+				<img src="img/close_icon.svg" alt="CFD Register" />
+			</div>
+			<div class="modal__wrapper-content mdlogin">
+				<div class="form__bottom">
+					<p>Bạn chưa có tài khoản?</p>
+					<div class="color--primary btnmodal" data-modal="mdregister"><strong>Đăng ký</strong></div>
+				</div>
+				<div class="social">
+					<a class="btn btn--google" href="#"><i><img src="img/icon-google.svg"
+								alt="Google CFD" /></i><span>Đăng nhập bằng Google</span></a>
+					<a class="btn btn--facebook" href="#"><i><img src="img/icon-facebook-v2.svg"
+								alt="Google CFD" /></i><span>Đăng nhập bằng Google</span></a>
+				</div>
+				<span class="line">Hoặc</span>
+				<form action="#" class="form">
+					<div class="form-group">
+						<input value="" type="email" class="form__input formerror" placeholder="Email">
+						<p class="error">Email không được để trống</p>
+					</div>
+					<div class="form-group">
+						<input value="" type="password" class="form__input" placeholder="Mật khẩu">
+					</div>
+					<div class="form__bottom">
+						<a class="color--primary" href="#">Quên mật khẩu?</a>
+					</div>
+					<button class="btn btn--primary form__btn-register" type="submit">Đăng nhập</button>
+				</form>
+			</div>
+			<div class="modal__wrapper-content mdregister">
+				<div class="form__bottom">
+					<p>Bạn đã có tài khoản?</p>
+					<div class="color--primary btnmodal" data-modal="mdlogin"><strong>Đăng nhập</strong></div>
+				</div>
+				<div class="social">
+					<a class="btn btn--google" href="#"><i><img src="img/icon-google.svg"
+								alt="Google CFD" /></i><span>Đăng ký bằng Google</span></a>
+					<a class="btn btn--facebook" href="#"><i><img src="img/icon-facebook-v2.svg"
+								alt="Google CFD" /></i><span>Đăng ký bằng Google</span></a>
+				</div>
+				<span class="line">Hoặc</span>
+				<form action="#" class="form">
+					<div class="form-group">
+						<input value="" type="text" class="form__input formerror" placeholder="Họ và tên">
+						<p class="error">Họ và tên không được để trống</p>
+					</div>
+					<div class="form-group">
+						<input value="" type="email" class="form__input" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<input value="" type="password" class="form__input" placeholder="Mật khẩu">
+					</div>
+					<div class="form-group">
+						<input value="" type="password" class="form__input" placeholder="Xác nhận mật khẩu">
+					</div>
+					<p class="form__argee">
+						Với việc đăng ký, bạn đã đồng ý
+						<a class="color--primary" href="#">Chính Sách Điều Khoản</a> của CFD
+					</p>
+					<button class="btn btn--primary form__btn-register" type="submit">Đăng ký tài khoản</button>
+				</form>
+			</div>
+			<div class="modal__wrapper-content mdconsult">
+				<h3 class="title --t3">Đăng ký tư vấn</h3>
+				<form action="#" class="form">
+					<div class="form-group">
+						<input value="" type="text" class="form__input formerror" placeholder="Họ và tên">
+						<p class="error">Họ và tên không được để trống</p>
+					</div>
+					<div class="form-group">
+						<input value="" type="text" class="form__input" placeholder="Số điện thoại">
+					</div>
+					<div class="form-group">
+						<input value="" type="email" class="form__input" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<textarea name="" id="" cols="30" rows="4" class="form__input"
+							placeholder="Nội dung cần tư vấn"></textarea>
+					</div>
+					<button class="btn btn--primary form__btn-register" type="submit">Gửi thông tin</button>
+				</form>
+			</div>
+			<div class="modal__wrapper-content mdchangepass">
+				<h3 class="title --t3">Đổi mật khẩu</h3>
+				<form action="#" class="form">
+					<div class="form-group">
+						<input value="" type="password" class="form__input formerror" placeholder="Mật khẩu cũ">
+						<p class="error">Mật khẩu không được để trống</p>
+					</div>
+					<button class="btn btn--primary form__btn-register" type="submit">Gửi thông tin</button>
+				</form>
+			</div>
+		</div>
+		<div class="modal__overlay"></div>
+	</div>
+
+	<script src="dest/jsmain.min.js"></script>
+	<script src="dest/main.js"></script>
+</body>
+
+</html>

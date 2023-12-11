@@ -14,15 +14,9 @@ export const CssButton = styled.button`
 	}
 `;
 
-const Button = ({ children, className = "", handleAction, ...restProps }) => {
+const Button = ({ children, className = "", handleAction , ...restProps }) => {
 	return (
-		<CssButton
-			className={`btn ${className}`}
-			{...restProps}
-			onClick={handleAction}
-		>
-			{children}
-		</CssButton>
+		<CssButton className={`btn ${className}`} {...restProps}>{children}</CssButton>
 	);
 };
 

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>CFD Circle</title>
+    <meta name="title" content="CFD Circle" />
+    <meta name="description" content="" />
+    <meta name="keyword" content="" />
+
+    <link rel="canonical" href="https://cfdcircle.vn" />
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Meta Tag Facebook -->
+    <meta property="og:locale" content="vi" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="CFD Circle" />
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="CFD Circle" />
+    <meta property="og:image" content="" />
+
+    <!-- Meta Tag Twitter -->
+    <meta name="twitter:card" content="" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
+
+    <style>
+        .loading {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            background: #fff;
+            z-index: 900;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading.--hide {
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            -webkit-transition: 0.3s;
+        }
+    </style>
+
+    <link rel="stylesheet" href="dest/style.min.css">
+    <link rel="stylesheet" href="dest/fonts.css">
+</head>
+
+<body>
+    <div class="loading"></div>
+    <header class="header --bgwhite">
+        <div class="container-fluid">
+            <div class="header__humburger">
+                <div class="header__humburger-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="header__humburger-text">
+                    <span>Menu</span>
+                    <span>Đóng</span>
+                </div>
+            </div>
+            <div class="header__logo">
+                <a href="./">
+                    <svg viewBox="0 0 354 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M333.561 29.3571H351.921V20.0714H333.561V9.42857H353.654V0H324V50H354V40.5714H333.561V29.3571Z"
+                            fill="black" />
+                        <path d="M300.541 0H291V50H319V40.5714H300.541V0Z" fill="black" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M274.963 17C272.268 12.745 267.704 10 262.5 10C254.492 10 248 16.7157 248 25C248 33.2843 254.492 40 262.5 40C267.613 40 272.312 37.146 275.041 33H286C284.523 37.9393 281.61 42.1772 277.262 45.3228C272.913 48.441 268.126 50 262.903 50C259.812 50 256.708 49.3791 253.59 48.1374C250.499 46.8681 247.832 45.1435 245.59 42.9636C243.101 40.5353 241.214 37.7621 239.928 34.644C238.643 31.5259 238 28.2009 238 24.6689C238 17.8532 240.421 12.0447 245.262 7.24338C250.13 2.41446 255.983 0 262.821 0C267.962 0 272.762 1.58664 277.221 4.75993C281.679 7.93322 284.605 11.9503 286 17H274.963Z"
+                            fill="black" />
+                        <path
+                            d="M236 50L225.24 31.1429C230.863 28.5 234.612 22.7857 234.612 16.5714C234.612 12 233.015 8.07143 229.891 4.85714C226.767 1.64286 222.949 0 218.437 0H199V50H208.58V32.6429H215.869L225.657 50H236ZM218.437 9.21429C222.047 9.21429 225.032 12.5 225.032 16.5714C225.032 20.6429 222.047 24 218.437 24H208.58V9.21429H218.437Z"
+                            fill="black" />
+                        <path d="M184 50H194V0H184V50Z" fill="black" />
+                        <path d="M63 20H74V30H63V20Z" fill="black" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M36.963 17C34.2678 12.745 29.7041 10 24.5 10C16.4919 10 10 16.7157 10 25C10 33.2843 16.4919 40 24.5 40C29.6134 40 34.3125 37.146 37.0415 33H48C46.5231 37.9393 43.6103 42.1772 39.2615 45.3228C34.9128 48.441 30.1265 50 24.9026 50C21.812 50 18.7077 49.3791 15.5897 48.1374C12.4991 46.8681 9.83248 45.1435 7.58974 42.9636C5.10085 40.5353 3.21368 37.7621 1.92821 34.644C0.642735 31.5259 0 28.2009 0 24.6689C0 17.8532 2.42051 12.0447 7.26154 7.24338C12.1299 2.41446 17.9829 0 24.8205 0C29.9624 0 34.7624 1.58664 39.2205 4.75993C43.6786 7.93322 46.6051 11.9503 48 17H36.963Z"
+                            fill="black" />
+                        <path
+                            d="M83.4211 0V50H99.0461C114.946 50 126.621 39.225 126.621 24.6C126.621 9.825 115.596 0 99.6961 0H83.4211ZM99.6211 9.15C109.596 9.15 116.271 14.85 116.271 24.6C116.271 34.125 109.596 40.35 99.6211 40.35H93.5461V9.15H99.6211Z"
+                            fill="black" />
+                        <path d="M84 1.52771e-05L53 0V50H63.385L63.4625 30.7119V21.5509V9.16099L84 9.16097V1.52771e-05Z"
+                            fill="black" />
+                        <path id="rect" d="M168.463 19.9025H179V30.4391H168.463V19.9025Z" fill="#00AFAB" />
+                        <path id="ccenter" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M168.463 17C165.768 12.745 160.704 10 155.5 10C147.492 10 141 16.7157 141 25C141 33.2843 147.492 40 155.5 40C160.613 40 165.734 37.5118 168.463 33.3659H179C177.523 38.3051 174.61 42.1772 170.262 45.3228C165.913 48.4409 161.126 50 155.903 50C152.812 50 149.708 49.3791 146.59 48.1374C143.499 46.8681 140.832 45.1435 138.59 42.9636C136.101 40.5353 134.214 37.7621 132.928 34.644C131.643 31.5259 131 28.2009 131 24.6689C131 17.8532 133.421 12.0447 138.262 7.24338C143.13 2.41446 148.983 0 155.821 0C160.962 0 165.762 1.58664 170.221 4.75993C174.679 7.93322 177.605 11.9503 179 17H168.463Z"
+                            fill="black" />
+                    </svg>
+                </a>
+            </div>
+            <!-- <div class="header__auth">
+				<a href="javascript:void(0)" class="btn btn--transparent btnmodal" data-modal="mdlogin">
+					<span>Đăng ký /&nbsp;</span><span>Đăng nhập</span>
+				</a>
+			</div> -->
+            <!-- user logged -->
+            <div class="header__logged">
+                <div class="userlogged">
+                    <div class="userlogged__avatar user" data-dropdown="userlogged__dropdown">
+                        <div class="userlogged__avatar-img user__img">
+                            <img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+                        </div>
+                        <i class="userlogged__avatar-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 3.5L7.00003 10.5L14 3.5H0Z" fill="white" />
+                            </svg>
+                        </i>
+                    </div>
+                    <div class="userlogged__dropdown dropdown">
+                        <div class="userlogged__dropdown-info">
+                            <div class="user__img">
+                                <img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+                            </div>
+                            <a href="student-profile.html" class="user__info">
+                                <p class="title --t4"><strong>Trần Nghĩa</strong></p>
+                                <span class="email">Thông tin tài khoản</span>
+                            </a>
+                        </div>
+                        <div class="userlogged__dropdown-list">
+                            <a href="student-profile.html">Khóa học của tôi</a>
+                            <a href="student-profile.html">Lịch sử thanh toán</a>
+                            <a href="contact.html">Hỗ trợ</a>
+                            <a href="#">Đăng xuất <i><img src="img/iconlogout.svg" alt=""></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="navbar">
+        <ul class="navbar__main">
+            <li class="navbar__link">
+                <a href="./" class="navbar__item active">Trang chủ</a>
+            </li>
+            <li class="navbar__link">
+                <a href="about.html" class="navbar__item">Về CFD Circle</a>
+            </li>
+            <li class="navbar__link">
+                <a href="courses.html" class="navbar__item">Khóa học</a>
+            </li>
+            <li class="navbar__link">
+                <a href="blog.html" class="navbar__item">Bài viết</a>
+            </li>
+            <li class="navbar__link">
+                <a href="contact.html" class="navbar__item">Liên hệ</a>
+            </li>
+        </ul>
+        <div class="navbar__overlay"></div>
+    </nav>
+    <div class="overlay"></div>
+    <main class="mainwrapper blogdetail --ptop">
+        <div class="container">
+            <div class="wrapper">
+                <div class="blogdetail__title">
+                    <h1 class="title --t2">Xây Dựng Portfolio Cá Nhân Để Thành Công Trong Sự Nghiệp Của Bạn</h1>
+                    <ul class="meta">
+                        <li class="meta__item">Đăng bởi Trần Nghĩa</li>
+                        <li class="meta__item">Dev</li>
+                        <li class="meta__item">15/07/2021</li>
+                    </ul>
+                </div>
+                <div class="blogdetail__content">
+                    <img src="https://cfdcircle.vn/files/thumbnails/ebQvh5lMnPglamK4Q8DDWdoyzTnHLcDej5KJnlJh.jpg"
+                        alt="Post thumnail">
+                    <div class="blogdetail__content-entry">
+                        <p>Nếu bạn đang muốn tìm kiếm một công việc mới hoặc muốn phát triển sự nghiệp của mình, thì
+                            việc xây dựng một
+                            portfolio cá nhân là điều rất quan trọng. Portfolio cá nhân cho phép bạn giới thiệu bản thân
+                            và kinh nghiệm của
+                            mình với nhà tuyển dụng hoặc khách hàng tiềm năng. Trong bài viết này, chúng ta sẽ tìm hiểu
+                            chi tiết về cách xây
+                            dựng một portfolio cá nhân để giúp bạn thành công trong sự nghiệp của mình.</p>
+                        <h2>Ai nên xây dựng portfolio cá nhân?</h2>
+                        <p>Portfolio cá nhân là phù hợp cho mọi người, từ sinh viên mới tốt nghiệp đến những người đã có
+                            kinh nghiệm nhiều
+                            năm trong lĩnh vực của mình. Những người sau đây nên đặc biệt lưu ý đến việc xây dựng
+                            portfolio cá nhân:</p>
+                        <ul>
+                            <li><strong>Sinh viên</strong>: Nếu bạn đang tìm kiếm công việc đầu tiên của mình, một
+                                portfolio cá nhân sẽ giúp
+                                bạn thu hút sự chú ý của nhà tuyển dụng.</li>
+                            <li><strong>Người làm tự do (freelancer)</strong>: Nếu bạn là một nhà thiết kế đồ họa, nhà
+                                phát triển web hay
+                                một nghệ sĩ tự do khác, portfolio cá nhân sẽ giúp bạn trưng bày tài năng của mình và thu
+                                hút khách hàng tiềm
+                                năng.</li>
+                            <li><strong>Người muốn thăng tiến trong sự nghiệp</strong>: Nếu bạn muốn chuyển sang một vai
+                                trò mới hoặc muốn
+                                được thăng tiến trong công việc hiện tại của mình, một portfolio cá nhân sẽ giúp bạn
+                                chứng minh rằng bạn có
+                                những kỹ năng cần thiết để đạt được mục tiêu đó.</li>
+                        </ul>
+                        <h2>Những gì cần có trong một portfolio cá nhân?</h2>
+                        <p>Một portfolio cá nhân hiệu quả cần có các thành phần sau:</p>
+                        <h3>Hình ảnh chuyên nghiệp</h3>
+                        <p>Một bức ảnh chuyên nghiệp sẽ giúp bạn giới thiệu mình với sự chuyên nghiệp và chắc chắn. Bạn
+                            nên chọn một bức ảnh
+                            chụp chính diện, với ánh sáng tốt và phù hợp với ngành nghề của bạn.</p>
+                        <p><img src="https://cfdcircle.vn/files/blog/xay-dung-porfolio-cfd-circle.jpg" alt="CFD Circle"
+                                width="100%" height="auto"></p>
+                        <h3>Giới thiệu bản thân</h3>
+                        <p>Giới thiệu bản thân là bước đầu tiên trong việc xây dựng portfolio cá nhân. Bạn nên đưa ra
+                            thông tin cơ bản về
+                            bản thân, bao gồm tên, vị trí hiện tại, kinh nghiệm và mục tiêu nghề nghiệp của bạn.</p>
+                        <h3>Các dự án đã hoàn thành</h3>
+                        <p>Nếu bạn là một nhà thiết kế đồ họa hay nhà phát triển web, thì bạn nên bao gồm các dự án đã
+                            hoàn thành của mình
+                            trong portfolio cá nhân. Đây sẽ giúp cho nhà tuyển dụng hoặc khách hàng tiềm năng có được
+                            cái nhìn rõ ràng về
+                            khả năng của bạn.</p>
+                        <h3>Những kỹ năng của bạn</h3>
+                        <p>Bạn nên liệt kê các kỹ năng chính của mình trong portfolio cá nhân. Bạn cũng nên đánh giá mức
+                            độ thành thạo của
+                            mình đối với từng kỹ năng này, bao gồm cả kỹ năng mềm và kỹ năng chuyên môn.</p>
+                        <h3>Những chứng chỉ hoặc giải thưởng</h3>
+                        <p>Nếu bạn có các chứng chỉ liên quan đến ngành nghề của mình hoặc đã nhận được các giải thưởng
+                            trong quá trình làm
+                            việc, hãy đưa chúng vào portfolio cá nhân để tăng tính chuyên nghiệp và uy tín cho bản thân.
+                        </p>
+                        <h3>Những đánh giá từ khách hàng hoặc nhà tuyển dụng</h3>
+                        <p>Nếu bạn đã từng làm việc với khách hàng hoặc được nhà tuyển dụng đánh giá cao, hãy đưa những
+                            đánh giá này vào
+                            portfolio cá nhân. Điều này sẽ giúp tăng tính xác thực và độ tin cậy của bạn.</p>
+                        <h2>Làm thế nào để xây dựng portfolio cá nhân?</h2>
+                        <p>Để xây dựng một portfolio cá nhân hiệu quả, bạn nên tuân theo các bước sau:</p>
+                        <h3>Bước 1: Xác định mục tiêu của bạn</h3>
+                        <p>Trước khi bắt đầu xây dựng portfolio cá nhân, bạn cần phải xác định mục tiêu của mình. Bạn
+                            cần phải thực hiện các
+                            bước sau:</p>
+                        <ul>
+                            <li>Xác định ngành nghề mà bạn muốn theo đuổi.</li>
+                            <li>Xác định vị trí công việc mà bạn muốn đạt được.</li>
+                            <li>Tìm hiểu những kỹ năng và kiến thức cần thiết cho vị trí công việc đó và tập trung vào
+                                chúng.</li>
+                        </ul>
+                        <p><img src="https://cfdcircle.vn/files/blog/xay-dung-porfolio-2-cfd-circle.jpg"
+                                alt="CFD Circle" width="100%" height="auto"></p>
+                        <h3>Bước 2: Chọn nền tảng để xây dựng portfolio cá nhân</h3>
+                        <p>Bạn có thể sử dụng các nền tảng miễn phí như Wix, WordPress hay Squarespace để xây dựng
+                            portfolio cá nhân của
+                            mình. Bạn cũng có thể tự thiết kế trang web của mình nếu bạn có kiến thức về lập trình.</p>
+                        <h3>Bước 3: Lựa chọn template và tùy chỉnh</h3>
+                        <p>Sau khi đã chọn được nền tảng để xây dựng portfolio cá nhân của mình, bạn có thể lựa chọn một
+                            mẫu phù hợp và tùy
+                            chỉnh nó để phù hợp với phong cách của bản thân. Hoặc bạn có thể tự thiết kế giao diện theo
+                            ngành nghề và hướng
+                            sáng tạo của riêng mình.</p>
+                        <p><strong>Top 5 Bản Thiết Kế Landing Page Figma Miễn Phí Dành Cho Front-End Dev Và
+                                Designer</strong></p>
+                        <p><a href="https://cfdcircle.vn/top-5-ban-thiet-ke-landing-page-figma-mien-phi-danh-cho-front-end-dev-va-designer-82"
+                                target="_blank" rel="noopener">Xem các bản thiết kế Landing Page Portfolio Figma miễn
+                                phí</a></p>
+                        <h3>Bước 4: Tạo nội dung cho portfolio cá nhân</h3>
+                        <p>Sau khi đã hoàn tất các bước trên, bạn có thể bắt đầu tạo nội dung cho portfolio cá nhân của
+                            mình. Hãy chú ý đến
+                            các thành phần quan trọng như đã đề cập ở trên và đảm bảo rằng nội dung của bạn phù hợp với
+                            mục tiêu của bạn.
+                        </p>
+                        <h3>Bước 5: Tối ưu hóa nội dung cho SEO</h3>
+                        <p>Để đảm bảo rằng portfolio cá nhân của bạn được tìm thấy trên công cụ tìm kiếm, hãy sử dụng
+                            các từ khóa phù hợp
+                            với ngành nghề của bạn và tối ưu hóa nội dung của bạn cho SEO.</p>
+                        <p><img src="https://cfdcircle.vn/files/blog/xay-dung-porfolio-3-cfd-circle.jpg"
+                                alt="CFD Circle" width="100%" height="auto"></p>
+                        <h2>Những lợi ích của việc xây dựng portfolio cá nhân</h2>
+                        <p>Xây dựng portfolio cá nhân có rất nhiều lợi ích, bao gồm:</p>
+                        <h3>Tăng tính chuyên nghiệp và uy tín của bạn</h3>
+                        <p>Một portfolio cá nhân chuyên nghiệp sẽ giúp bạn tăng tính chuyên nghiệp và uy tín của mình
+                            trong mắt nhà tuyển
+                            dụng hoặc khách hàng tiềm năng.</p>
+                        <h3>Giúp bạn thu hút sự chú ý của nhà tuyển dụng</h3>
+                        <p>Nếu bạn đang tìm kiếm việc làm mới, một portfolio cá nhân sẽ giúp bạn thu hút sự chú ý của
+                            nhà tuyển dụng và tăng
+                            cơ hội được tuyển dụng.</p>
+                        <h3>Giúp bạn trưng bày tài năng của mình</h3>
+                        <p>Nếu bạn là một nhà thiết kế đồ họa hoặc nhà phát triển web, một portfolio cá nhân sẽ giúp bạn
+                            trưng bày tài năng
+                            của mình với khách hàng tiềm năng.</p>
+                        <h3>Giúp bạn cải thiện kỹ năng tự quản lý</h3>
+                        <p>Việc xây dựng và quản lý portfolio cá nhân của mình cũng giúp bạn cải thiện kỹ năng tự quản
+                            lý và tự truyền đạt
+                            thông tin.</p>
+                    </div>
+                    <div class="blogdetail__line"></div>
+                    <div class="blogdetail__content-social btngroup">
+                        <a href="#" class="btn btn-fb"><img src="img/icon-fb-share.svg" alt=""><span>Share</span></a>
+                        <a href="#" class="btn btn-linkedin"><img src="img/icon-in-share.svg"
+                                alt=""><span>Share</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="blogdetail__related">
+                <h2 class="blogdetail__related-title title --t2">Bài viết liên quan</h2>
+                <div class="blog__list">
+                    <div class="blog__list-item">
+                        <div class="img">
+                            <a href="blog-detail.html">
+                                <img src="https://cfdcircle.vn/files/thumbnails/ZettvAFqback8Jzxiyz3DVPjvkoBUhUJY94DJwSK.jpg"
+                                    alt="Khóa học CFD" class="course__thumbnail" />
+                            </a>
+                        </div>
+                        <div class="content">
+                            <p class="label">Dev</p>
+                            <h2 class="title --t3">
+                                <a href="blog-detail.html">18 xu hướng web animation nổi bật trong năm 2023</a>
+                            </h2>
+                            <div class="content__info">
+                                <div class="user">
+                                    <div class="user__img">
+                                        <img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+                                    </div>
+                                    <p class="user__name">Trần Nghĩa</p>
+                                </div>
+                                <div class="date">10/12/2022</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog__list-item">
+                        <div class="img">
+                            <a href="blog-detail.html">
+                                <img src="https://cfdcircle.vn/files/thumbnails/Tey1o9gldaFwCrCvQ0vgSDKuE6CKFYnBm4dWIVps.jpg"
+                                    alt="Khóa học CFD" class="course__thumbnail" />
+                            </a>
+                        </div>
+                        <div class="content">
+                            <p class="label">Dev</p>
+                            <h2 class="title --t3">
+                                <a href="blog-detail.html">Zustand - State Management là gì? Liệu có thể so sánh được
+                                    với
+                                    Redux hay không?</a>
+                            </h2>
+                            <div class="content__info">
+                                <div class="user">
+                                    <div class="user__img">
+                                        <img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+                                    </div>
+                                    <p class="user__name">Trần Nghĩa</p>
+                                </div>
+                                <div class="date">10/12/2022</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog__list-item">
+                        <div class="img">
+                            <a href="blog-detail.html">
+                                <img src="https://cfdcircle.vn/files/thumbnails/esliqep9bvqPUmju6zn1Cf6cFBBwNXhcZlwHcwtL.jpg"
+                                    alt="Khóa học CFD" class="course__thumbnail" />
+                            </a>
+                        </div>
+                        <div class="content">
+                            <p class="label">Dev</p>
+                            <h2 class="title --t3">
+                                <a href="blog-detail.html">Tất tần tật về Shorthands trong CSS</a>
+                            </h2>
+                            <div class="content__info">
+                                <div class="user">
+                                    <div class="user__img">
+                                        <img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+                                    </div>
+                                    <p class="user__name">Trần Nghĩa</p>
+                                </div>
+                                <div class="date">10/12/2022</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="content">
+                <div class="content-item">
+                    <h3 class="label">Thông tin</h3>
+                    <ul>
+                        <li><a href="about.html">Về CFD Circle</a></li>
+                        <li><a href="courses.html">Khóa học</a></li>
+                        <li><a href="blog.html">Bài viết</a></li>
+                    </ul>
+                </div>
+                <div class="content-item">
+                    <h3 class="label">Hỗ trợ</h3>
+                    <ul>
+                        <li><a href="contact.html">Trung tâm hỗ trợ</a></li>
+                        <li><a href="payment-method.html">Phương thức thanh toán</a></li>
+                        <li><a href="privacy.html">Chính sách và điều khoản</a></li>
+                    </ul>
+                </div>
+                <div class="content-item">
+                    <h3 class="label">Kết nối</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/groups/cfdteam" target="_blank"><i><img
+                                        src="img/icon-cfd-footer.svg" alt=""></i><span>Cộng đồng</span></a>
+                        </li>
+                        <li><a href="https://www.facebook.com/cfdcircle" target="_blank"><i><img
+                                        src="img/icon-fb-footer.svg" alt=""></i><span>Facebook</span></a></li>
+                        <li><a href="https://www.youtube.com/cfdcircle" target="_blank"><i><img
+                                        src="img/icon-ytb-ft.svg" alt=""></i><span>Youtube</span></a></li>
+                    </ul>
+                </div>
+                <div class="content-item">
+                    <h3 class="label">Liên hệ</h3>
+                    <ul>
+                        <li><a href="https://goo.gl/maps/RnCAPv3CBjUgTUFd8" target="_blank"><i><img
+                                        src="img/icon-address.svg" alt=""></i><span>666/46/29 Ba Tháng Hai,
+                                    phường 14, quận
+                                    10, TPHCM</span></a></li>
+                        <li><a href="tel:0989596913"><i><img src="img/icon-phone.svg" alt=""></i><span>(+84) 98 9596
+                                    913</span></a>
+                        </li>
+                        <li><a href="mailto:info@cfdcircle.vn"><i><img src="img/icon-mail.svg"
+                                        alt=""></i><span>info@cfdcircle.vn</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="copyright">
+                    <img src="img/icon-footer-copy.svg" alt=""><span>&copy; 2023 CFD Circle</span>
+                </div>
+                <a href="./" target="_blank" class="logobct"><img src="img/logo-bo-cong-thuong.png" alt=""></a>
+            </div>
+        </div>
+    </footer>
+    <script src="dest/jsmain.min.js"></script>
+    <script src="dest/main.js"></script>
+</body>
+
+</html>

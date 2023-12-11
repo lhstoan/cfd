@@ -53,6 +53,7 @@ const TodoItem = ({
 	handleDone,
 	handleEdit,
 	handleEditMode,
+	handleTop,
 	...restProps
 }) => {
 	const { id, label, isDone, isEditting } = todo || {};
@@ -73,10 +74,10 @@ const TodoItem = ({
 				<>
 					<CssLabel className="todo-label">{label}</CssLabel>
 					<div className="todo-action">
-						{/* <Button className="btn-done" >TOP</Button> */}
+						<Button className="btn-done" onClick={() => {handleTop?.(id);}}>TOP</Button>
 						<BtnDelete
 							className="btn-delete"
-							handleAction={() => {
+							onClick={() => {
 								handleDelete?.(id);
 							}}
 						>
@@ -85,7 +86,7 @@ const TodoItem = ({
 						{!isDone && (
 							<BtnEdit
 								className="btn-edit"
-								handleAction={() => {
+								onClick={() => {
 									handleEditMode?.(id);
 								}}
 							>
@@ -94,7 +95,7 @@ const TodoItem = ({
 						)}
 						<BtnDone
 							className="btn-done"
-							handleAction={() => {
+							onClick={() => {
 								handleDone?.(id);
 							}}
 						>

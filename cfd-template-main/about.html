@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>CFD Circle</title>
+    <meta name="title" content="CFD Circle" />
+    <meta name="description" content="" />
+    <meta name="keyword" content="" />
+
+    <link rel="canonical" href="https://cfdcircle.vn" />
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Meta Tag Facebook -->
+    <meta property="og:locale" content="vi" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="CFD Circle" />
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="CFD Circle" />
+    <meta property="og:image" content="" />
+
+    <!-- Meta Tag Twitter -->
+    <meta name="twitter:card" content="" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
+
+    <style>
+        .loading {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            background: #fff;
+            z-index: 900;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading.--hide {
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            -webkit-transition: 0.3s;
+        }
+    </style>
+
+    <link rel="stylesheet" href="dest/style.min.css">
+    <link rel="stylesheet" href="dest/fonts.css">
+</head>
+
+<body>
+    <div class="loading"></div>
+    <header class="header --transparent">
+        <div class="container-fluid">
+            <div class="header__humburger">
+                <div class="header__humburger-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="header__humburger-text">
+                    <span>Menu</span>
+                    <span>Đóng</span>
+                </div>
+            </div>
+            <div class="header__logo">
+                <a href="./">
+                    <svg viewBox="0 0 354 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M333.561 29.3571H351.921V20.0714H333.561V9.42857H353.654V0H324V50H354V40.5714H333.561V29.3571Z"
+                            fill="black" />
+                        <path d="M300.541 0H291V50H319V40.5714H300.541V0Z" fill="black" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M274.963 17C272.268 12.745 267.704 10 262.5 10C254.492 10 248 16.7157 248 25C248 33.2843 254.492 40 262.5 40C267.613 40 272.312 37.146 275.041 33H286C284.523 37.9393 281.61 42.1772 277.262 45.3228C272.913 48.441 268.126 50 262.903 50C259.812 50 256.708 49.3791 253.59 48.1374C250.499 46.8681 247.832 45.1435 245.59 42.9636C243.101 40.5353 241.214 37.7621 239.928 34.644C238.643 31.5259 238 28.2009 238 24.6689C238 17.8532 240.421 12.0447 245.262 7.24338C250.13 2.41446 255.983 0 262.821 0C267.962 0 272.762 1.58664 277.221 4.75993C281.679 7.93322 284.605 11.9503 286 17H274.963Z"
+                            fill="black" />
+                        <path
+                            d="M236 50L225.24 31.1429C230.863 28.5 234.612 22.7857 234.612 16.5714C234.612 12 233.015 8.07143 229.891 4.85714C226.767 1.64286 222.949 0 218.437 0H199V50H208.58V32.6429H215.869L225.657 50H236ZM218.437 9.21429C222.047 9.21429 225.032 12.5 225.032 16.5714C225.032 20.6429 222.047 24 218.437 24H208.58V9.21429H218.437Z"
+                            fill="black" />
+                        <path d="M184 50H194V0H184V50Z" fill="black" />
+                        <path d="M63 20H74V30H63V20Z" fill="black" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M36.963 17C34.2678 12.745 29.7041 10 24.5 10C16.4919 10 10 16.7157 10 25C10 33.2843 16.4919 40 24.5 40C29.6134 40 34.3125 37.146 37.0415 33H48C46.5231 37.9393 43.6103 42.1772 39.2615 45.3228C34.9128 48.441 30.1265 50 24.9026 50C21.812 50 18.7077 49.3791 15.5897 48.1374C12.4991 46.8681 9.83248 45.1435 7.58974 42.9636C5.10085 40.5353 3.21368 37.7621 1.92821 34.644C0.642735 31.5259 0 28.2009 0 24.6689C0 17.8532 2.42051 12.0447 7.26154 7.24338C12.1299 2.41446 17.9829 0 24.8205 0C29.9624 0 34.7624 1.58664 39.2205 4.75993C43.6786 7.93322 46.6051 11.9503 48 17H36.963Z"
+                            fill="black" />
+                        <path
+                            d="M83.4211 0V50H99.0461C114.946 50 126.621 39.225 126.621 24.6C126.621 9.825 115.596 0 99.6961 0H83.4211ZM99.6211 9.15C109.596 9.15 116.271 14.85 116.271 24.6C116.271 34.125 109.596 40.35 99.6211 40.35H93.5461V9.15H99.6211Z"
+                            fill="black" />
+                        <path d="M84 1.52771e-05L53 0V50H63.385L63.4625 30.7119V21.5509V9.16099L84 9.16097V1.52771e-05Z"
+                            fill="black" />
+                        <path id="rect" d="M168.463 19.9025H179V30.4391H168.463V19.9025Z" fill="#00AFAB" />
+                        <path id="ccenter" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M168.463 17C165.768 12.745 160.704 10 155.5 10C147.492 10 141 16.7157 141 25C141 33.2843 147.492 40 155.5 40C160.613 40 165.734 37.5118 168.463 33.3659H179C177.523 38.3051 174.61 42.1772 170.262 45.3228C165.913 48.4409 161.126 50 155.903 50C152.812 50 149.708 49.3791 146.59 48.1374C143.499 46.8681 140.832 45.1435 138.59 42.9636C136.101 40.5353 134.214 37.7621 132.928 34.644C131.643 31.5259 131 28.2009 131 24.6689C131 17.8532 133.421 12.0447 138.262 7.24338C143.13 2.41446 148.983 0 155.821 0C160.962 0 165.762 1.58664 170.221 4.75993C174.679 7.93322 177.605 11.9503 179 17H168.463Z"
+                            fill="black" />
+                    </svg>
+                </a>
+            </div>
+            <!-- <div class="header__auth">
+				<a href="javascript:void(0)" class="btn btn--transparent btnmodal" data-modal="mdlogin">
+					<span>Đăng ký /&nbsp;</span><span>Đăng nhập</span>
+				</a>
+			</div> -->
+            <!-- user logged -->
+            <div class="header__logged">
+                <div class="userlogged">
+                    <div class="userlogged__avatar user" data-dropdown="userlogged__dropdown">
+                        <div class="userlogged__avatar-img user__img">
+                            <img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+                        </div>
+                        <i class="userlogged__avatar-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 3.5L7.00003 10.5L14 3.5H0Z" fill="white" />
+                            </svg>
+                        </i>
+                    </div>
+                    <div class="userlogged__dropdown dropdown">
+                        <div class="userlogged__dropdown-info">
+                            <div class="user__img">
+                                <img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+                            </div>
+                            <a href="student-profile.html" class="user__info">
+                                <p class="title --t4"><strong>Trần Nghĩa</strong></p>
+                                <span class="email">Thông tin tài khoản</span>
+                            </a>
+                        </div>
+                        <div class="userlogged__dropdown-list">
+                            <a href="student-profile.html">Khóa học của tôi</a>
+                            <a href="student-profile.html">Lịch sử thanh toán</a>
+                            <a href="contact.html">Hỗ trợ</a>
+                            <a href="#">Đăng xuất <i><img src="img/iconlogout.svg" alt=""></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="navbar">
+        <ul class="navbar__main">
+            <li class="navbar__link">
+                <a href="./" class="navbar__item active">Trang chủ</a>
+            </li>
+            <li class="navbar__link">
+                <a href="about.html" class="navbar__item">Về CFD Circle</a>
+            </li>
+            <li class="navbar__link">
+                <a href="courses.html" class="navbar__item">Khóa học</a>
+            </li>
+            <li class="navbar__link">
+                <a href="blog.html" class="navbar__item">Bài viết</a>
+            </li>
+            <li class="navbar__link">
+                <a href="contact.html" class="navbar__item">Liên hệ</a>
+            </li>
+        </ul>
+        <div class="navbar__overlay"></div>
+    </nav>
+    <div class="overlay"></div>
+    <main class="mainwrapper aboutpage">
+        <section class="banner abouthero">
+            <div class="banner__content">
+                <div class="container">
+                    <h2 class="title --white">
+                        <span>Sứ mệnh</span> của CFD Circle là kết nối, truyền đạt kinh nghiệm thực tế và khởi dậy cảm
+                        hứng từ những người tâm huyết để tạo ra sản
+                        phẩm chất lượng cao.
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <section class="aboutstory">
+            <div class="container">
+                <div class="aboutstory__img">
+                    <img src="img/cfd-circle-team.jpg" alt="">
+                </div>
+                <div class="aboutstory__content">
+                    <h1 class="title --t2"><span class="color--primary">Câu chuyện</span> CFD Circle</h1>
+                    <p class="text">
+                        Chúng tôi đã từng thắc mắc tại sao nhiều bạn đã học ở các trường đại học
+                        nhưng khi đi làm cho các doanh nghiệp thì phải đào tạo lại? Làm sao để giúp được cho
+                        những bạn trái ngành có thể học và đi làm trong thời gian ngắn nhất? Và làm thế nào để tạo ra
+                        nhiều sản phẩm website có trải nghiệm người dùng tốt nhất? <br><br>
+                        Từ đó, CFD Circle ra đời để giải quyết tất cả những vấn đề trên với mong muốn tạo ra nhiều sản
+                        phẩm website chất lượng, tinh tế và có giá trị cao cho Việt Nam và thế giới.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="aboutbenifit --scpadding">
+            <div class="container">
+                <h2 class="aboutbenifit__title title --t2">Chúng ta sẽ <span class="color--primary">đồng
+                        hành cùng nhau</span> <br>trên con đường tạo ra những giá trị cho cộng đồng và chính mình.</h2>
+                <div class="aboutbenifit__list">
+                    <div class="item">
+                        <div class="number title --t1">1</div>
+                        <div class="content">
+                            <h3 class="title --t3">Chương trình đào tạo thực chiến</h3>
+                            <p class="text">
+                                Tất cả khoá học tại CFD Circle luôn được kiểm duyệt rất chặt chẽ, đảm bảo chất lượng với
+                                nhiều cấp độ khác nhau. Cùng
+                                phương châm luôn hướng tới một lộ trình học sát với thực tế, học viên có thể ứng dụng
+                                vào
+                                công việc ngày sau khoá học.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="number title --t1">2</div>
+                        <div class="content">
+                            <h3 class="title --t3">Luôn đặt học viên làm trọng tâm</h3>
+                            <p class="text">Với mong muốn đào tạo đội ngũ nhân lực chất lượng trong lĩnh vực Front-End
+                                Dev
+                                và UX/UI Design, học viên tại CFD Circle luôn được theo sát và hỗ trợ nhiệt tình để giúp
+                                tất
+                                cả mọi người hoàn thành khoá học thật tốt và tạo ra những sản phẩm có giá trị cao.</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="number title --t1">3</div>
+                        <div class="content">
+                            <h3 class="title --t3">Giảng viên giàu kinh nghiệm từ khắp mọi nơi.</h3>
+                            <p class="text">Với nền tảng đào tạo trực tuyến CFD Circle, giảng viên không chỉ dạy
+                                offline, mà
+                                còn
+                                có thể tạo ra những lớp học trực tuyến cho riêng mình thông qua chương trình đối tác nội
+                                dung của CFD Circle.</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="number title --t1">4</div>
+                        <div class="content">
+                            <h3 class="title --t3">Cơ hội việc làm hấp dẫn</h3>
+                            <p class="text">Với nhu cầu rất lớn từ các doanh nghiệp trong và ngoài nước cùng những đối
+                                tác tuyển dụng của CFD Circle trong lĩnh vực Front-End Dev và UX/UI Design, học viên sẽ
+                                có
+                                cơ hội nhận được thông tin việc làm hấp dẫn, phù hợp với khả năng thông qua chương trình
+                                CFDers
+                                Talent. Ngoài ra, còn có thể trở
+                                thành mentor tại CFD Circle khi đáp ứng đủ yêu cầu về chuyên môn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="aboutnumbers">
+            <div class="container">
+                <div class="aboutnumbers__list">
+                    <div class="aboutnumbers__list-item">
+                        <h3 class="title --t2">2.5</h3>
+                        <p class="text title --t3">năm thành lập</p>
+                    </div>
+                    <div class="aboutnumbers__list-item">
+                        <h3 class="title --t2">21</h3>
+                        <p class="text title --t3">khoá học</p>
+                    </div>
+                    <div class="aboutnumbers__list-item">
+                        <h3 class="title --t2">30</h3>
+                        <p class="text title --t3">lớp học</p>
+                    </div>
+                    <div class="aboutnumbers__list-item">
+                        <h3 class="title --t2">500+</h3>
+                        <p class="text title --t3">học viên</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="aboutstudy --scpadding">
+            <div class="container">
+                <h2 class="aboutstudy__title title --t2"><span class="color--primary">Hình thức học</span> đa dạng</h2>
+                <div class="aboutstudy__item">
+                    <div class="aboutstudy__item-img"><img src="img/cfd-circle-offline.jpg" alt=""></div>
+                    <div class="aboutstudy__item-content">
+                        <h4 class="title --t3">Học offline tại văn phòng</h4>
+                        <div class="text">
+                            Với trang thiết bị hiện đại, đội ngũ giảng viên & mentor sẽ sát cánh cùng
+                            bạn trong khoá học offline tại học viện CFD Circle ở số 11b, Phan Kế Bính, Đa Kao, Quận 1,
+                            TP Hồ
+                            Chí
+                            Minh.
+                        </div>
+                        <a href="courses.html" class="btn btn--primary">Khám phá</a>
+                    </div>
+                </div>
+                <div class="aboutstudy__item">
+                    <div class="aboutstudy__item-img"><img src="img/cfd-circle-online.jpg" alt=""></div>
+                    <div class="aboutstudy__item-content">
+                        <h4 class="title --t3">Học online với lớp offline.</h4>
+                        <div class="text">
+                            Nếu bạn muốn học trực tiếp với giảng viên nhưng ở xa không thể đến
+                            lớp offline được thì có thể học online thông qua Google Meet, gọi video chia sẻ màn hình và
+                            được giảng viên, mentor hỗ trợ như khi bạn học offline.
+                        </div>
+                        <a href="courses.html" class="btn btn--primary">Khám phá</a>
+                    </div>
+                </div>
+                <div class="aboutstudy__item">
+                    <div class="aboutstudy__item-img"><img src="img/cfd-circle-video.jpg" alt=""></div>
+                    <div class="aboutstudy__item-content">
+                        <h4 class="title --t3">Học qua video & live hỗ trợ 24/7</h4>
+                        <div class="text">
+                            Nền tảng học online của CFD Circle có rất nhiều khoá học video, bạn có thể học bất
+                            kỳ khi nào mình muốn. Đặc biệt, bạn sẽ được hỗ trợ từ giảng viên thông qua Google Meet hoặc
+                            đội ngũ mentor của CFD Circle.
+                        </div>
+                        <a href="courses.html" class="btn btn--primary">Khám phá</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="aboutgallery --scpadding">
+            <div class="container">
+                <h2 class="aboutgallery__title title --t2 --white">CFD Circle <span class="color--primary">là một team
+                        gắn
+                        kết,</span> <br>cùng nhau học tập, vui chơi và phát triển</h2>
+                <div class="aboutgallery__imgs">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc00538.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc00541.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc00545.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc00662-1.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc00677.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc00678-1.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc01114.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc01129.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc01147.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc5506.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc5511.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc00688.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc5587-2.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc5606.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc5637-1.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc5918-2.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc5999.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc6146.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc6200.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc6216.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc6731.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc6762.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc6977.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc7008-1.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/img-0609-1.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/beauty-1618471253214-2.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/beauty-1618471376803-2.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/beauty-1618547659094-2.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/beauty-1618593111409.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/beauty-1618593213120.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/cfd-team-2.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/cfd-team-55.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/cfd-team-57.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/cfd-team-61.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/cfd-team-87.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/dsc5999.jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/img-001-(1).jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/image02-(1).jpg" alt="CFD Circle">
+                    <img src="https://cfdcircle.vn/files/about/Team/img10.jpg" alt="CFD Circle">
+                </div>
+            </div>
+        </section>
+        <section class="aboutteachers --scpadding">
+            <div class="container">
+                <h2 class="aboutteachers__title title --t2">đội ngũ <span class="color--primary">giảng viên và
+                        Mentor</span></h2>
+                <div class="aboutteachers__list">
+                    <div class="itemteacher">
+                        <div class="itemteacher__avatar">
+                            <img src="https://cfdcircle.vn/files/avatars/VAOXpQdhq3yNvBMQlDItAYKU29ZO0gsxPTxdryL5.jpg"
+                                alt="CFD Circle">
+                        </div>
+                        <div class="itemteacher__info">
+                            <div class="itemteacher__info-name">
+                                <p class="title --t3">Trần Nghĩa</p>
+                                <span class="label badge --teacher">Teacher</span>
+                            </div>
+                            <h5 class="itemteacher__info-pos label">Founder</h5>
+                            <p class="itemteacher__info-des">Xin chào! Tôi là Trần Nghĩa - Creative Frontend
+                                Developer, người sáng lập
+                                CFD Circle và CFD Studio. Trong hơn 7 năm kinh nghiệm trong nghề, tôi luôn tạo
+                                ra những sản phẩm chất
+                                lượng cao, sáng tạo, tinh tế và phù hợp cho khách hàng trong và ngoài nước, cũng
+                                như mong muốn truyền
+                                đạt lại cho các bạn trẻ có đam mê và định hướng theo nghề Front-End Developer.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="itemteacher">
+                        <div class="itemteacher__avatar">
+                            <img src="https://cfdcircle.vn/files/avatars/dO8uFof8tuPUgfCJTje6ji42Dw15eoqNWHI7bi2E.jpg"
+                                alt="CFD Circle">
+                        </div>
+                        <div class="itemteacher__info">
+                            <div class="itemteacher__info-name">
+                                <p class="title --t3">Lê Châu Hữu Thiện</p>
+                                <span class="label badge --teacher">Giảng viên</span>
+                            </div>
+                            <h5 class="itemteacher__info-pos label">Senior Front-end Dev</h5>
+                            <p class="itemteacher__info-des">Xin chào mọi người! Tôi là Thiện, hiện đang là Front-End
+                                Developer tại CBI
+                                Chi Doanh. Mình đã bén duyên tham gia vào đại gia đình CFD Circle từ khóa CFD5. Trong
+                                quá trình học hỏi
+                                và chiến đấu cùng các anh em tại đây, mình đã rút ra rất nhiều kinh nghiệm thực tiễn và
+                                tìm được hướng
+                                đi phù hợp cho bản thân. CFD Circle với mình không chỉ là nơi trao đến bạn những kiến
+                                thức chuyên môn
+                                thực chiến, mà còn truyền một ngọn lửa mãnh liệt đến từng cá nhân để thúc đẩy sự phát
+                                triển từ bên trong
+                                chúng ta.</p>
+                        </div>
+                    </div>
+                    <div class="itemteacher">
+                        <div class="itemteacher__avatar">
+                            <img src="https://cfdcircle.vn/files/avatars/clnqEpgnMNYKIqNbxoOHi4QPCiDhH3Fklnyz2239.jpg"
+                                alt="CFD Circle">
+                        </div>
+                        <div class="itemteacher__info">
+                            <div class="itemteacher__info-name">
+                                <p class="title --t3">Nguyễn Đức Huy</p>
+                                <span class="label badge --mentor">Mentor</span>
+                            </div>
+                            <h5 class="itemteacher__info-pos label">Full-stack Developer</h5>
+                            <p class="itemteacher__info-des">Xin chào! Tôi là Huy Nguyễn - Fullstack Developer,
+                                người đồng sáng lập CFD
+                                Circle & CFD Studio. Với mong muốn truyền đạt những kinh nghiệm thực tế có
+                                được trong hơn 5 năm đi
+                                làm cho các bạn trẻ có đam mê với lập trình front-end, cũng như back-end. Hi
+                                vọng tôi sẽ giúp cho các
+                                bạn có cái đầy đủ kiến thức và kỹ năng để ứng tuyển vào vị trí mà bạn hướng đến.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="itemteacher">
+                        <div class="itemteacher__avatar">
+                            <img src="https://cfdcircle.vn/files/avatars/3QNIeOtW3IMj0cy1OWfCAB6s8vNpMus4sOatVm20.jpg"
+                                alt="CFD Circle">
+                        </div>
+                        <div class="itemteacher__info">
+                            <div class="itemteacher__info-name">
+                                <p class="title --t3">Huỳnh Anh Kiệt</p>
+                                <span class="label badge --mentor">Mentor</span>
+                            </div>
+                            <h5 class="itemteacher__info-pos label">Front-end Developer</h5>
+                            <p class="itemteacher__info-des">Chào bạn, nếu bạn đọc những dòng này hẳn là bạn rất
+                                quan tâm đến việc trở
+                                thành một developer, nhất là Front-end Developer. Vì vậy, mình là Huỳnh Anh Kiệt
+                                - hiện đang làm việc
+                                với vị trí Software Engineer - chapter Front-End tại Kyanon Digital và CFD
+                                Studio, đồng thời, là cựu học
+                                viên của CFD Circle sẽ đồng hành cùng bạn trong hành trình chinh phục mong ước
+                                đó. Sau thời gian dài học
+                                tập và làm việc, mình đã tích lũy được một số kinh nghiệm để có thể giúp đỡ
+                                những bạn có niềm đam mê với
+                                Front-end.</p>
+                        </div>
+                    </div>
+                    <div class="itemteacher">
+                        <div class="itemteacher__avatar">
+                            <img src="https://cfdcircle.vn/files/avatars/mwVNfVk5NwGFYvLylpSz115l2u3bQWPa5ERikGEJ.jpg"
+                                alt="CFD Circle">
+                        </div>
+                        <div class="itemteacher__info">
+                            <div class="itemteacher__info-name">
+                                <p class="title --t3">Nguyễn Văn Thái An</p>
+                                <span class="label badge --mentor">Mentor</span>
+                            </div>
+                            <h5 class="itemteacher__info-pos label">Senior Front-end Dev</h5>
+                            <p class="itemteacher__info-des">Xin chào! Tôi là Nguyễn An - Senior Frontend Developer tại
+                                T.O.P Group và
+                                CFD Studio. Rất mong có thể trao
+                                đổi và truyền đạt hết những kiến thức và kinh nghiệm từ những dự án thực tế mà tôi học
+                                được trong quá trình làm việc đến với học viên tại CFD Circle. Cùng học tập để hướng tới
+                                một Front-end
+                                Dev với những sản phẩm sáng tạo, tinh tế và chuyên nghiệp nào! Rất vui nếu gặp bạn ở CFD
+                                Circle.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="callregister">
+            <div class="container">
+                <div class="callregister__content">
+                    <h3 class="title --t2"><span class="color--primary">trở thành một phần</span> của CFD Circle
+                    </h3>
+                    <p>
+                        Chúng tôi rất vui khi bạn quyết định trở thành một phần của CFD Circle để cùng nhau học hỏi, lan
+                        toả và chia sẻ những kinh nghiệm quý giá cho cộng đồng.
+                    </p>
+                    <a href="courses.html" class="btn btn--primary">Tham gia Khoá học</a>
+                    <a href="contact.html" class="btn btn--border --black">Liên hệ tư vấn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="content">
+                <div class="content-item">
+                    <h3 class="label">Thông tin</h3>
+                    <ul>
+                        <li><a href="about.html">Về CFD Circle</a></li>
+                        <li><a href="courses.html">Khóa học</a></li>
+                        <li><a href="blog.html">Bài viết</a></li>
+                    </ul>
+                </div>
+                <div class="content-item">
+                    <h3 class="label">Hỗ trợ</h3>
+                    <ul>
+                        <li><a href="contact.html">Trung tâm hỗ trợ</a></li>
+                        <li><a href="payment-method.html">Phương thức thanh toán</a></li>
+                        <li><a href="privacy.html">Chính sách và điều khoản</a></li>
+                    </ul>
+                </div>
+                <div class="content-item">
+                    <h3 class="label">Kết nối</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/groups/cfdteam" target="_blank"><i><img
+                                        src="img/icon-cfd-footer.svg" alt=""></i><span>Cộng đồng</span></a>
+                        </li>
+                        <li><a href="https://www.facebook.com/cfdcircle" target="_blank"><i><img
+                                        src="img/icon-fb-footer.svg" alt=""></i><span>Facebook</span></a></li>
+                        <li><a href="https://www.youtube.com/cfdcircle" target="_blank"><i><img
+                                        src="img/icon-ytb-ft.svg" alt=""></i><span>Youtube</span></a></li>
+                    </ul>
+                </div>
+                <div class="content-item">
+                    <h3 class="label">Liên hệ</h3>
+                    <ul>
+                        <li><a href="https://goo.gl/maps/RnCAPv3CBjUgTUFd8" target="_blank"><i><img
+                                        src="img/icon-address.svg" alt=""></i><span>666/46/29 Ba Tháng Hai,
+                                    phường 14, quận
+                                    10, TPHCM</span></a></li>
+                        <li><a href="tel:0989596913"><i><img src="img/icon-phone.svg" alt=""></i><span>(+84) 98 9596
+                                    913</span></a>
+                        </li>
+                        <li><a href="mailto:info@cfdcircle.vn"><i><img src="img/icon-mail.svg"
+                                        alt=""></i><span>info@cfdcircle.vn</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="copyright">
+                    <img src="img/icon-footer-copy.svg" alt=""><span>&copy; 2023 CFD Circle</span>
+                </div>
+                <a href="./" target="_blank" class="logobct"><img src="img/logo-bo-cong-thuong.png" alt=""></a>
+            </div>
+        </div>
+    </footer>
+    <div class="modal modallogin">
+        <div class="modal__wrapper">
+            <div class="modal__wrapper-close">
+                <img src="img/close_icon.svg" alt="CFD Register" />
+            </div>
+            <div class="modal__wrapper-content mdlogin">
+                <h3 class="title --t3">Đăng nhập</h3>
+                <div class="social">
+                    <a class="btn btn--google" href="#"><i><img src="img/icon-google.svg"
+                                alt="Google CFD" /></i><span>Đăng ký bằng Google</span></a>
+                    <a class="btn btn--facebook" href="#"><i><img src="img/icon-facebook-v2.svg"
+                                alt="Google CFD" /></i><span>Đăng ký bằng Google</span></a>
+                </div>
+                <span class="line">Hoặc</span>
+                <form action="#" class="form">
+                    <input type="email" class="form__input" name="name" placeholder="Địa chỉ email" />
+                    <input type="password" class="form__input" name="name" placeholder="Mật khẩu" />
+                    <div class="form__bottom">
+                        <p>
+                            Bạn chưa có tài khoản?
+                            <span class="color--primary btnmodal" data-modal="mdregister">Đăng ký</span>
+                        </p>
+                        <a class="color--primary" href="#">Quên mật khẩu?</a>
+                    </div>
+                    <button class="btn btn--primary form__btn-register" type="submit">
+                        Đăng nhập
+                    </button>
+                </form>
+            </div>
+            <div class="modal__wrapper-content mdregister">
+                <h3 class="title --t3">Đăng ký tài khoản</h3>
+                <div class="social">
+                    <a class="btn btn--google" href="#"><i><img src="img/icon-google.svg"
+                                alt="Google CFD" /></i><span>Đăng ký bằng Google</span></a>
+                    <a class="btn btn--facebook" href="#"><i><img src="img/icon-facebook-v2.svg"
+                                alt="Google CFD" /></i><span>Đăng ký bằng Google</span></a>
+                </div>
+                <span class="line">Hoặc</span>
+                <form action="#" class="form">
+                    <input type="text" class="form__input" name="name" placeholder="Họ và tên" />
+                    <input type="email" class="form__input" name="name" placeholder="Địa chỉ email" />
+                    <input type="password" class="form__input" name="name" placeholder="Mật khẩu" />
+                    <p class="form__argee">
+                        Với việc đăng ký, bạn đã đồng ý
+                        <a class="color--primary" href="#">Chính Sách</a> &
+                        <a class="color--primary" href="#">Điều Khoản</a> của CFD
+                    </p>
+                    <button class="btn btn--primary form__btn-register" type="submit">
+                        Đăng ký
+                    </button>
+                </form>
+            </div>
+            <div class="modal__wrapper-content mdconsult">
+                <h3 class="title --t3">Đăng ký tư vấn</h3>
+                <form action="#" class="form">
+                    <input type="text" class="form__input" name="name" placeholder="Họ và tên" />
+                    <input type="text" class="form__input" name="name" placeholder="Số điện thoại" />
+                    <input type="text" class="form__input" name="email" placeholder="Email" />
+                    <textarea name="" id="" cols="30" rows="4" class="form__input"
+                        placeholder="Nội dung cần tư vấn"></textarea>
+                    <button class="btn btn--primary form__btn-register" type="submit">
+                        Gửi thông tin
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="modal__overlay"></div>
+    </div>
+
+    <script src="dest/jsmain.min.js"></script>
+    <script src="dest/main.js"></script>
+</body>
+
+</html>

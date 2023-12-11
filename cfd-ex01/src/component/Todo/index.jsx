@@ -6,23 +6,23 @@ import styled from "styled-components";
 import axios from "axios";
 
 const Container = styled.div`
-    max-width: 600px;
-    padding: 20px;
-    position: relative;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
+	max-width: 600px;
+	padding: 20px;
+	position: relative;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
 `;
 
 const H1 = styled.h1`
-   text-align: center;
+	text-align: center;
 `;
 
 const TodoList = styled.ul`
-    min-height: 200px;
-    list-style: none;
-    padding: 0;
-    margin-top: 50px;
+	min-height: 200px;
+	list-style: none;
+	padding: 0;
+	margin-top: 50px;
 `;
 
 const Filter = styled.ul`
@@ -48,7 +48,7 @@ const Loading = styled.div`
 	right: 0;
 `;
 
-const LOCAL_TODOS = "todo";
+const LOCAL_TODOS = "https://65768ca72e1519bfb1295166.mockapi.io/todo";
 
 const TodoContainer = () => {
 	const [todo, setTodo] = useState([]);
@@ -58,9 +58,7 @@ const TodoContainer = () => {
 	const queryTodos = async () => {
 		setLoading(true);
 		try {
-			const res = await axios.get(
-				"https://65768ca72e1519bfb1295166.mockapi.io/todo/todos"
-			);
+			const res = await axios.get(`${LOCAL_TODOS}/todos`);
 			if (res?.data?.length > 0) {
 				setTodo(res.data.reverse());
 			}
@@ -86,11 +84,9 @@ const TodoContainer = () => {
 
 		setLoading(true);
 		try {
-			const res = await axios.post(
-				"https://65768ca72e1519bfb1295166.mockapi.io/todo/todos",
-				newRow
-			);
-			if (res?.data?.length > 0) {
+			const res = await axios.post(`${LOCAL_TODOS}/todos`, newRow);
+			console.log(res);
+			if (res?.data) {
 				setTodo((prevState) => [res?.data, ...prevState]);
 			}
 		} catch (error) {
@@ -104,11 +100,9 @@ const TodoContainer = () => {
 		if (!idDelete) return;
 		setLoading(true);
 		try {
-			const res = await axios.delete(
-				`https://65768ca72e1519bfb1295166.mockapi.io/todo/todos/${idDelete}`
-			);
+			const res = await axios.delete(`${LOCAL_TODOS}/todos/${idDelete}`);
 
-			if (res?.data?.length > 0) {
+			if (res?.data) {
 				setTodo((prevTodos) =>
 					prevTodos.filter((todo) => todo.id !== idDelete)
 				);
@@ -128,10 +122,10 @@ const TodoContainer = () => {
 			const changedTodo = todo.find((todo) => todo.id === idDone) || {};
 			const payload = { isDone: !changedTodo.isDone };
 			const res = await axios.put(
-				`https://65768ca72e1519bfb1295166.mockapi.io/todo/todos/${idDone}`,
+				`${LOCAL_TODOS}/todos/${idDone}`,
 				payload
 			);
-			if (res.data) {
+			if (res?.data) {
 				setTodo((prevTodos) =>
 					prevTodos.map((todo) =>
 						todo.id === res.data.id ? res.data : todo
@@ -163,7 +157,7 @@ const TodoContainer = () => {
 			const payload = { label: editInput };
 
 			const res = await axios.put(
-				`https://65768ca72e1519bfb1295166.mockapi.io/todo/todos/${idEdit}`,
+				`${LOCAL_TODOS}/todos/${idEdit}`,
 				payload
 			);
 
@@ -185,13 +179,22 @@ const TodoContainer = () => {
 		console.log("handleSearch", e?.target.value);
 	};
 
-	const handleTop = (idTop) => {};
+	const handleTop = (idTop) => {
+		setLoading(true);
+
+		const topItem = [...todo].filter((todo) => todo.id === idTop);
+		setTodo((prevTodos) => prevTodos.filter((todo) => todo.id !== idTop));
+		setTodo((prevState) => [topItem[0], ...prevState]);
+		
+		setLoading(false);
+	};
 
 	const todoActions = {
 		handleDelete,
 		handleDone,
 		handleEditMode,
 		handleEdit,
+		handleTop,
 	};
 
 	const todoLength = todo?.length;
