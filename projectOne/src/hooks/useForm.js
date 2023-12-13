@@ -1,8 +1,8 @@
 import { useState } from "react";
 import validate from "../utils/validate";
 
-const useForm = (iniValueForm, rules) => {
-  const [form, setForm] = useState(iniValueForm);
+const useForm = (initValueForm, rules) => {
+  const [form, setForm] = useState(initValueForm);
   const [error, setError] = useState({});
 
   const registerInput = (nameInput) => ({
