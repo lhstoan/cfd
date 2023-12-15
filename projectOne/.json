@@ -1,0 +1,392 @@
+{
+	"id": "646cdd7086f6e45842bc361f",
+	"name": "Frontend Master",
+	"slug": "frontend-master-1684856176538",
+	"title": "Frontend Master",
+	"description": "<h2>Khoá học LẬP TRÌNH FRONT-END MASTER này phù hợp với những bạn đang là sinh viên ngành IT hoặc trái ngành muốn trở thành Lập Trình Viên Front-end Chuyên Nghiệp để đi làm tại các công ty nhưng không thể tự học hoặc tự học nhưng chưa thể ứng dụng và hoàn thiện dự án thực tế một cách tốt nhất. Khoá học FRONT-END MASTER chính là lựa chọn phù hợp nhất với bạn. Đội ngũ CFD Circle sẽ giúp bạn có đầy đủ kiến thức, kinh nghiệm kỷ năng cần thiết bằng việc giảng dạy giúp bạn hoàn thành được ít nhất 5-6 dự án thực tế. Ngoài những kiến thức thì bạn sẽ tích luỹ được rất nhiều kinh nghiệm thực tế trong quá trình học và làm dự án để dễ dàng ứng tuyển thành công.</h2><h3><strong>Khoá học FRONTEND MASTER được chia làm 3 giai đoạn chính:</strong></h3><p>- <strong>FRONTEND NEWBIE</strong>: <strong>Thời lượng</strong> 6 tuần (2 buổi/tuần). <strong>Thời gian học</strong> 18h45 - 21h45 thứ 3, 7</p><p>- <strong>WEB RESPONSIVE</strong>:<strong>Thời lượng</strong> 5 tuần (3 buổi/tuần). <strong>Thời gian học</strong> 18h45 - 21h45 thứ 2,4,6</p><p>- <strong>REACTJS MASTER:</strong> <strong>Thời lượng</strong> 6 tuần (3 buổi/tuần). <strong>Thời gian học</strong> 18h45 - 21h45 thứ 2,4,6</p><p><strong>HÌNH THỨC HỌC: </strong>OFFLINE HOẶC ONLINE GOOGLE MEET CÙNG VỚI LỚP OFFLINE</p><p><strong>SỐ LƯỢNG HỌC VIÊN: </strong>15-20 học viên</p><p>KHOÁ HỌC NÀY ĐANG CÓ ƯU ĐÃI <strong>GIẢM GIÁ</strong> TỪ <strong>15.400.000 VND</strong> CHỈ CÒN <strong>14.700.000 VND.</strong></p><p><strong>GIẢM 200K</strong> CHO MỖI HỌC VIÊN HỌC THEO <strong>NHÓM 2 NGƯỜI.</strong></p><p><strong>GIẢM 300K</strong> CHO MỖI HỌC VIÊN HỌC THEO <strong>NHÓM TỪ 3 NGƯỜI</strong> TRỞ LÊN.</p>",
+	"image": "https://cfdcourses.cfdcircle.vn/images/course/fe_master.jpg",
+	"active": true,
+	"startDate": "2024-09-04T17:00:00.000Z",
+	"endDate": "2024-08-04T17:00:00.000Z",
+	"duration": 45,
+	"tags": [
+		"Offline",
+		"Online"
+	],
+	"price": 14700000,
+	"link": "http://template.cfdcircle.vn/",
+	"schedule": {
+		"startDate": "2024-06-04T17:00:00.000Z",
+		"days": "Thứ 2-4-6",
+		"time": "18h45 - 21h45",
+		"address": "Lầu 2, số 666/46/29, đường Ba Tháng Hai, phường 14, quận 10, TP HCM"
+	},
+	"content": [
+		{
+			"title": "Kiến thức về thiết kế website, Photoshop, Figma & Chrome Dev Tool",
+			"description": [
+				"Thiết lập Photoshop cho Front-end Dev",
+				"Giới thiệu các công cụ thao tác với bản thiết kế",
+				"Đo đạc text, size, màu sắc, font chữ, resize, crop, export hình từ Photoshop & Figma",
+				"Kiến thức tổng quan thiết kế giao diện website",
+				"Chrome Dev Tool"
+			]
+		},
+		{
+			"title": "Phân tích bản thiết kế & thực hành",
+			"description": [
+				"Hiểu về Container và Container-Fluid",
+				"Thực hành cắt & xuất hình từ bản thiết kế"
+			]
+		},
+		{
+			"title": "HTML, SEO, BEM và thực hành code HTML",
+			"description": [
+				"Giới thiệu HTML",
+				"Các thẻ HTML thông dụng",
+				"Code HTML chuẩn SEO",
+				"Phân tích bản thiết kế và hướng dẫn thực hành code HTML cho dự án"
+			]
+		},
+		{
+			"title": "CSS/CSS3 & thực hành ứng dụng dự án",
+			"description": [
+				"CSS phần 1, thực hành dự án Luxestate",
+				"CSS phần 2, thực hành dự án Luxestate",
+				"Dàn layout với CSS Flexbox, thực hành dự án Luxestate",
+				"CSS3, thực hành dự án Luxestate"
+			]
+		},
+		{
+			"title": "Thực hành dự án Luxestate",
+			"description": []
+		},
+		{
+			"title": "Hướng dẫn code & tối ưu dự án Luxestate",
+			"description": [
+				"Hướng dẫn code dự án Luxestate",
+				"Hướng dẫn tối ưu hình ảnh, HTML, CSS cho dự án"
+			]
+		},
+		{
+			"title": "Javascript nền tảng & thực hành",
+			"description": [
+				"Tổng quan và khái niệm cơ bản Javascript.",
+				"Làm việc với String và Loop",
+				"Làm việc với Array & Object",
+				"Thực hành bài tập luyện tư duy (phần 1)",
+				"Thực hành bài tập luyện tư duy (phần 2)",
+				"Thực hành bài tập luyện tư duy (phần 3)"
+			]
+		},
+		{
+			"title": "Javascript ES6 & thực hành",
+			"description": [
+				"Javascript ES6 là gì?",
+				"Arrow function",
+				"Template literals (template string)",
+				"Destructuring, Rest",
+				"Spread, Default parameter",
+				"Thực hành bài tập Javascript"
+			]
+		},
+		{
+			"title": "Báo cáo và đánh giá dự án Luxestate",
+			"description": [
+				"Báo cáo dự án Luxestate",
+				"Đánh giá và góp ý dự án Luxestate"
+			]
+		},
+		{
+			"title": "HTML nâng cao. Quy tắc BEM",
+			"description": [
+				"Các thẻ HTML nâng cao",
+				"Quy tắc đặt tên class chuẩn BEM"
+			]
+		},
+		{
+			"title": "Phân tích bản thiết kế và thực hành cắt hình, code HTML dự án Wooder",
+			"description": [
+				"Phân tích bản thiết kế Wooder",
+				"Thực hành cắt hình, code HTML dự án Wooder"
+			]
+		},
+		{
+			"title": "CSS nâng cao và chia layout với CSS Grid",
+			"description": [
+				"Các thuộc tính CSS nâng cao",
+				"Ôn tập Flexbox",
+				"Chia layout với CSS Grid"
+			]
+		},
+		{
+			"title": "SCSS toàn diện",
+			"description": [
+				"Khái niệm SCSS",
+				"Cài đặt trình biên dịch SCSS",
+				"Xếp chồng – Nested Rule, Biến – variable, Kế thừa – Extends, Import, Vòng lặp - Loop, Mệnh đề điều kiện IF",
+				"Phân tách và cấu trúc file SCSS"
+			]
+		},
+		{
+			"title": "Responsive Website",
+			"description": [
+				"Phân biệt Responsive Website và Adaptive Website",
+				"Breakpoints",
+				"Hướng dẫn code Responsive dự án Wooder",
+				"Kiến thức tổng quan về Responsive Website",
+				"Media Query"
+			]
+		},
+		{
+			"title": "Grunt và Cấu trúc dự án",
+			"description": [
+				"Khái niệm Grunt & Cài đặt Grunt",
+				"Cấu trúc file, thư mục dự án với SCSS và Grunt"
+			]
+		},
+		{
+			"title": "Thực hành code Responsive dự án Wooder",
+			"description": [
+				"Thực hành ứng dụng Grunt, SCSS vào dự án Wooder (Phần 1)",
+				"Thực hành ứng dụng Grunt, SCSS vào dự án Wooder (Phần 2)"
+			]
+		},
+		{
+			"title": "Javascript DOM, BOM, Javascript nâng cao và các thư viện JS thông dụng",
+			"description": [
+				"Kiến thức Javascript DOM, BOM.",
+				"Hướng dẫn ứng dụng các thư viện Javascript thông dụng vào dự án",
+				"Javascript nâng cao và thực hành bài tập"
+			]
+		},
+		{
+			"title": "Thực hành ứng dụng Javascript và thư viện vào dự án Wooder",
+			"description": [
+				"Thực hành các tính năng trên dự án bằng Javascript thuần",
+				"Thực hành ứng dụng thư viện Javascript trên dự án"
+			]
+		},
+		{
+			"title": "Báo cáo, đánh giá & góp ý tối ưu dự án Wooder",
+			"description": [
+				"Báo cáo và đánh giá dự án",
+				"Góp ý và tối ưu dự án"
+			]
+		},
+		{
+			"title": "Thực hành dự án Web Responsive",
+			"description": [
+				"Phân tích và triển khai dự án Web Responsive",
+				"Hướng dẫn hoàn hành dự án Web Responsive",
+				"Thực hành dự án Web Responsive. Các kỹ thuật tối ưu tốc độ website"
+			]
+		},
+		{
+			"title": "Báo cáo, đánh giá & góp ý tối ưu Web Responsive",
+			"description": [
+				"Báo cáo và đánh giá dự án Web Responsive",
+				"Góp ý tối ưu dự án Web Responsive"
+			]
+		},
+		{
+			"title": "Làm quen với các kiến thức React cơ bản",
+			"description": [
+				"Component, Props, State",
+				"Style, Event",
+				"useEffect"
+			]
+		},
+		{
+			"title": "Xử lý form trong React",
+			"description": [
+				"Thao tác cơ bản với Form",
+				"Validate form",
+				"Tối ưu Validate form"
+			]
+		},
+		{
+			"title": "Xây dựng Single Page Application trong React",
+			"description": [
+				"Giới thiệu và cài đặt thư viện react-router-dom@6",
+				"Tìm hiểu qua các cách sử dụng react-router-dom phổ biến",
+				"Xử lý layout"
+			]
+		},
+		{
+			"title": "Làm việc với API từ Backend",
+			"description": [
+				"Giới thiệu và làm việc với api từ Backend bằng fetch",
+				"Cài đặt và setup axios",
+				"Làm việc với RestFul API từ Backend"
+			]
+		},
+		{
+			"title": "Authentication với JWT",
+			"description": [
+				"Giới thiệu về JWT",
+				"Làm chức năng login trong React với JWT"
+			]
+		},
+		{
+			"title": "Hoàn thành kiến thức React cơ bản",
+			"description": [
+				"Portal",
+				"Cài đặt thư viện ngoài React",
+				"useId"
+			]
+		},
+		{
+			"title": "Thực hành dự án Đăng Ký Khóa Học (CFDCourses)",
+			"description": [
+				"Forgot và reset password",
+				"Refresh token tự động",
+				"Render trang chi tiết khóa học",
+				"Hoàn thành chức năng cá nhân",
+				"Giới thiệu dự án"
+			]
+		},
+		{
+			"title": "Tối ưu và deploy dự án",
+			"description": [
+				"Lazy component",
+				"useMemo, useCallback, React.memo",
+				"useId, useTransition, useDeferredValue",
+				"Deploy dự án lên Vercel"
+			]
+		},
+		{
+			"title": "Redux và những thư viện liên quan",
+			"description": []
+		},
+		{
+			"title": "Thực hành dự án E-commerce",
+			"description": [
+				"Setup dự án template",
+				"Lấy thông tin sản phẩm",
+				"Làm chức năng phân trang sản phẩm"
+			]
+		},
+		{
+			"title": "Hoàn thành trang sản phẩm",
+			"description": [
+				"Sort",
+				"minPrice, maxPrice",
+				"Filter theo rating",
+				"Tìm kiếm sản phẩm"
+			]
+		},
+		{
+			"title": "Hoàn thành trang cá nhân",
+			"description": [
+				"Đăng nhập / đăng ký",
+				"Thay đổi thông tin cá nhân",
+				"Cập nhật avatar",
+				"Sản phẩm yêu thích",
+				"Quản lý sổ địa chỉ, sổ thanh toán"
+			]
+		},
+		{
+			"title": "Hoàn thành chức năng giỏ hàng",
+			"description": [
+				"Thêm , xóa sản phẩm vào giỏ hàng",
+				"Tăng / giảm số lượng sản phẩm trong giỏ hàng",
+				"Xử lý popup thông báo khi thêm sản phẩm thành công"
+			]
+		},
+		{
+			"title": "Hoàn thành chức năng chi tiết sản phẩm",
+			"description": [
+				"Render thông tin cơ bản trang chi tiết sản phẩm",
+				"Xử lý Image Modal",
+				"Rút gọn nội dung với ShortContent"
+			]
+		},
+		{
+			"title": "Hoàn thành chức năng checkout",
+			"description": [
+				"Xử lý form checkout",
+				"Thêm / xóa promotion",
+				"Xử lý đơn hàng thành công"
+			]
+		},
+		{
+			"title": "Hoàn thành chức năng Đặt hàng & Đánh giá sản phẩm",
+			"description": [
+				"Xử lý trang xem sản phẩm đặt hàng",
+				"Làm chức năng review sản phẩm khi nhận hàng thành công"
+			]
+		},
+		{
+			"title": "Hoàn thành chức năng Translate",
+			"description": [
+				"Tự làm chức năng Translate bằng thư viện tự xây dựng",
+				"Error boundaries",
+				"Slider",
+				"Forgot và reset password"
+			]
+		},
+		{
+			"title": "Hướng dẫn làm CV, tìm việc và trả lời phỏng vấn ứng tuyển",
+			"description": [
+				"Hướng dẫn làm CV chuẩn IT",
+				"Hướng dẫn tìm việc",
+				"Hướng dẫn trả lời phỏng vấn",
+				"Chia sẻ kinh nghiệm thực tế"
+			]
+		}
+	],
+	"required": [
+		"Có laptop cá nhân, cài đặt phần mềm Photoshop, VSCode.",
+		"Đã tìm hiểu về lộ trình học frontend và biết cơ bản HTML, CSS là một lợi thế",
+		"Hạn chế tối đa nghỉ học và hoàn thành bài tập được giao.",
+		"Thành viên CFD Circle phải có tinh thần trách nhiệm, chủ động cao trong việc học, cũng như tự học và làm thêm tại nhà."
+	],
+	"teams": [
+		{
+			"id": "646d4e0478f8835e5e418cef",
+			"name": "Trần Nghĩa",
+			"slug": "tran-nghia-1684884996076",
+			"jobTitle": "FOUNDER",
+			"image": "https://cfdcourses.cfdcircle.vn/images/team/trannghia.jpg",
+			"description": "Xin chào! Tôi là Trần Nghĩa - Creative Frontend Developer, người sáng lập CFD Circle và CFD Studio. Trong hơn 7 năm kinh nghiệm trong nghề, tôi luôn tạo ra những sản phẩm chất lượng cao, sáng tạo, tinh tế và phù hợp cho khách hàng trong và ngoài nước, cũng như mong muốn truyền đạt lại cho các bạn trẻ có đam mê và định hướng theo nghề Front-End Developer.\n\nCFD Circle\n",
+			"tags": [
+				"Teacher"
+			],
+			"sortOrder": 1,
+			"createdAt": "2023-05-23T23:36:36.076Z",
+			"updatedAt": "2023-05-23T23:36:36.076Z"
+		},
+		{
+			"id": "646d546a3dbc9963e6c2ddbd",
+			"name": "Đức Huy",
+			"slug": "duc-huy-1684886634100",
+			"jobTitle": "FULLSTACK DEVELOPER",
+			"image": "https://cfdcourses.cfdcircle.vn/images/team/team_3.jpg",
+			"description": "Xin chào! Tôi là Huy Nguyễn - Fullstack Developer, người đồng sáng lập CFD Circle & CFD Studio. Với mong muốn truyền đạt những kinh nghiệm thực tế có được trong hơn 5 năm đi làm cho các bạn trẻ có đam mê với lập trình front-end, cũng như back-end. Hi vọng tôi sẽ giúp cho các bạn có cái đầy đủ kiến thức và kỹ năng để ứng tuyển vào vị trí mà bạn hướng đến.",
+			"tags": [
+				"Mentor"
+			],
+			"sortOrder": 2,
+			"createdAt": "2023-05-24T00:03:54.100Z",
+			"updatedAt": "2023-05-24T00:03:54.100Z"
+		},
+		{
+			"id": "646d54853dbc9963e6c2ddc3",
+			"name": "Huỳnh Anh Kiệt",
+			"slug": "huynh-anh-kiet-1684886661394",
+			"jobTitle": "FRONT-END DEVELOPER",
+			"image": "https://cfdcourses.cfdcircle.vn/images/team/team_4.jpg",
+			"description": "Chào bạn, nếu bạn đọc những dòng này hẳn là bạn rất quan tâm đến việc trở thành một developer, nhất là Front-end Developer. Vì vậy, mình là Huỳnh Anh Kiệt - hiện đang làm việc với vị trí Software Engineer - chapter Front-End tại Kyanon Digital và CFD Studio, đồng thời, là cựu học viên của CFD Circle sẽ đồng hành cùng bạn trong hành trình chinh phục mong ước đó. Sau thời gian dài học tập và làm việc, mình đã tích lũy được một số kinh nghiệm để có thể giúp đỡ những bạn có niềm đam mê với Front-end.",
+			"tags": [
+				"Mentor"
+			],
+			"sortOrder": 3,
+			"createdAt": "2023-05-24T00:04:21.394Z",
+			"updatedAt": "2023-05-24T00:04:21.394Z"
+		}
+	],
+	"sortOrder": 1,
+	"createdAt": "2023-05-23T15:36:16.000Z",
+	"updatedAt": "2023-05-23T15:36:16.000Z"
+}

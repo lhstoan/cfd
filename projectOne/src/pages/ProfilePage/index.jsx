@@ -1,6 +1,6 @@
-import {Link, Outlet} from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 
-const ProfilePage=() => {
+const ProfilePage = () => {
 	return (
 		<main className="mainwrapper profilepage">
 			<div className="container">
@@ -35,9 +35,9 @@ const ProfilePage=() => {
 					<div className="tabwrap">
 						<div className="tab">
 							<div className="tab__title">
-								<Link to="/profile" className="active">Thông tin cá nhân</Link>
-								<Link to="/profile/my-course">Khóa học của tôi</Link>
-								<Link to="/profile/my-payment" >Lịch sử thanh toán</Link>
+								<NavLink end to="/profile">Thông tin cá nhân</NavLink>
+								<NavLink to="/profile/my-course">Khóa học của tôi</NavLink>
+								<NavLink to="/profile/my-payment" >Lịch sử thanh toán</NavLink>
 							</div>
 							<div className="tab__content">
 								<Outlet />
