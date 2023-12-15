@@ -13,13 +13,13 @@ const HomePage = () => {
 				<div className="hero__bottom">
 					<div className="container-fluid">
 						<div className="hero__bottom-social">
-							<a href="https://www.facebook.com/cfdcircle" target="_blank" rel="noreferrer"><img src="img/icon-facebook.svg" alt="Facebook CFD" /></a>
-							<a href="https://www.youtube.com/cfdcircle" target="_blank" rel="noreferrer"><img src="img/icon-youtube.svg" alt="Youtube CFD" /></a>
+							<a href="https://www.facebook.com/cfdcircle" target="_blank" rel="noreferrer"><img src="/img/icon-facebook.svg" alt="Facebook CFD" /></a>
+							<a href="https://www.youtube.com/cfdcircle" target="_blank" rel="noreferrer"><img src="/img/icon-youtube.svg" alt="Youtube CFD" /></a>
 						</div>
 					</div>
 				</div>
 				<div className="hero__background">
-					<img className="hero__background-img" src="img/bg-hero-home.jpg" alt="CFD Training Background" />
+					<img className="hero__background-img" src="/img/bg-hero-home.jpg" alt="CFD Training Background" />
 					<div className="hero__background-video" data-src="video/CFD-video-bg2.mp4" />
 				</div>
 			</section>
@@ -30,10 +30,10 @@ const HomePage = () => {
 						</h2>
 						<div className="control">
 							<div className="control__prev">
-								<img src="img/icon-btn-control.svg" alt="icon prev" />
+								<img src="/img/icon-btn-control.svg" alt="icon prev" />
 							</div>
 							<div className="control__next">
-								<img src="img/icon-btn-control.svg" alt="icon next" />
+								<img src="/img/icon-btn-control.svg" alt="icon next" />
 							</div>
 						</div>
 					</div>
@@ -50,7 +50,7 @@ const HomePage = () => {
 							<h2 className="title --t2"><a href="course-detail.html">Frontend Master</a></h2>
 							<div className="user">
 								<div className="user__img">
-									<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+									<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 								</div>
 								<p className="user__name">Trần Nghĩa</p>
 							</div>
@@ -81,7 +81,7 @@ const HomePage = () => {
 							<h2 className="title --t2"><a href="course-detail.html">Web Responsive</a></h2>
 							<div className="user">
 								<div className="user__img">
-									<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+									<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 								</div>
 								<p className="user__name">Trần Nghĩa</p>
 							</div>
@@ -112,7 +112,7 @@ const HomePage = () => {
 							<h2 className="title --t2"><a href="course-detail.html">Frontend Newbie</a></h2>
 							<div className="user">
 								<div className="user__img">
-									<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+									<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 								</div>
 								<p className="user__name">Trần Nghĩa</p>
 							</div>
@@ -152,14 +152,14 @@ const HomePage = () => {
 								<h3 className="title --t3"><a href="course-detail.html">Frontend Newbie</a></h3>
 								<div className="content__info">
 									<div className="user">
-										<div className="user__img"><img src="img/avatar_nghia.jpg" alt="Avatar teacher" /></div>
+										<div className="user__img"><img src="/img/avatar_nghia.jpg" alt="Avatar teacher" /></div>
 										<p className="user__name">Trần Nghĩa</p>
 									</div>
 									<div className="price"><strong>4.500.000đ</strong></div>
 								</div>
 								<div className="content__action">
 									<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>
-									<a href="course-detail.html" className="btn btn--default"><img src="img/icon-paper.svg" alt="icon paper" /></a>
+									<a href="course-detail.html" className="btn btn--default"><img src="/img/icon-paper.svg" alt="icon paper" /></a>
 								</div>
 							</div>
 						</div>
@@ -177,7 +177,7 @@ const HomePage = () => {
 								<div className="content__info">
 									<div className="user">
 										<div className="user__img">
-											<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+											<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 										</div>
 										<p className="user__name">Trần Nghĩa</p>
 									</div>
@@ -185,7 +185,7 @@ const HomePage = () => {
 								</div>
 								<div className="content__action">
 									<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>
-									<a href="course-detail.html" className="btn btn--default"><img src="img/icon-paper.svg" alt="icon paper" /></a>
+									<a href="course-detail.html" className="btn btn--default"><img src="/img/icon-paper.svg" alt="icon paper" /></a>
 								</div>
 							</div>
 						</div>
@@ -202,7 +202,7 @@ const HomePage = () => {
 								<div className="content__info">
 									<div className="user">
 										<div className="user__img">
-											<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+											<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 										</div>
 										<p className="user__name">Trần Nghĩa</p>
 									</div>
@@ -210,7 +210,7 @@ const HomePage = () => {
 								</div>
 								<div className="content__action">
 									<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>
-									<a href="course-detail.html" className="btn btn--default"><img src="img/icon-paper.svg" alt="icon paper" /></a>
+									<a href="course-detail.html" className="btn btn--default"><img src="/img/icon-paper.svg" alt="icon paper" /></a>
 								</div>
 							</div>
 						</div>
@@ -227,7 +227,7 @@ const HomePage = () => {
 								<div className="content__info">
 									<div className="user">
 										<div className="user__img">
-											<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+											<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 										</div>
 										<p className="user__name">Trần Nghĩa</p>
 									</div>
@@ -235,7 +235,7 @@ const HomePage = () => {
 								</div>
 								<div className="content__action">
 									<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>
-									<a href="course-detail.html" className="btn btn--default"><img src="img/icon-paper.svg" alt="icon paper" /></a>
+									<a href="course-detail.html" className="btn btn--default"><img src="/img/icon-paper.svg" alt="icon paper" /></a>
 								</div>
 							</div>
 						</div>
@@ -257,10 +257,10 @@ const HomePage = () => {
 							</p>
 							<div className="control">
 								<div className="control__prev">
-									<img src="img/icon-btn-control.svg" alt="icon prev" />
+									<img src="/img/icon-btn-control.svg" alt="icon prev" />
 								</div>
 								<div className="control__next">
-									<img src="img/icon-btn-control.svg" alt="icon next" />
+									<img src="/img/icon-btn-control.svg" alt="icon next" />
 								</div>
 							</div>
 						</div>
@@ -319,7 +319,7 @@ const HomePage = () => {
 				</div>
 			</section>
 			<section className="featured">
-				<img src="img/icon-cfd.svg" alt className="featured__c" />
+				<img src="/img/icon-cfd.svg" alt className="featured__c" />
 				<div className="container">
 					<div className="featured__title">
 						<h2 className="title --t2 --white">Những điều <br /><span>Đặc biệt</span> Tại CFD</h2>
@@ -398,7 +398,7 @@ const HomePage = () => {
 											</div>
 											<div className="bottom">
 												<span className="label">Học viên CFD1</span>
-												<a href="https://www.facebook.com/" target="_blank"><img src="img/facebook.svg" alt /></a>
+												<a href="https://www.facebook.com/" target="_blank"><img src="/img/facebook.svg" alt /></a>
 											</div>
 										</div>
 										<div className="ct ct-2">
@@ -414,7 +414,7 @@ const HomePage = () => {
 											</div>
 											<div className="bottom">
 												<span className="label">Học viên CFD2</span>
-												<a href="https://www.facebook.com/" target="_blank"><img src="img/facebook.svg" alt /></a>
+												<a href="https://www.facebook.com/" target="_blank"><img src="/img/facebook.svg" alt /></a>
 											</div>
 										</div>
 										<div className="ct ct-3">
@@ -433,7 +433,7 @@ const HomePage = () => {
 											</div>
 											<div className="bottom">
 												<span className="label">Học viên CFD1</span>
-												<a href="https://www.facebook.com/" target="_blank"><img src="img/facebook.svg" alt /></a>
+												<a href="https://www.facebook.com/" target="_blank"><img src="/img/facebook.svg" alt /></a>
 											</div>
 										</div>
 										<div className="ct ct-4">
@@ -449,7 +449,7 @@ const HomePage = () => {
 											</div>
 											<div className="bottom">
 												<span className="label">Học viên CFD1</span>
-												<a href="https://www.facebook.com/" target="_blank"><img src="img/facebook.svg" alt /></a>
+												<a href="https://www.facebook.com/" target="_blank"><img src="/img/facebook.svg" alt /></a>
 											</div>
 										</div>
 									</div>
@@ -479,7 +479,7 @@ const HomePage = () => {
 													</div>
 													<div className="bottom">
 														<span className="label">Học viên CFD1</span>
-														<a href="https://www.facebook.com/" target="_blank"><img src="img/facebook.svg" alt /></a>
+														<a href="https://www.facebook.com/" target="_blank"><img src="/img/facebook.svg" alt /></a>
 													</div>
 												</div>
 											</div>
@@ -503,7 +503,7 @@ const HomePage = () => {
 												</div>
 												<div className="bottom">
 													<span className="label">Học viên CFD2</span>
-													<a href="https://www.facebook.com/" target="_blank"><img src="img/facebook.svg" alt /></a>
+													<a href="https://www.facebook.com/" target="_blank"><img src="/img/facebook.svg" alt /></a>
 												</div>
 											</div>
 											<div className="carousel-cell">
@@ -532,7 +532,7 @@ const HomePage = () => {
 													</div>
 													<div className="bottom">
 														<span className="label">Học viên CFD1</span>
-														<a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="img/facebook.svg" alt /></a>
+														<a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="/img/facebook.svg" alt /></a>
 													</div>
 												</div>
 											</div>
@@ -557,7 +557,7 @@ const HomePage = () => {
 													</div>
 													<div className="bottom">
 														<span className="label">Học viên CFD1</span>
-														<a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="img/facebook.svg" alt /></a>
+														<a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="/img/facebook.svg" alt /></a>
 													</div>
 												</div>
 											</div>

@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom"
+
 const Header = () => {
 	return (
 		<header className="header --transparent">
@@ -40,7 +42,7 @@ const Header = () => {
 					<div className="userlogged">
 						<div className="userlogged__avatar user" data-dropdown="userlogged__dropdown">
 							<div className="userlogged__avatar-img user__img">
-								<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+								<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 							</div>
 							<i className="userlogged__avatar-icon"><svg width={14} height={14} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M0 3.5L7.00003 10.5L14 3.5H0Z" fill="white" />
@@ -50,18 +52,18 @@ const Header = () => {
 						<div className="userlogged__dropdown dropdown">
 							<div className="userlogged__dropdown-info">
 								<div className="user__img">
-									<img src="img/avatar_nghia.jpg" alt="Avatar teacher" />
+									<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 								</div>
-								<a href="student-profile.html" className="user__info">
+								<Link to="/profile" className="user__info">
 									<p className="title --t4"><strong>Trần Nghĩa</strong></p>
 									<span className="email">Thông tin tài khoản</span>
-								</a>
+								</Link>
 							</div>
 							<div className="userlogged__dropdown-list">
-								<a href="student-profile.html">Khóa học của tôi</a>
-								<a href="student-profile.html">Lịch sử thanh toán</a>
-								<a href="contact.html">Hỗ trợ</a>
-								<a href="#">Đăng xuất <i><img src="img/iconlogout.svg" alt /></i></a>
+								<Link to="/profile/my-course">Khóa học của tôi</Link>
+								<Link to="/profile/my-payment">Lịch sử thanh toán</Link>
+								<Link to="/contact">Hỗ trợ</Link>
+								<Link to="#">Đăng xuất <i><img src="/img/iconlogout.svg" alt /></i></Link>
 							</div>
 						</div>
 					</div>
