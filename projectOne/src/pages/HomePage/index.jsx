@@ -1,5 +1,55 @@
+/* eslint-disable no-undef */
+import {Link} from "react-router-dom"
+import CourseComing from "./CourseComing"
+import CourseItem from "./CourseItem"
+import PATHS from './../../config/config-path';
+import useQuery from './../../hooks/useQuery';
+import {courseService} from "../../services/courseService";
+import {useEffect} from "react";
 
-const HomePage = () => {
+// ================= COURSE COMING HOME ================
+function courseComingList() {
+
+	let courseComingSlider=$("#coursecoming__slider");
+	courseComingSlider.flickity({
+		cellAlign: "left",
+		contain: true,
+		prevNextButtons: false,
+		pageDots: false,
+		dragThreshold: 0,
+		wrapAround: true
+	});
+
+	$(".coursecoming .control .control__next").on(
+		"click",
+		function (e) {
+			e.preventDefault();
+			courseComingSlider.flickity("next");
+		}
+	);
+	$(".coursecoming .control .control__prev").on(
+		"click",
+		function (e) {
+			e.preventDefault();
+			courseComingSlider.flickity("previous");
+		}
+	);
+}
+
+const HomePage=() => {
+
+	useEffect(() => {
+		setTimeout(() => {
+			courseComingList();
+		},100);
+
+	},[]);
+
+	const {data: courses,error: coursesError,loading: coursesLoading}=useQuery(() =>
+		courseService.getCourses()
+	);
+
+
 	return (
 		<main className="mainwrapper">
 			<section className="hero">
@@ -39,99 +89,10 @@ const HomePage = () => {
 					</div>
 				</div>
 				<div className="coursecoming__list" id="coursecoming__slider">
-					<div className="coursecoming__item">
-						<div className="coursecoming__item-img">
-							<a href="course-detail.html">
-								<img src="https://cfdcircle.vn/files/thumbnails/JUVoVxn36lQtCl20hHoEPMo8JJENBX5qXfI1U13k.jpg" alt="Khóa học sắp ra mắt CFD" />
-							</a>
-						</div>
-						<div className="coursecoming__item-content">
-							<p className="category label">Front-end</p>
-							<h2 className="title --t2"><a href="course-detail.html">Frontend Master</a></h2>
-							<div className="user">
-								<div className="user__img">
-									<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
-								</div>
-								<p className="user__name">Trần Nghĩa</p>
-							</div>
-							<div className="info">
-								<div className="labeltext">
-									<span className="label --blue">Ngày khai giảng</span>
-									<p className="title --t2">04/05/2023</p>
-								</div>
-								<div className="labeltext">
-									<span className="label --blue">Hình thức học</span>
-									<p className="title --t2">Offline | Online</p>
-								</div>
-							</div>
-							<div className="btnwrap">
-								<a href="course-order.html" className="btn btn--primary">Đăng Ký Học</a>
-								<a href="course-detail.html" className="btn btn--border --black">Xem chi tiết</a>
-							</div>
-						</div>
-					</div>
-					<div className="coursecoming__item">
-						<div className="coursecoming__item-img">
-							<a href="course-detail.html">
-								<img src="https://cfdcircle.vn/files/thumbnails/9VVXxGDc4ujKCegv4zcejuxJ4gC8C1qeXnECvy7s.jpg" alt="Khóa học sắp ra mắt CFD" />
-							</a>
-						</div>
-						<div className="coursecoming__item-content">
-							<p className="category label">Front-End</p>
-							<h2 className="title --t2"><a href="course-detail.html">Web Responsive</a></h2>
-							<div className="user">
-								<div className="user__img">
-									<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
-								</div>
-								<p className="user__name">Trần Nghĩa</p>
-							</div>
-							<div className="info">
-								<div className="labeltext">
-									<span className="label --blue">Ngày khai giảng</span>
-									<p className="title --t2">04/05/2023</p>
-								</div>
-								<div className="labeltext">
-									<span className="label --blue">Hình thức học</span>
-									<p className="title --t2">Offline | Online</p>
-								</div>
-							</div>
-							<div className="btnwrap">
-								<a href="course-order.html" className="btn btn--primary">Đăng Ký Học</a>
-								<a href="course-detail.html" className="btn btn--border --black">Xem chi tiết</a>
-							</div>
-						</div>
-					</div>
-					<div className="coursecoming__item">
-						<div className="coursecoming__item-img">
-							<a href="course-detail.html">
-								<img src="https://cfdcircle.vn/files/thumbnails/ahvVmtDlrzUPhKLDrc4YkdA8iFbACauYCN76TSGs.jpg" alt="Khóa học sắp ra mắt CFD" />
-							</a>
-						</div>
-						<div className="coursecoming__item-content">
-							<p className="category label">Front-end</p>
-							<h2 className="title --t2"><a href="course-detail.html">Frontend Newbie</a></h2>
-							<div className="user">
-								<div className="user__img">
-									<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
-								</div>
-								<p className="user__name">Trần Nghĩa</p>
-							</div>
-							<div className="info">
-								<div className="labeltext">
-									<span className="label --blue">Ngày khai giảng</span>
-									<p className="title --t2">04/05/2023</p>
-								</div>
-								<div className="labeltext">
-									<span className="label --blue">Hình thức học</span>
-									<p className="title --t2">Offline | Online</p>
-								</div>
-							</div>
-							<div className="btnwrap">
-								<a href="course-order.html" className="btn btn--primary">Đăng Ký Học</a>
-								<a href="course-detail.html" className="btn btn--border --black">Xem chi tiết</a>
-							</div>
-						</div>
-					</div>
+					{courses?.courses?.map((course,index) => {
+						const {id}=course;
+						return <CourseComing key={id||index} course={course} />;
+					})}
 				</div>
 			</section>
 			<section className="courses">
@@ -140,108 +101,13 @@ const HomePage = () => {
 						<h2 className="heading__title title --t2">Tất cả <span className="color--primary">khóa học</span></h2>
 					</div>
 					<div className="courses__list">
-						<div className="courses__list-item">
-							<div className="img">
-								<a href="course-detail.html">
-									<img src="https://cfdcircle.vn/files/thumbnails/ahvVmtDlrzUPhKLDrc4YkdA8iFbACauYCN76TSGs.jpg" alt="Khóa học CFD" className="course__thumbnail" />
-									<span className="course__img-badge badge">Offline | Online</span>
-								</a>
-							</div>
-							<div className="content">
-								<p className="label">Front-End</p>
-								<h3 className="title --t3"><a href="course-detail.html">Frontend Newbie</a></h3>
-								<div className="content__info">
-									<div className="user">
-										<div className="user__img"><img src="/img/avatar_nghia.jpg" alt="Avatar teacher" /></div>
-										<p className="user__name">Trần Nghĩa</p>
-									</div>
-									<div className="price"><strong>4.500.000đ</strong></div>
-								</div>
-								<div className="content__action">
-									<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>
-									<a href="course-detail.html" className="btn btn--default"><img src="/img/icon-paper.svg" alt="icon paper" /></a>
-								</div>
-							</div>
-						</div>
-						<div className="courses__list-item">
-							<div className="img">
-								<a href="course-detail.html">
-									<img src="https://cfdcircle.vn/files/thumbnails/9VVXxGDc4ujKCegv4zcejuxJ4gC8C1qeXnECvy7s.jpg" alt="Khóa học CFD" className="course__thumbnail" />
-									<span className="course__img-badge badge">Offline | Online</span>
-								</a>
-							</div>
-							<div className="content">
-								<p className="label">Front-End</p>
-								<h3 className="title --t3"><a href="https://cfdcircle.vn/files/thumbnails/9VVXxGDc4ujKCegv4zcejuxJ4gC8C1qeXnECvy7s.jpg">Web
-									Responsive</a></h3>
-								<div className="content__info">
-									<div className="user">
-										<div className="user__img">
-											<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
-										</div>
-										<p className="user__name">Trần Nghĩa</p>
-									</div>
-									<div className="price"><strong>4.900.000đ</strong></div>
-								</div>
-								<div className="content__action">
-									<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>
-									<a href="course-detail.html" className="btn btn--default"><img src="/img/icon-paper.svg" alt="icon paper" /></a>
-								</div>
-							</div>
-						</div>
-						<div className="courses__list-item">
-							<div className="img">
-								<a href="course-detail.html">
-									<img src="https://cfdcircle.vn/files/thumbnails/JUVoVxn36lQtCl20hHoEPMo8JJENBX5qXfI1U13k.jpg" alt="Khóa học CFD" className="course__thumbnail" />
-									<span className="course__img-badge badge">Offline | Online</span>
-								</a>
-							</div>
-							<div className="content">
-								<p className="label">Front-End</p>
-								<h3 className="title --t3"><a href="#">Frontend Master</a></h3>
-								<div className="content__info">
-									<div className="user">
-										<div className="user__img">
-											<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
-										</div>
-										<p className="user__name">Trần Nghĩa</p>
-									</div>
-									<div className="price"><strong>14.700.000đ</strong></div>
-								</div>
-								<div className="content__action">
-									<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>
-									<a href="course-detail.html" className="btn btn--default"><img src="/img/icon-paper.svg" alt="icon paper" /></a>
-								</div>
-							</div>
-						</div>
-						<div className="courses__list-item">
-							<div className="img">
-								<a href="course-detail.html">
-									<img src="https://cfdcircle.vn/files/thumbnails/ZUTudJyluuW4DGhZ6iXS2z6jRnEe7RnKTKhDTR6h.jpg" alt="Khóa học CFD" className="course__thumbnail" />
-									<span className="course__img-badge badge">Offline | Online</span>
-								</a>
-							</div>
-							<div className="content">
-								<p className="label">Front-End</p>
-								<h3 className="title --t3"><a href="course-detail.html">ReactJS Master</a></h3>
-								<div className="content__info">
-									<div className="user">
-										<div className="user__img">
-											<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
-										</div>
-										<p className="user__name">Trần Nghĩa</p>
-									</div>
-									<div className="price"><strong>6.000.000đ</strong></div>
-								</div>
-								<div className="content__action">
-									<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>
-									<a href="course-detail.html" className="btn btn--default"><img src="/img/icon-paper.svg" alt="icon paper" /></a>
-								</div>
-							</div>
-						</div>
+						{courses?.courses?.map((course,index) => {
+							const {id}=course;
+							return <CourseItem key={id||index} course={course} />;
+						})}
 					</div>
 					<div className="courses__btnall">
-						<a href="courses.html" className="course__btn btn btn--grey">Tất cả khoá học</a>
+						<Link to={PATHS.COURSE.INDEX} className="course__btn btn btn--grey">Tất cả khoá học</Link>
 					</div>
 				</div>
 			</section>
