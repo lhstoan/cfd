@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 // eslint-disable-next-line no-unused-vars, react/prop-types
-const Button = ({children, variant = "primary",...restProps}) => {
+const Button = ({ children, link, variant = "primary", ...restProps }) => {
 	let btnClass = "";
 	switch (variant) {
 		case "primary":
@@ -11,9 +13,14 @@ const Button = ({children, variant = "primary",...restProps}) => {
 		default:
 			break;
 	}
-  return (
-	<button className={btnClass} {...restProps}>{children}</button>
-  )
+
+	if (link) {
+		return <Link to={link} className={btnClass}  {...restProps}>{children}</Link>
+	}
+
+	return (
+		<button className={btnClass} {...restProps}>{children}</button>
+	)
 }
 
 export default Button
