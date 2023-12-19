@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+import {Empty} from "antd";
 import PATHS from "../../../config/config-path";
+import CourseItem from "../CourseComingSection/CourseItem";
 
-import CourseComingItem from "../CourseComingSection/CourseComingItem";
-import { Empty } from "antd";
-
-const CoursesSection = ({ courses, loading }) => {
+const CoursesSection=({data=[],loading=false}) => {
 	return (
 		<section className="courses">
 			<div className="container">
@@ -12,18 +11,18 @@ const CoursesSection = ({ courses, loading }) => {
 					<h2 className="heading__title title --t2">Tất cả <span className="color--primary">khóa học</span></h2>
 				</div>
 
-				{!loading && courses?.length === 0 ? (
+				{!loading&&data?.length===0? (
 					<Empty
 						description="Không tìm thấy dữ liệu nào"
-						style={{ margin: "0 auto" }}
+						style={{margin: "0 auto"}}
 					/>
-				) : (
+				):(
 					<div className="courses__list">
-						{courses?.length > 0 &&
-							courses.map((course, index) => {
+						{data?.length>0&&
+							data.map((course,index) => {
 								return (
-									<CourseComingItem
-										key={course?.id || index}
+									<CourseItem
+										key={course?.id||index}
 										{...course}
 									/>
 								);

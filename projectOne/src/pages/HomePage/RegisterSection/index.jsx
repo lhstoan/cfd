@@ -1,6 +1,8 @@
 import React from 'react'
+import Button from '../../../components/Button'
+import PATHS from '../../../config/config-path'
 
-const RegisterSection = () => {
+const RegisterSection=() => {
 	return (
 		<section className="callregister">
 			<div className="container">
@@ -11,8 +13,8 @@ const RegisterSection = () => {
 						Chúng tôi rất vui khi bạn quyết định trở thành một phần của CFD Circle để cùng nhau học hỏi, lan
 						toả và chia sẻ những kinh nghiệm quý giá cho cộng đồng.
 					</p>
-					<a href="courses.html" className="btn btn--primary">Tham gia Khoá học</a>
-					<a href="contact.html" className="btn btn--border --black">Liên hệ tư vấn</a>
+					<Button link={PATHS.COURSE.INDEX} variant='primary'>Tham gia Khoá học</Button>
+					<Button link={PATHS.CONTACT} variant='border'>Liên hệ tư vấn</Button>
 				</div>
 			</div>
 		</section>

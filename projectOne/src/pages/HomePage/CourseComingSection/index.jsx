@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import CourseComingItem from "./CourseComingItem";
-import { Empty } from "antd";
-import { CourseTypes } from "../../../config/config-general";
+import {useEffect} from "react";
+import {Empty} from "antd";
+import {CourseTypes} from "../../../config/config-general";
+import CourseItem from "./CourseItem";
 
 
 function courseComingList() {
-	let courseComingSlider = $("#coursecoming__slider");
+	let courseComingSlider=$("#coursecoming__slider");
 	courseComingSlider.flickity({
 		cellAlign: "left",
 		contain: true,
@@ -31,18 +31,18 @@ function courseComingList() {
 	);
 }
 
-const CourseComingSection = ({ courses, loading }) => {
+const CourseComingSection=({data=[],loading=false}) => {
 
 	useEffect(() => {
-		const myTimeout = setTimeout(() => {
-			if (courses?.length > 0) {
+		const myTimeout=setTimeout(() => {
+			if (data?.length>0) {
 				courseComingList();
 			}
-		}, 300);
+		},300);
 		return () => {
 			clearTimeout(myTimeout);
 		};
-	}, [courses]);
+	},[data]);
 
 
 	return (
@@ -61,18 +61,18 @@ const CourseComingSection = ({ courses, loading }) => {
 					</div>
 				</div>
 			</div>
-			{!loading && courses?.length === 0 ? (
+			{!loading&&data?.length===0? (
 				<Empty
 					description="Không tìm thấy dữ liệu nào"
-					style={{ margin: "0 auto" }}
+					style={{margin: "0 auto"}}
 				/>
-			) : (
+			):(
 				<div className="coursecoming__list" id="coursecoming__slider">
-					{courses?.length > 0 &&
-						courses.map((course, index) => {
+					{data?.length>0&&
+						data.map((course,index) => {
 							return (
-								<CourseComingItem
-									key={course?.id || index}
+								<CourseItem
+									key={course?.id||index}
 									{...course}
 									type={CourseTypes.Coming}
 								/>

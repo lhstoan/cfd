@@ -1,4 +1,4 @@
-const FeaturedSection = () => {
+const FeaturedSection=() => {
 	return (
 		<section className="featured">
 			<img src="/img/icon-cfd.svg" alt className="featured__c" />

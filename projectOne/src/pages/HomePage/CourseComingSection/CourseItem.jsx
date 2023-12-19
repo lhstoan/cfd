@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Button from "../../../components/Button";
-import { CourseTypes } from "../../../config/config-general"
+import {CourseTypes} from "../../../config/config-general"
 import PATHS from "../../../config/config-path"
-import { Roles } from "../../../config/config-roles";
-import { formatCurrency, formatDate } from "../../../utils/format";
+import {Roles} from "../../../config/config-roles";
+import {formatCurrency,formatDate} from "../../../utils/format";
 
-const CourseComingItem = ({ type = CourseTypes.Normal, image, title, slug, tags, price, teams, startDate, ...restProps }) => {
-	const pathDetail = PATHS.COURSE.INDEX + `/${slug}`;
-	const pathOrder = PATHS.COURSE.ORDER + `/${slug}`;
-	const showTeacher = teams?.find((item) => (item.tags?.includes(Roles.Teacher)));
+const CourseItem=({type=CourseTypes.Normal,image,title,slug,tags,price,teams,startDate,...restProps}) => {
+	const pathDetail=PATHS.COURSE.INDEX+`/${slug}`;
+	const pathOrder=PATHS.COURSE.ORDER+`/${slug}`;
+	const showTeacher=teams?.find((item) => (item.tags?.includes(Roles.Teacher)));
 
-	if (type === CourseTypes.Coming) {
+	if (type===CourseTypes.Coming) {
 		return (
 			<div className="coursecoming__item">
 				<div className="coursecoming__item-img">
@@ -28,7 +28,7 @@ const CourseComingItem = ({ type = CourseTypes.Normal, image, title, slug, tags,
 						<p className="user__name">{showTeacher?.name}</p>
 					</div>
 					<div className="info">
-						{!!startDate && (
+						{!!startDate&&(
 							<div className="labeltext">
 								<span className="label --blue">Ngày khai giảng</span>
 								<p className="title --t2">{formatDate(startDate)}</p>
@@ -65,7 +65,7 @@ const CourseComingItem = ({ type = CourseTypes.Normal, image, title, slug, tags,
 						<div className="user__img"><img src={showTeacher?.image} alt={showTeacher?.name} /></div>
 						<p className="user__name">{showTeacher?.name}</p>
 					</div>
-					<div className="price"><strong>{formatCurrency(price || 0)}đ</strong></div>
+					<div className="price"><strong>{formatCurrency(price||0)}đ</strong></div>
 				</div>
 				<div className="content__action">
 					<Button variant="primary" link={pathOrder}>Đăng ký ngay</Button>
@@ -76,4 +76,4 @@ const CourseComingItem = ({ type = CourseTypes.Normal, image, title, slug, tags,
 	)
 }
 
-export default CourseComingItem
+export default CourseItem

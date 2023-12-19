@@ -1,6 +1,46 @@
-import React from 'react'
+import {Empty} from 'antd'
+import React,{useEffect} from 'react'
+import TeacherItem from './TeacherItem';
 
-const TeacherSection = () => {
+function teacherSlider() {
+	let courseComingSlider=$(".teacher .teacher__list .teacher__list-inner");
+	courseComingSlider.flickity({
+		cellAlign: "left",
+		contain: true,
+		prevNextButtons: false,
+		pageDots: false,
+		dragThreshold: 0
+	});
+
+	$(".teacher .control .control__next").on(
+		"click",
+		function (e) {
+			e.preventDefault();
+			courseComingSlider.flickity("next");
+		}
+	);
+	$(".teacher .control .control__prev").on(
+		"click",
+		function (e) {
+			e.preventDefault();
+			courseComingSlider.flickity("previous");
+		}
+	);
+	courseComingSlider.flickity("resize");
+}
+
+const TeacherSection=({data=[],loading=false}) => {
+
+	useEffect(() => {
+		const myTime=setTimeout(() => {
+			teacherSlider()
+		},300);
+
+		return () => {
+			clearTimeout(myTime)
+		};
+	},[data]);
+
 	return (
 		<section className="teacher --scpadding">
 			<div className="container">
@@ -25,53 +65,16 @@ const TeacherSection = () => {
 			</div>
 			<div className="teacher__list">
 				<div className="container">
-					<div className="teacher__list-inner">
-						<div className="teacher__list-item">
-							<div className="img">
-								<img src="https://cfdcircle.vn/files/teachers/trannghia.jpg" alt="Giảng viên CFD" />
+					{!loading&&data?.length===0?
+						(<Empty description="Không tìm thấy dữ liệu nào" style={{margin: "0 auto"}} />)
+						:(
+							<div className="teacher__list-inner">
+								{
+									data?.map((team,index) => (<TeacherItem key={team.id||index} {...team} />))
+								}
 							</div>
-							<div className="info">
-								<p className="label">Creative Front-End Dev</p>
-								<h3 className="title --t3">Trần Nghĩa</h3>
-							</div>
-						</div>
-						<div className="teacher__list-item">
-							<div className="img">
-								<img src="https://cfdcircle.vn/files/teachers/huy.jpg" alt="Giảng viên CFD" />
-							</div>
-							<div className="info">
-								<p className="label">Fullstack Dev</p>
-								<h3 className="title --t3">Nguyễn Đức Huy</h3>
-							</div>
-						</div>
-						<div className="teacher__list-item">
-							<div className="img">
-								<img src="https://cfdcircle.vn/files/teachers/thien.jpg" alt="Giảng viên CFD" />
-							</div>
-							<div className="info">
-								<p className="label">Senior Front-end Dev</p>
-								<h3 className="title --t3">Lê Châu Hữu Thiện</h3>
-							</div>
-						</div>
-						<div className="teacher__list-item">
-							<div className="img">
-								<img src="https://cfdcircle.vn/files/teachers/kiet.jpg" alt="Giảng viên CFD" />
-							</div>
-							<div className="info">
-								<p className="label">Front-end Dev</p>
-								<h3 className="title --t3">Huỳnh Anh Kiệt</h3>
-							</div>
-						</div>
-						<div className="teacher__list-item">
-							<div className="img">
-								<img src="https://cfdcircle.vn/files/teachers/an.jpg" alt="Giảng viên CFD" />
-							</div>
-							<div className="info">
-								<p className="label">Senior Front-End Dev</p>
-								<h3 className="title --t3">Nguyễn Văn Thái An</h3>
-							</div>
-						</div>
-					</div>
+						)
+					}
 				</div>
 			</div>
 		</section>
