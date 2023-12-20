@@ -1,3 +1,6 @@
+import { MODAL_TYPES } from "../../../config/config-general";
+import { useAuthContext } from "../../../context/AuthContext";
+
 // main.js
 function loadVideoBG() {
 	let videoBgWrap = $(".hero__background-video"),
@@ -13,13 +16,14 @@ function loadVideoBG() {
 loadVideoBG();
 
 const HeroSection = () => {
+	const { handleShowModal } = useAuthContext();
 	return (
 		<section className="hero">
 			<div className="hero__content">
 				<div className="container">
 					<h1 className="title --white">Học Viện Đào Tạo<br /> Lập Trình Front-End Thực Chiến</h1>
 					<p className="text">Dạy từ kinh nghiệm, học từ thực tế để tạo ra sản phẩm có giá trị.</p>
-					<div className="btn btn--primary btnmodal" data-modal="mdlogin">Bắt đầu học</div>
+					<div className="btn btn--primary btnmodal" data-modal="mdlogin" onClick={(e) => { e.stopPropagation(); handleShowModal(MODAL_TYPES.login); }}>Bắt đầu học</div>
 				</div>
 			</div>
 			<div className="hero__bottom">

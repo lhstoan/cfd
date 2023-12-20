@@ -32,11 +32,11 @@ $(document).ready(function () {
 
 	// ================= LOAD VIDEO HERO HOME ================
 	function loadVideoBG() {
-		let videoBgWrap=$('.hero__background-video'),
-			srcVideoBg=videoBgWrap.data('src');
+		let videoBgWrap = $('.hero__background-video'),
+			srcVideoBg = videoBgWrap.data('src');
 		setTimeout(function () {
-			videoBgWrap.html('<video preload="none" autoplay loop muted playsinline><source src="'+srcVideoBg+'" type="video/mp4">Your browser does not support the video tag.</video>')
-		},500);
+			videoBgWrap.html('<video preload="none" autoplay loop muted playsinline><source src="' + srcVideoBg + '" type="video/mp4">Your browser does not support the video tag.</video>')
+		}, 500);
 	}
 	loadVideoBG()
 
@@ -156,37 +156,37 @@ $(document).ready(function () {
 
 	// ==================== MODAL =========================
 
-	function showModal() {
-		let btnmodal=$('[data-modal]'),
-			modal=$('.modal'),
-			modalwrapper=$('.modal__wrapper-content');
-		btnmodal.click(function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-			let datamodal=$(this).data('modal');
-			modal.addClass('open');
-			modalwrapper.removeClass('active');
-			$('.modal__wrapper-content.'+datamodal).addClass('active');
-		})
-	}
-	showModal();
+	// function showModal() {
+	// 	let btnmodal=$('[data-modal]'),
+	// 		modal=$('.modal'),
+	// 		modalwrapper=$('.modal__wrapper-content');
+	// 	btnmodal.click(function (e) {
+	// 		e.preventDefault();
+	// 		e.stopPropagation();
+	// 		let datamodal=$(this).data('modal');
+	// 		modal.addClass('open');
+	// 		modalwrapper.removeClass('active');
+	// 		$('.modal__wrapper-content.'+datamodal).addClass('active');
+	// 	})
+	// }
+	// showModal();
 
-	function closeModal() {
-		let modal=$('.modal');
-		modal.removeClass('open');
-	}
+	// function closeModal() {
+	// 	let modal=$('.modal');
+	// 	modal.removeClass('open');
+	// }
 
-	let btnCloseModal=$('.modal .modal__wrapper-close'),
-		modalwrapper=$('.modal__wrapper-content');
+	// let btnCloseModal=$('.modal .modal__wrapper-close'),
+	// 	modalwrapper=$('.modal__wrapper-content');
 
-	btnCloseModal.click(function (e) {
-		e.stopPropagation();
-		closeModal();
-	});
-	modalwrapper.click(function (e) {
-		e.stopPropagation();
-		hideSelect();
-	})
+	// btnCloseModal.click(function (e) {
+	// 	e.stopPropagation();
+	// 	closeModal();
+	// });
+	// modalwrapper.click(function (e) {
+	// 	e.stopPropagation();
+	// 	hideSelect();
+	// })
 
 	// ==================== ACCORDION ==========================
 	// function accordion() {
@@ -201,15 +201,15 @@ $(document).ready(function () {
 
 	// ===================== BACKGROUND HEADER ==================
 	function setBgHeader(scrollY) {
-		let header=$('header')
-		if (scrollY>header.height()) {
+		let header = $('header')
+		if (scrollY > header.height()) {
 			header.addClass('--bgwhite');
 		} else {
 			header.removeClass('--bgwhite');
 		}
 	}
 	function scrollBgHeader() {
-		let scrollY=$(window).scrollTop();
+		let scrollY = $(window).scrollTop();
 		if ($('.header').hasClass('--transparent')) {
 			setBgHeader(scrollY);
 		}
@@ -230,9 +230,9 @@ $(document).ready(function () {
 
 	// ========================= TABS ========================
 	function clickTab() {
-		$(document).on("click",".tab__title a",function (e) {
+		$(document).on("click", ".tab__title a", function (e) {
 			e.preventDefault();
-			let i=$(this).index();
+			let i = $(this).index();
 			$(this).addClass("active").siblings().removeClass("active");
 			$(".tab__content .tab__content-item").eq(i).css({
 				display: "block",
@@ -245,30 +245,30 @@ $(document).ready(function () {
 
 	// ============== SHOW HEAD TOP COURSE DETAIL ====================
 	function showHeadCourseDetail() {
-		let buttonRegister=$('.herodetail .btn');
+		let buttonRegister = $('.herodetail .btn');
 		if (buttonRegister.length) {
-			let headtop=$('.headtop');
-			let headProgress=$('.headtop__progress');
-			let offsetHead=buttonRegister.offset().top;
-			let pageHeight=$(document).height()-$(window).height();
-			let scrollTop=$(window).scrollTop(); // y
+			let headtop = $('.headtop');
+			let headProgress = $('.headtop__progress');
+			let offsetHead = buttonRegister.offset().top;
+			let pageHeight = $(document).height() - $(window).height();
+			let scrollTop = $(window).scrollTop(); // y
 
-			let progress=scrollTop/pageHeight*100;
+			let progress = scrollTop / pageHeight * 100;
 
-			if (offsetHead<=scrollTop) {
+			if (offsetHead <= scrollTop) {
 				headtop.addClass('show');
 			} else {
 				headtop.removeClass('show');
 			}
 			headProgress.css({
-				width: progress+'%'
+				width: progress + '%'
 			});
 		}
 	}
 	function coursePage() {
 		if ($('.coursedetailpage').length) {
 			showHeadCourseDetail();
-			$(window).on('scroll',function () {
+			$(window).on('scroll', function () {
 				showHeadCourseDetail();
 			});
 		}
@@ -277,20 +277,20 @@ $(document).ready(function () {
 
 	// ========================= DROPDOWN ===========================
 	function hideDropDown() {
-		let dropdown=$('.dropdown')
+		let dropdown = $('.dropdown')
 		dropdown.removeClass('active');
 	}
 	function dropDown() {
-		let btndropdown=$('[data-dropdown]'),
-			dropdown=$('.dropdown');
-		btndropdown.on("click",function (e) {
+		let btndropdown = $('[data-dropdown]'),
+			dropdown = $('.dropdown');
+		btndropdown.on("click", function (e) {
 			e.stopPropagation();
-			let data=$(this).attr('data-dropdown');
+			let data = $(this).attr('data-dropdown');
 			dropdown.removeClass('active');
 			$(`.${data}`).toggleClass('active');
 			// closeMenu();
 		});
-		dropdown.on("click",function (e) {
+		dropdown.on("click", function (e) {
 			e.stopPropagation();
 		});
 
@@ -302,14 +302,14 @@ $(document).ready(function () {
 
 	//================== SELECT PAYMENT METHOD =====================
 
-	let itemRadioPayment=$('.boxorder__pay');
-	itemRadioPayment.on('click',function () {
+	let itemRadioPayment = $('.boxorder__pay');
+	itemRadioPayment.on('click', function () {
 		itemRadioPayment.find('.boxorder__pay-tooltip').hide()
 		$(this).find('.boxorder__pay-tooltip').show()
 	});
 
 
-	$(window).on('load',() => {
+	$(window).on('load', () => {
 		$('.loading').addClass('--hide')
 	})
 });

@@ -1,14 +1,28 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useAuthContext } from '../../context/AuthContext';
+import { MODAL_TYPES } from '../../config/config-general';
 
-const HeaderAuth=() => {
+const HeaderAuth = () => {
+	const { handleShowModal } = useAuthContext();
+
+	const _onRegisterClick = (e) => {
+		e.stopPropagation();
+		handleShowModal(MODAL_TYPES.register);
+	};
+
+	const _onLoginClick = (e) => {
+		e.stopPropagation();
+		handleShowModal(MODAL_TYPES.login);
+	};
 
 	return (
 		<>
 			<div className="header__auth">
-				<a href="javascript:void(0)" className="btn btn--transparent btnmodal" data-modal="mdlogin">
-					<span>Đăng ký /&nbsp;</span><span>Đăng nhập</span>
-				</a>
+				<div className="btn btn--transparent btnmodal" data-modal="mdlogin">
+					<span onClick={_onRegisterClick}>Đăng ký /&nbsp;</span>
+					<span onClick={_onLoginClick}>Đăng nhập</span>
+				</div>
 			</div>
 			{/* user logged */}
 			{/* <div className="header__logged">

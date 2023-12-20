@@ -1,11 +1,11 @@
-import {createContext,useContext,useEffect,useState} from 'react'
-import {useLocation} from 'react-router-dom';
+import { createContext, useContext, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 
-const MainContext=createContext();
+const MainContext = createContext();
 
-const MainContextProvider=({children}) => {
-	const {pathname}=useLocation();
-	const [isShowNavbar,setIsShowNavbar]=useState(false);
+const MainContextProvider = ({ children }) => {
+	const { pathname } = useLocation();
+	const [isShowNavbar, setIsShowNavbar] = useState(false);
 
 	useEffect(() => {
 		window.scrollTo({
@@ -15,14 +15,14 @@ const MainContextProvider=({children}) => {
 		});
 
 		setIsShowNavbar(false);
-	},[pathname]);
+	}, [pathname]);
 
-	const handleShowNavbar=(isShow) => {
+	const handleShowNavbar = (isShow) => {
 		setIsShowNavbar(isShow);
 	};
 
 	return (
-		<MainContext.Provider value={{isShowNavbar,handleShowNavbar}}>
+		<MainContext.Provider value={{ isShowNavbar, handleShowNavbar }}>
 			{children}
 		</MainContext.Provider>
 	)
@@ -30,4 +30,4 @@ const MainContextProvider=({children}) => {
 
 export default MainContextProvider
 
-export const useMainContext=() => useContext(MainContext);
+export const useMainContext = () => useContext(MainContext);

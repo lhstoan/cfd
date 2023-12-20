@@ -7,12 +7,14 @@ const validate = (rules, form) => {
 	let errorObject = {};
 	for (const ruleKey in rules) {
 		for (const rule of rules[ruleKey]) {
+
 			if (rule.required) {
 				if (!!!form[ruleKey]) {
 					errorObject[ruleKey] = rule.message || "Vui lòng nhập";
 					break;
 				}
 			}
+
 			if (rule.regrex && form[ruleKey]) {
 				let pattern = "";
 				if (rule.regrex in REGEXP) {
@@ -24,6 +26,15 @@ const validate = (rules, form) => {
 				}
 				if (!pattern.test(form[ruleKey])) {
 					errorObject[ruleKey] = rule.message || "Vui lòng nhập đúng định dạng";
+					break;
+				}
+			}
+
+			if (typeof rule === "function") {
+				const message = rule(form[ruleKey], form);
+
+				if (!!message) {
+					errorObject[ruleKey] = message || "Dữ liệu nhập sai yêu cầu";
 					break;
 				}
 			}
