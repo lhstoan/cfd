@@ -5,23 +5,24 @@ import Footer from "../../components/Footer"
 import Loading from "../../components/Loading"
 import Overlay from "../../components/Overlay"
 import {Outlet} from "react-router-dom"
+import MainContextProvider from "../../context/MainContext"
 
 
 // eslint-disable-next-line react/prop-types
-const MainLayout = () => {
-  return (
-	<>
-		<Loading />
-		<Header />
-		<Navbar />
-		<Overlay />
+const MainLayout=() => {
+	return (
+		<MainContextProvider>
+			<Loading />
+			<Header />
+			<Navbar />
+			<Overlay />
 
-		<Outlet/>
+			<Outlet />
 
-		<Footer />
-		<Auth />
-	</>
-  )
+			<Footer />
+			<Auth />
+		</MainContextProvider>
+	)
 }
 
 export default MainLayout;

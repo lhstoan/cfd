@@ -1,27 +1,27 @@
 $(document).ready(function () {
 
 	// ================= MENU ================
-	function clickMenu() {
-		let btnMenu=$('.header .header__humburger'),
-			nav=$('.navbar');
-		btnMenu.click(function (e) {
-			e.stopPropagation();
-			hideDropDown()
-			hideSelect()
-			$('body').toggleClass('menu-show');
-			$(this).toggleClass('--close');
-		});
-		nav.click(function (e) {
-			e.stopPropagation();
-		});
-	}
-	clickMenu();
+	// function clickMenu() {
+	// 	let btnMenu=$('.header .header__humburger'),
+	// 		nav=$('.navbar');
+	// 	btnMenu.click(function (e) {
+	// 		e.stopPropagation();
+	// 		hideDropDown()
+	// 		hideSelect()
+	// 		$('body').toggleClass('menu-show');
+	// 		$(this).toggleClass('--close');
+	// 	});
+	// 	nav.click(function (e) {
+	// 		e.stopPropagation();
+	// 	});
+	// }
+	// clickMenu();
 
-	function closeMenu() {
-		let btnMenu=$('.header .header__humburger');
-		$('body').removeClass('menu-show');
-		btnMenu.removeClass('--close');
-	}
+	// function closeMenu() {
+	// 	let btnMenu=$('.header .header__humburger');
+	// 	$('body').removeClass('menu-show');
+	// 	btnMenu.removeClass('--close');
+	// }
 
 	// ================= HIDE SELECT ================
 	function hideSelect() {
@@ -178,6 +178,7 @@ $(document).ready(function () {
 
 	let btnCloseModal=$('.modal .modal__wrapper-close'),
 		modalwrapper=$('.modal__wrapper-content');
+
 	btnCloseModal.click(function (e) {
 		e.stopPropagation();
 		closeModal();
@@ -223,8 +224,8 @@ $(document).ready(function () {
 
 	// ============== DOCUMENT CLICKED ========================
 	$(document).click(function () {
-		closeMenu();
-		hideSelect();
+		// closeMenu();
+		// hideSelect();
 	});
 
 	// ========================= TABS ========================
@@ -287,7 +288,7 @@ $(document).ready(function () {
 			let data=$(this).attr('data-dropdown');
 			dropdown.removeClass('active');
 			$(`.${data}`).toggleClass('active');
-			closeMenu();
+			// closeMenu();
 		});
 		dropdown.on("click",function (e) {
 			e.stopPropagation();
