@@ -9,11 +9,7 @@ export const authService={
 		return axiosInstance.post(`/customer/register`,payload);
 	},
 	getProfile() {
-		return axiosInstance.get(`/customer/profiles`,{
-			headers: {
-				Authorization: `Bearer ${tokenMenthod.get()?.accessToken}`,
-			},
-		});
+		return axiosInstance.get(`/customer/profiles`);
 	},
 	updateProfile(payload={}) {
 		return axiosInstance.put(`/customer/profiles`,payload,{

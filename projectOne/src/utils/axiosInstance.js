@@ -1,5 +1,6 @@
 import axios from "axios";
 import {BASE_URL} from "../config/config-environment";
+import tokenMenthod from "./token";
 
 
 const axiosInstance=axios.create({
@@ -12,16 +13,42 @@ axiosInstance.interceptors.response.use(
 		return response;
 	},
 	async (error) => {
-		console.log("error",error);
+		const originalRequest=error.config;
+		if (
+			(error.response?.status===403||error.response?.status===401)&&
+			!!!originalRequest._retry
+		) {
+			originalRequest._retry=true;
+			try {
+				const res=await axiosInstance.put("/customer/refresh",{
+					refreshToken: tokenMenthod.get()?.refreshToken,
+				});
+				const {token: accessToken,refreshToken}=res.data.data||{};
+
+				tokenMenthod.set({
+					accessToken,
+					refreshToken,
+				});
+
+				originalRequest.headers.Authorization=`Bearer ${accessToken}`;
+
+				return axiosInstance(originalRequest);
+			} catch (error) {
+				tokenMenthod.remove();
+			}
+		}
+
+		return Promise.reject(error);
 	}
 );
 
 axiosInstance.interceptors.request.use(
-	(request) => {
-		return request;
+	(config) => {
+		config.headers.Authorization=`Bearer ${tokenMenthod.get()?.accessToken}`;
+		return config;
 	},
 	(error) => {
-		console.log("error",error);
+		return Promise.reject(error)
 	}
 );
 export default axiosInstance;

@@ -11,6 +11,7 @@ import BlogPage from "./pages/BlogPage";
 import CoursePage from './pages/CoursesPage/';
 import AboutPage from "./pages/AboutPage";
 import PATHS from "./config/config-path";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
 
@@ -19,11 +20,14 @@ function App() {
 			<Routes>
 				<Route path={PATHS.HOME} element={<MainLayout />}>
 					<Route index element={<HomePage />} />
-					<Route path={PATHS.PROFILE.INDEX} element={<ProfilePage />}>
-						<Route index element={<MyInfo />} />
-						<Route path={PATHS.PROFILE.MY_COURSE} element={<MyCourse />} />
-						<Route path={PATHS.PROFILE.MY_PAYMENT} element={<MyPayment />} />
+					<Route element={<PrivateRoute />}>
+						<Route path={PATHS.PROFILE.INDEX} element={<ProfilePage />}>
+							<Route index element={<MyInfo />} />
+							<Route path={PATHS.PROFILE.MY_COURSE} element={<MyCourse />} />
+							<Route path={PATHS.PROFILE.MY_PAYMENT} element={<MyPayment />} />
+						</Route>
 					</Route>
+
 					<Route path={PATHS.CONTACT} element={<ContactPage />} />
 					<Route path={PATHS.BLOG.INDEX} element={<BlogPage />} />
 					<Route path={PATHS.COURSE.INDEX} element={<CoursePage />} />

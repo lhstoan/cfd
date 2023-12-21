@@ -13,7 +13,8 @@ const AuthContextProvider=({children}) => {
 	const [profile,setProfile]=useState({});
 
 	useEffect(() => {
-		if (!!tokenMenthod.get()) {
+		const accessToken=!!tokenMenthod.get()?.accessToken
+		if (accessToken) {
 			handleGetProfile();
 		}
 		return () => {
@@ -85,6 +86,7 @@ const AuthContextProvider=({children}) => {
 
 	const handleLogout=() => {
 		tokenMenthod.remove();
+		message.success("Tài khoản đã đăng xuất!")
 		navigate(PATHS.HOME)
 		setProfile({});
 	}
@@ -99,6 +101,7 @@ const AuthContextProvider=({children}) => {
 			}
 		} catch (error) {
 			console.log('error',error)
+			handleLogout()
 		}
 		finally {
 			callback?.();

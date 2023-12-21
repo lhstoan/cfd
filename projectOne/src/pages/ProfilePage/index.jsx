@@ -23,8 +23,7 @@ const ProfilePage=() => {
 								coding, listening to
 								music, traveling and coding.</p>
 							<ul>
-								<li><img src="/img/icon-mail-outline.svg" alt="icon" /><span>{email}</span>
-								</li>
+								<li><img src="/img/icon-mail-outline.svg" alt="icon" /><span>{email}</span></li>
 								<li><img src="/img/icon-phone-outline.svg" alt="icon" /><span>098 9596 913</span></li>
 								<li><img src="/img/icon-link.svg" alt="icon" /><a href="#" target="_blank">https://nghiatran.info</a></li>
 							</ul>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect,useState} from 'react'
 import {Link} from 'react-router-dom'
 import {useAuthContext} from '../../context/AuthContext';
 import {MODAL_TYPES} from '../../config/config-general';
@@ -9,6 +9,18 @@ const HeaderAuth=() => {
 	const [showDropdown,setShowDropdown]=useState(false);
 	const {handleShowModal,handleLogout,profile}=useAuthContext();
 	const {email,lastName,firstName}=profile||"";
+
+	useEffect(() => {
+
+		document.addEventListener("click",(e) => {
+			_onCloseDropdown(e);
+		})
+		return () => {
+			document.removeEventListener("click",(e) => {
+				_onCloseDropdown(e);
+			})
+		};
+	},[]);
 	const _onRegisterClick=(e) => {
 		e.stopPropagation();
 		handleShowModal(MODAL_TYPES.register);
@@ -32,9 +44,7 @@ const HeaderAuth=() => {
 		handleLogout?.();
 	}
 
-	document.addEventListener("click",(e) => {
-		_onCloseDropdown(e);
-	})
+
 	return (
 		<> {!!tokenMenthod.get()? (
 			<div className="header__logged">
