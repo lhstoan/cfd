@@ -23,7 +23,7 @@ const CourseItem=({course,...restProps}) => {
 						<div className="user__img"><img src={team.image} alt={team.name} /></div>
 						<p className="user__name">{team.name}</p>
 					</div>
-					<div className="price"><strong>{price.split("").join(' | ')}</strong></div>
+					<div className="price"><strong></strong></div>
 				</div>
 				<div className="content__action">
 					<a href="course-order.html" className="btn btn--primary">Đăng ký ngay</a>

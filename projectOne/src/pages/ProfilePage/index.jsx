@@ -1,6 +1,9 @@
-import { NavLink, Outlet } from "react-router-dom"
+import {NavLink,Outlet} from "react-router-dom"
+import {useAuthContext} from "../../context/AuthContext";
 
-const ProfilePage = () => {
+const ProfilePage=() => {
+	const {profile}=useAuthContext();
+	const {email,lastName,firstName}=profile||"";
 	return (
 		<main className="mainwrapper profilepage">
 			<div className="container">
@@ -11,7 +14,7 @@ const ProfilePage = () => {
 								<div className="avatar">
 									<div className="img"><img src="/img/avatar_nghia.jpg" alt="avatar" /></div>
 								</div>
-								<h3 className="title --t3">Trần Nghĩa</h3>
+								<h3 className="title --t3">{firstName} {lastName}</h3>
 							</div>
 						</div>
 						<div className="sidebar__content">
@@ -20,7 +23,7 @@ const ProfilePage = () => {
 								coding, listening to
 								music, traveling and coding.</p>
 							<ul>
-								<li><img src="/img/icon-mail-outline.svg" alt="icon" /><span>trannghia2018@gmail.com</span>
+								<li><img src="/img/icon-mail-outline.svg" alt="icon" /><span>{email}</span>
 								</li>
 								<li><img src="/img/icon-phone-outline.svg" alt="icon" /><span>098 9596 913</span></li>
 								<li><img src="/img/icon-link.svg" alt="icon" /><a href="#" target="_blank">https://nghiatran.info</a></li>

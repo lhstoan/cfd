@@ -1,23 +1,24 @@
-import { NavLink } from "react-router-dom"
+import {NavLink} from "react-router-dom"
+import PATHS from "../../config/config-path"
 
-const Navbar = () => {
+const Navbar=() => {
 	return (
 		<nav className="navbar">
 			<ul className="navbar__main">
 				<li className="navbar__link">
-					<NavLink end to="/" className="navbar__item">Trang chủ</NavLink>
+					<NavLink end to={PATHS.HOME} className="navbar__item">Trang chủ</NavLink>
 				</li>
 				<li className="navbar__link">
-					<NavLink to="/about" className="navbar__item">Về CFD Circle</NavLink>
+					<NavLink to={PATHS.ABOUT} className="navbar__item">Về CFD Circle</NavLink>
 				</li>
 				<li className="navbar__link">
-					<NavLink to="/courses" className="navbar__item">Khóa học</NavLink>
+					<NavLink to={PATHS.COURSE.INDEX} className="navbar__item">Khóa học</NavLink>
 				</li>
 				<li className="navbar__link">
-					<NavLink to="/blog" className="navbar__item">Bài viết</NavLink>
+					<NavLink to={PATHS.BLOG.INDEX} className="navbar__item">Bài viết</NavLink>
 				</li>
 				<li className="navbar__link">
-					<NavLink to="/contact" className="navbar__item">Liên hệ</NavLink>
+					<NavLink to={PATHS.CONTACT} className="navbar__item">Liên hệ</NavLink>
 				</li>
 			</ul>
 			<div className="navbar__overlay" />

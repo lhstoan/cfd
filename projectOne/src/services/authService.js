@@ -1,4 +1,5 @@
 import axiosInstance from "../utils/axiosInstance";
+import tokenMenthod from "../utils/token";
 
 export const authService={
 	login(payload={}) {
@@ -8,7 +9,11 @@ export const authService={
 		return axiosInstance.post(`/customer/register`,payload);
 	},
 	getProfile() {
-		return axiosInstance.get(`/customer/profiles`);
+		return axiosInstance.get(`/customer/profiles`,{
+			headers: {
+				Authorization: `Bearer ${tokenMenthod.get()?.accessToken}`,
+			},
+		});
 	},
 	updateProfile(payload={}) {
 		return axiosInstance.put(`/customer/profiles`,payload,{

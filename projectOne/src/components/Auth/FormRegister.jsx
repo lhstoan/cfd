@@ -1,32 +1,31 @@
-import React, { useState } from 'react'
-import { useAuthContext } from '../../context/AuthContext';
-import { MODAL_TYPES } from '../../config/config-general';
+import React,{useState} from 'react'
+import {useAuthContext} from '../../context/AuthContext';
+import {MODAL_TYPES} from '../../config/config-general';
 import Input from '../Input';
 import useForm from '../../hooks/useForm';
-import { regrexRule, requireRule } from '../../utils/validate';
-import { Link } from 'react-router-dom';
+import {regrexRule,requireRule} from '../../utils/validate';
+import {Link} from 'react-router-dom';
 import PATHS from '../../config/config-path';
 import Button from '../Button';
-import { message } from 'antd';
 import Loading from '../Loading';
 
 
-const FormRegister = () => {
-	const { handleShowModal, handleCloseModal } = useAuthContext();
-	const [loading, setLoading] = useState(false);
-	const { formData, validate, registerInput } = useForm({
+const FormRegister=() => {
+	const {handleShowModal,handleRegister}=useAuthContext();
+	const [loading,setLoading]=useState(false);
+	const {form,validate,registerInput}=useForm({
 		name: "",
 		email: "",
 		password: "",
 		confirmPass: ""
-	}, {
+	},{
 		name: [requireRule()],
-		email: [requireRule(), regrexRule("email")],
+		email: [requireRule(),regrexRule("email")],
 		password: [requireRule()],
 		confirmPass: [
 			requireRule(),
-			(value, values) => {
-				if (values.password && value !== values.password) {
+			(value,values) => {
+				if (values.password&&value!==values.password) {
 					return "Chưa đúng với pass"
 				}
 				return false;
@@ -34,28 +33,30 @@ const FormRegister = () => {
 		],
 	});
 
-	const _onSubmitForm = (e) => {
+	const _onSubmitForm=(e) => {
 		e.preventDefault();
-		const errorObj = validate();
-		if (Object.keys(errorObj).length > 0) {
-			console.log('errorObj', errorObj)
+		const errorObj=validate();
+		if (Object.keys(errorObj).length>0) {
+			console.log('errorObj',errorObj)
 		} else {
 			setLoading(true);
-			setTimeout(() => {
-				setLoading(false);
-				message.success("Đăng ký thành công");
-				handleCloseModal()
-			}, 1000);
+			if (typeof handleRegister==="function") {
+				handleRegister?.(form,() => {
+					setTimeout(() => {
+						setLoading(false);
+					},1000);
+				})
+			}
 		}
 	}
 
 	return (
-		<div className="modal__wrapper-content mdregister active" style={{ position: "relative" }}>
-			{loading && <Loading />}
+		<div className="modal__wrapper-content mdregister active" style={{position: "relative"}}>
+			{loading&&<Loading />}
 			<div className="form__bottom">
 				<p>Bạn đã có tài khoản?</p>
 				<div className="color--primary btnmodal" data-modal="mdlogin">
-					<strong onClick={(e) => { e.stopPropagation(); handleShowModal(MODAL_TYPES.login); }}>Đăng nhập</strong>
+					<strong onClick={(e) => {e.stopPropagation(); handleShowModal(MODAL_TYPES.login);}}>Đăng nhập</strong>
 				</div>
 			</div>
 			{/* <div className="social">

@@ -1,33 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useAuthContext } from '../../context/AuthContext';
-import { MODAL_TYPES } from '../../config/config-general';
+import React,{useState} from 'react'
+import {Link} from 'react-router-dom'
+import {useAuthContext} from '../../context/AuthContext';
+import {MODAL_TYPES} from '../../config/config-general';
+import tokenMenthod from '../../utils/token';
+import PATHS from '../../config/config-path';
 
-const HeaderAuth = () => {
-	const { handleShowModal } = useAuthContext();
-
-	const _onRegisterClick = (e) => {
+const HeaderAuth=() => {
+	const [showDropdown,setShowDropdown]=useState(false);
+	const {handleShowModal,handleLogout,profile}=useAuthContext();
+	const {email,lastName,firstName}=profile||"";
+	const _onRegisterClick=(e) => {
 		e.stopPropagation();
 		handleShowModal(MODAL_TYPES.register);
 	};
 
-	const _onLoginClick = (e) => {
+	const _onLoginClick=(e) => {
 		e.stopPropagation();
 		handleShowModal(MODAL_TYPES.login);
 	};
 
+	const _onOpenDropdown=(e) => {
+		e.stopPropagation();
+		setShowDropdown(true)
+	}
+	const _onCloseDropdown=(e) => {
+		e.stopPropagation();
+		setShowDropdown(false)
+	}
+	const _onLogout=(e) => {
+		e.stopPropagation();
+		handleLogout?.();
+	}
+
+	document.addEventListener("click",(e) => {
+		_onCloseDropdown(e);
+	})
 	return (
-		<>
-			<div className="header__auth">
-				<div className="btn btn--transparent btnmodal" data-modal="mdlogin">
-					<span onClick={_onRegisterClick}>Đăng ký /&nbsp;</span>
-					<span onClick={_onLoginClick}>Đăng nhập</span>
-				</div>
-			</div>
-			{/* user logged */}
-			{/* <div className="header__logged">
+		<> {!!tokenMenthod.get()? (
+			<div className="header__logged">
 				<div className="userlogged">
-					<div className="userlogged__avatar user" data-dropdown="userlogged__dropdown">
+					<div className="userlogged__avatar user" data-dropdown="userlogged__dropdown" onClick={_onOpenDropdown}>
 						<div className="userlogged__avatar-img user__img">
 							<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 						</div>
@@ -36,26 +48,33 @@ const HeaderAuth = () => {
 						</svg>
 						</i>
 					</div>
-					<div className="userlogged__dropdown dropdown">
+					<div className={`userlogged__dropdown dropdown ${showDropdown? "active":""}`}>
 						<div className="userlogged__dropdown-info">
 							<div className="user__img">
 								<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
 							</div>
-							<Link to="/profile" className="user__info">
-								<p className="title --t4"><strong>Trần Nghĩa</strong></p>
+							<Link to={PATHS.PROFILE.INDEX} className="user__info">
+								<p className="title --t4"><strong>{firstName} {lastName}</strong></p>
 								<span className="email">Thông tin tài khoản</span>
 							</Link>
 						</div>
 						<div className="userlogged__dropdown-list">
-							<Link to="/profile/my-course">Khóa học của tôi</Link>
-							<Link to="/profile/my-payment">Lịch sử thanh toán</Link>
-							<Link to="/contact">Hỗ trợ</Link>
-							<Link to="#">Đăng xuất <i><img src="/img/iconlogout.svg" alt /></i></Link>
+							<Link to={PATHS.PROFILE.MY_COURSE}>Khóa học của tôi</Link>
+							<Link to={PATHS.PROFILE.MY_PAYMENT}>Lịch sử thanh toán</Link>
+							<Link to={PATHS.CONTACT}>Hỗ trợ</Link>
+							<a onClick={_onLogout}>Đăng xuất <i><img src="/img/iconlogout.svg" alt /></i></a>
 						</div>
 					</div>
 				</div>
-			</div> */}
-		</>
+			</div>
+		):(
+			<div className="header__auth">
+				<div className="btn btn--transparent btnmodal" data-modal="mdlogin">
+					<span onClick={_onRegisterClick}>Đăng ký /&nbsp;</span>
+					<span onClick={_onLoginClick}>Đăng nhập</span>
+				</div>
+			</div>
+		)}</>
 	)
 }
 

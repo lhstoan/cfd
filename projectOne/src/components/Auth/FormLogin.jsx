@@ -1,46 +1,46 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 import Input from '../Input';
-import { useAuthContext } from '../../context/AuthContext';
-import { MODAL_TYPES } from '../../config/config-general';
+import {useAuthContext} from '../../context/AuthContext';
+import {MODAL_TYPES} from '../../config/config-general';
 import Button from '../Button';
 import useForm from '../../hooks/useForm';
-import { regrexRule, requireRule } from '../../utils/validate';
+import {regrexRule,requireRule} from '../../utils/validate';
 import Loading from '../Loading';
-import { message } from 'antd';
 
-const FormLogin = () => {
-	const { handleShowModal, handleCloseModal } = useAuthContext();
-	const [loading, setLoading] = useState(false);
-	const { formData, validate, registerInput } = useForm({
+
+const FormLogin=() => {
+	const {handleShowModal,handleCloseModal,handleLogin}=useAuthContext();
+	const [loading,setLoading]=useState(false);
+	const {form,validate,registerInput}=useForm({
 		email: "",
 		password: "",
-	}, {
-		email: [requireRule(), regrexRule("email")],
+	},{
+		email: [requireRule(),regrexRule("email")],
 		password: [requireRule()],
 	});
-
-	const _onSubmitForm = (e) => {
+	const _onSubmitForm=(e) => {
 		e.preventDefault();
-		const errorObj = validate();
-		if (Object.keys(errorObj).length > 0) {
-			console.log('errorObj', errorObj)
+		const errorObj=validate();
+
+		if (Object.keys(errorObj).length>0) {
+			console.log('errorObj',errorObj)
 		} else {
 			setLoading(true);
-			setTimeout(() => {
-				setLoading(false);
-				message.success("Đăng ký thành công");
-				handleCloseModal()
-			}, 1000);
+			handleLogin?.(form,() => {
+				setTimeout(() => {
+					setLoading(false);
+				},1000);
+			})
 		}
 	}
 
 	return (
-		<div className="modal__wrapper-content mdlogin active" style={{ position: "relative" }}>
-			{loading && <Loading />}
+		<div className="modal__wrapper-content mdlogin active" style={{position: "relative"}}>
+			{loading&&<Loading />}
 			<div className="form__bottom">
 				<p>Bạn chưa có tài khoản?</p>
 				<div className="color--primary btnmodal" data-modal="mdregister" >
-					<strong onClick={(e) => { e.stopPropagation(); handleShowModal(MODAL_TYPES.register); }}>Đăng ký</strong>
+					<strong onClick={(e) => {e.stopPropagation(); handleShowModal(MODAL_TYPES.register);}}>Đăng ký</strong>
 				</div>
 			</div>
 			{/* <div className="social">
@@ -52,7 +52,7 @@ const FormLogin = () => {
 				<Input placeholder="Email" {...registerInput("email")} />
 				<Input placeholder="Mật khẩu" type="password" {...registerInput("password")} />
 				<div className="form__bottom">
-					<div className="color--primary" onClick={(e) => { e.stopPropagation(); handleShowModal(MODAL_TYPES.pass); }}>
+					<div className="color--primary" onClick={(e) => {e.stopPropagation(); handleShowModal(MODAL_TYPES.pass);}}>
 						Quên mật khẩu?
 					</div>
 				</div>
