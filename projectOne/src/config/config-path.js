@@ -8,7 +8,7 @@ const PATHS = {
 	COURSE: {
 		INDEX: COURSE_PATH,
 		DETAIL: COURSE_PATH + '/:courseSlug',
-		ORDER: '/course-order',
+		ORDER: '/course-order/:courseSlug',
 	},
 	BLOG: {
 		INDEX: BLOG_PATH,

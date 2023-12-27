@@ -1,28 +1,28 @@
-import {useNavigate} from "react-router-dom";
-import {MODAL_TYPES} from "../../../config/config-general";
-import {useAuthContext} from "../../../context/AuthContext";
-import tokenMenthod from "../../../utils/token";
+import { useNavigate } from "react-router-dom";
+import { MODAL_TYPES } from "../../../config/config-general";
+import { useAuthContext } from "../../../context/AuthContext";
+import tokenMethod from "../../../utils/token";
 import PATHS from "../../../config/config-path";
 
 // main.js
 function loadVideoBG() {
-	let videoBgWrap=$(".hero__background-video"),
-		srcVideoBg=videoBgWrap.data("src");
+	let videoBgWrap = $(".hero__background-video"),
+		srcVideoBg = videoBgWrap.data("src");
 	setTimeout(function () {
 		videoBgWrap.html(
-			'<video preload="none" autoplay loop muted playsinline><source src="'+
-			srcVideoBg+
+			'<video preload="none" autoplay loop muted playsinline><source src="' +
+			srcVideoBg +
 			'" type="video/mp4">Your browser does not support the video tag.</video>'
 		);
-	},500);
+	}, 500);
 }
 loadVideoBG();
 
-const HeroSection=() => {
-	const {handleShowModal}=useAuthContext();
-	const navigate=useNavigate();
-	const _onStart=() => {
-		if (!!tokenMenthod.get()) {
+const HeroSection = () => {
+	const { handleShowModal } = useAuthContext();
+	const navigate = useNavigate();
+	const _onStart = () => {
+		if (!!tokenMethod.get()) {
 			navigate(PATHS.PROFILE.MY_COURSE)
 		} else {
 			handleShowModal?.(MODAL_TYPES.login);

@@ -5,6 +5,6 @@ export const courseService = {
 		return axiosInstance.get(`/courses${query}`);
 	},
 	getCourseBySlug(slug = "") {
-		return axiosInstance.get(`/courses${slug}`);
+		return axiosInstance.get(`/courses/${slug}`);
 	},
 };

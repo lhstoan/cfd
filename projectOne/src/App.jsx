@@ -1,4 +1,4 @@
-import {BrowserRouter,Route,Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import ContactPage from "./pages/ContactPage";
 import HomePage from './pages/HomePage/';
@@ -12,6 +12,7 @@ import CoursePage from './pages/CoursesPage/';
 import AboutPage from "./pages/AboutPage";
 import PATHS from "./config/config-path";
 import PrivateRoute from "./components/PrivateRoute";
+import CoursesDetailPage from "./pages/CoursesDetailPage";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
 					<Route path={PATHS.CONTACT} element={<ContactPage />} />
 					<Route path={PATHS.BLOG.INDEX} element={<BlogPage />} />
 					<Route path={PATHS.COURSE.INDEX} element={<CoursePage />} />
+					<Route path={PATHS.COURSE.DETAIL} element={<CoursesDetailPage />} />
 					<Route path={PATHS.ABOUT} element={<AboutPage />} />
 
 					<Route path="*" element={<Page404 />} />

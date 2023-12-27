@@ -1,23 +1,23 @@
 import Cookies from "js-cookie";
-import {STORAGE} from "../config/config-token";
+import { STORAGE } from "../config/config-token";
 
-export const localToken={
+export const localToken = {
 	get: () => JSON.parse(localStorage.getItem(STORAGE.token)),
-	set: (token) => localStorage.setItem(STORAGE.token,JSON.stringify(token)),
+	set: (token) => localStorage.setItem(STORAGE.token, JSON.stringify(token)),
 	remove: () => localStorage.removeItem(STORAGE.token),
 }
 
-export const cookieToken={
+export const cookieToken = {
 	get: () => JSON.parse(
-		Cookies.get(STORAGE.token)===undefined
+		Cookies.get(STORAGE.token) === undefined
 			? null
-			:Cookies.get(STORAGE.token)
+			: Cookies.get(STORAGE.token)
 	),
-	set: (token) => Cookies.set(STORAGE.token,JSON.stringify(token)),
+	set: (token) => Cookies.set(STORAGE.token, JSON.stringify(token)),
 	remove: () => Cookies.remove(STORAGE.token),
 }
 
-const tokenMenthod={
+const tokenMethod = {
 	get: () => {
 		return cookieToken.get()
 	},
@@ -28,4 +28,4 @@ const tokenMenthod={
 		return cookieToken.remove()
 	}
 }
-export default tokenMenthod;
+export default tokenMethod;

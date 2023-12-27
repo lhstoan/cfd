@@ -10,6 +10,12 @@ const Button = ({ children, link, variant = "primary", ...restProps }) => {
 		case "border":
 			btnClass = "btn btn--border --black";
 			break;
+		case "default":
+			btnClass = "btn btn--default";
+			break;
+		case "regcourse":
+			btnClass = "btn btn--primary btn-regcourse";
+			break;
 		default:
 			break;
 	}

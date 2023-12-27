@@ -1,52 +1,52 @@
-import React,{useEffect,useState} from 'react'
-import {Link} from 'react-router-dom'
-import {useAuthContext} from '../../context/AuthContext';
-import {MODAL_TYPES} from '../../config/config-general';
-import tokenMenthod from '../../utils/token';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useAuthContext } from '../../context/AuthContext';
+import { MODAL_TYPES } from '../../config/config-general';
+import tokenMethod from '../../utils/token';
 import PATHS from '../../config/config-path';
 
-const HeaderAuth=() => {
-	const [showDropdown,setShowDropdown]=useState(false);
-	const {handleShowModal,handleLogout,profile}=useAuthContext();
-	const {email,lastName,firstName}=profile||"";
+const HeaderAuth = () => {
+	const [showDropdown, setShowDropdown] = useState(false);
+	const { handleShowModal, handleLogout, profile } = useAuthContext();
+	const { email, lastName, firstName } = profile || "";
 
 	useEffect(() => {
 
-		document.addEventListener("click",(e) => {
+		document.addEventListener("click", (e) => {
 			_onCloseDropdown(e);
 		})
 		return () => {
-			document.removeEventListener("click",(e) => {
+			document.removeEventListener("click", (e) => {
 				_onCloseDropdown(e);
 			})
 		};
-	},[]);
-	const _onRegisterClick=(e) => {
+	}, []);
+	const _onRegisterClick = (e) => {
 		e.stopPropagation();
 		handleShowModal(MODAL_TYPES.register);
 	};
 
-	const _onLoginClick=(e) => {
+	const _onLoginClick = (e) => {
 		e.stopPropagation();
 		handleShowModal(MODAL_TYPES.login);
 	};
 
-	const _onOpenDropdown=(e) => {
+	const _onOpenDropdown = (e) => {
 		e.stopPropagation();
 		setShowDropdown(true)
 	}
-	const _onCloseDropdown=(e) => {
+	const _onCloseDropdown = (e) => {
 		e.stopPropagation();
 		setShowDropdown(false)
 	}
-	const _onLogout=(e) => {
+	const _onLogout = (e) => {
 		e.stopPropagation();
 		handleLogout?.();
 	}
 
 
 	return (
-		<> {!!tokenMenthod.get()? (
+		<> {!!tokenMethod.get() ? (
 			<div className="header__logged">
 				<div className="userlogged">
 					<div className="userlogged__avatar user" data-dropdown="userlogged__dropdown" onClick={_onOpenDropdown}>
@@ -58,7 +58,7 @@ const HeaderAuth=() => {
 						</svg>
 						</i>
 					</div>
-					<div className={`userlogged__dropdown dropdown ${showDropdown? "active":""}`}>
+					<div className={`userlogged__dropdown dropdown ${showDropdown ? "active" : ""}`}>
 						<div className="userlogged__dropdown-info">
 							<div className="user__img">
 								<img src="/img/avatar_nghia.jpg" alt="Avatar teacher" />
@@ -77,7 +77,7 @@ const HeaderAuth=() => {
 					</div>
 				</div>
 			</div>
-		):(
+		) : (
 			<div className="header__auth">
 				<div className="btn btn--transparent btnmodal" data-modal="mdlogin">
 					<span onClick={_onRegisterClick}>Đăng ký /&nbsp;</span>

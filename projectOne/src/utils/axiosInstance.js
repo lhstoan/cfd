@@ -1,9 +1,9 @@
 import axios from "axios";
-import {BASE_URL} from "../config/config-environment";
-import tokenMenthod from "./token";
+import { BASE_URL } from "../config/config-environment";
+import tokenMethod from "./token";
 
 
-const axiosInstance=axios.create({
+const axiosInstance = axios.create({
 	baseURL: BASE_URL,
 });
 
@@ -13,28 +13,28 @@ axiosInstance.interceptors.response.use(
 		return response;
 	},
 	async (error) => {
-		const originalRequest=error.config;
+		const originalRequest = error.config;
 		if (
-			(error.response?.status===403||error.response?.status===401)&&
+			(error.response?.status === 403 || error.response?.status === 401) &&
 			!!!originalRequest._retry
 		) {
-			originalRequest._retry=true;
+			originalRequest._retry = true;
 			try {
-				const res=await axiosInstance.put("/customer/refresh",{
-					refreshToken: tokenMenthod.get()?.refreshToken,
+				const res = await axiosInstance.put("/customer/refresh", {
+					refreshToken: tokenMethod.get()?.refreshToken,
 				});
-				const {token: accessToken,refreshToken}=res.data.data||{};
+				const { token: accessToken, refreshToken } = res.data.data || {};
 
-				tokenMenthod.set({
+				tokenMethod.set({
 					accessToken,
 					refreshToken,
 				});
 
-				originalRequest.headers.Authorization=`Bearer ${accessToken}`;
+				originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
 				return axiosInstance(originalRequest);
 			} catch (error) {
-				tokenMenthod.remove();
+				tokenMethod.remove();
 			}
 		}
 
@@ -44,7 +44,7 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
 	(config) => {
-		config.headers.Authorization=`Bearer ${tokenMenthod.get()?.accessToken}`;
+		config.headers.Authorization = `Bearer ${tokenMethod.get()?.accessToken}`;
 		return config;
 	},
 	(error) => {
