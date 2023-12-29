@@ -17,14 +17,17 @@ import PaymentOrder from './PaymentOrder';
 const CoursesOrderPage = () => {
 	const { profile, courseInfo, handleGetProfileCourse, handleGetProfilePayment } = useAuthContext();
 	const { courseSlug } = useParams();
-	const [orderLoading, setOrderLoading] = useState(false);
 	const [paymentMethod, setPaymentMethod] = useState("");
 	const navigate = useNavigate();
+	const isDone = courseInfo.some((item) => item?.course?.slug === courseSlug);
+	const activeCourse = courseInfo.find((item) => item?.course?.slug === courseSlug)
 	// call api
 	const { data: courseDetailData, execute: executeCourseDetail } = useMutation(
 		courseService.getCourseBySlug
 	);
-
+	const { loading: orderLoading, execute: orderCourse } = useMutation(
+		orderService.orderCourse
+	);
 	useEffect(() => {
 		if (courseSlug) {
 			executeCourseDetail(courseSlug, {})
@@ -74,10 +77,11 @@ const CoursesOrderPage = () => {
 		setForm({
 			name: profileName + " " + profileLName,
 			email: profileEmail,
-			phone: profilePhone,
-			type: "",
+			phone: profilePhone || activeCourse.phone,
+			type: activeCourse.type,
+
 		});
-	}, [profileName, profileEmail, profilePhone, profileLName]);
+	}, [profileName, profileEmail, profilePhone, profileLName, activeCourse]);
 
 
 	const _onOrder = () => {
@@ -93,16 +97,14 @@ const CoursesOrderPage = () => {
 					type: form.type,
 					paymentMethod,
 				};
-				orderService.orderCourse(payload, {
+				orderCourse(payload, {
 					onSuccess: async () => {
-						setOrderLoading(true)
 						message.success("Đăng ký thành công!");
 						await handleGetProfileCourse();
 						await handleGetProfilePayment();
 						navigate(PATHS.PROFILE.MY_COURSE);
 					},
 					onFail: () => {
-						setOrderLoading(true)
 						message.error("Đăng ký thất bại !!!")
 					},
 				})
@@ -122,17 +124,10 @@ const CoursesOrderPage = () => {
 			<section className="sccourseorder">
 				<div className="container small">
 					<InfoOrder {...InfoOrderProps} />
-					<FormOrder registerInput={registerInput} types={tags} />
-					<PaymentOrder handleChange={handlePaymentMethodChange} selectedPayment={paymentMethod} />
-
-
-					{/* addclass --processing khi bấm đăng ký */}
-					<Button
-						onClick={_onOrder}
-
-					>
-						<span>Đăng ký khoá học</span>
-
+					<FormOrder registerInput={registerInput} types={tags} disabled={isDone} />
+					{!!!isDone && <PaymentOrder handleChange={handlePaymentMethodChange} selectedPayment={paymentMethod} />}
+					<Button style={{ width: "100%" }} onClick={_onOrder} loading={orderLoading} disabled={isDone} >
+						<span>{isDone ? "Đã đăng ký" : "Đăng ký khoá học"}</span>
 					</Button>
 				</div>
 			</section>

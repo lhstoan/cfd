@@ -1,0 +1,96 @@
+{
+	"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+	"editor.fontFamily": "Fira Code",
+	"editor.fontLigatures": true,
+	"editor.tabSize": 4,
+	"editor.renderWhitespace": "all",
+	"editor.suggestSelection": "first",
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.minimap.enabled": true,
+	"editor.renderControlCharacters": false,
+	"explorer.confirmDelete": false,
+	"liveServer.settings.donotShowInfoMsg": true,
+	"git.autofetch": true,
+	"liveServer.settings.donotVerifyTags": true,
+	"emmet.triggerExpansionOnTab": true, // enable tab to expanse emmet tags
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"explorer.confirmDragAndDrop": false,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "michelemelluso.code-beautifier"
+	},
+	"[less]": {
+		"editor.defaultFormatter": "MikeBovenlander.formate"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+	"workbench.startupEditor": "newUntitledFile",
+	"phpsab.allowedAutoRulesets": [
+		".phpcs.xml",
+		".phpcs.xml.dist",
+		"phpcs.xml",
+		"phpcs.xml.dist",
+		"phpcs.ruleset.xml",
+		"ruleset.xml"
+	],
+	"[scss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	"prettier.useEditorConfig": false,
+	"launch": {
+		"configurations": [],
+		"compounds": []
+	},
+	"cSpell.userWords": [
+		"Toastit",
+		"ckeditor",
+		"multiselect",
+		"swiper"
+	],
+	"files.autoSave": "off",
+	"[php]": {
+		"editor.defaultFormatter": "valeryanm.vscode-phpsab"
+	},
+	"compile-hero.jade-output-directory": "./css",
+	"compile-hero.typescriptx-output-toggle": false,
+	"compile-hero.typescript-output-toggle": false,
+	"compile-hero.stylus-output-toggle": false,
+	"compile-hero.sass-output-toggle": false,
+	"compile-hero.pug-output-toggle": false,
+	"compile-hero.less-output-toggle": false,
+	"compile-hero.notification-toggle": false,
+	"compile-hero.javascript-output-toggle": false,
+	"compile-hero.jade-output-toggle": false,
+	"compile-hero.stylus-output-directory": "../css",
+	"compile-hero.scss-output-directory": "../css",
+	"gitlens.advanced.messages": {
+		"suppressGitMissingWarning": true
+	},
+	"workbench.colorTheme": "One Dark Pro",
+	"bracket-pair-colorizer-2.depreciation-notice": false,
+	"bracketPairColorizer.depreciation-notice": false,
+	"workbench.iconTheme": "vscode-icons",
+	"phpsab.executablePathCBF": " {$vendor-dir}/bin/phpcbf",
+	"phpsab.executablePathCS": " {$vendor-dir}/bin/phpcs",
+	"terminal.external.windowsExec": "C:\\Program Files\\Git\\bin\\bash.exe",
+	"window.zoomLevel": -1,
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
+	"git.confirmSync": false,
+	"[javascript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
+	"editor.formatOnSave": true, // if you would like to enable blade format
+}

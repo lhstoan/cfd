@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
 	const { profile } = useAuthContext();
-	const { email, lastName, firstName } = profile || "";
+	const { email, lastName, firstName, introduce, phone, website, facebookURL } = profile || "";
+	useEffect(() => {
+
+	}, [profile]);
+
 	return (
 		<main className="mainwrapper profilepage">
 			<div className="container">
@@ -14,18 +19,16 @@ const ProfilePage = () => {
 								<div className="avatar">
 									<div className="img"><img src="/img/avatar_nghia.jpg" alt="avatar" /></div>
 								</div>
-								<h3 className="title --t3">{firstName} {lastName}</h3>
+								<h3 className="title --t3">{firstName}</h3>
 							</div>
 						</div>
 						<div className="sidebar__content">
 							<h4>Giới thiệu</h4>
-							<p className="description">Cheerful, cafeful,friendly. I like listening to music, traveling and
-								coding, listening to
-								music, traveling and coding.</p>
+							<p className="description">{introduce}</p>
 							<ul>
 								<li><img src="/img/icon-mail-outline.svg" alt="icon" style={{ top: 1 }} /><span>{email}</span></li>
-								{/* <li><img src="/img/icon-phone-outline.svg" alt="icon" /><span>098 9596 913</span></li>
-								<li><img src="/img/icon-link.svg" alt="icon" /><a href="#" target="_blank">https://nghiatran.info</a></li> */}
+								<li><img src="/img/icon-phone-outline.svg" alt="icon" style={{ top: 1 }} /><span>{phone}</span></li>
+								<li><img src="/img/icon-link.svg" alt="icon" style={{ top: 1 }} /><a href="#" target="_blank">{facebookURL}</a></li>
 							</ul>
 							{/* <div className="social">
 								<a href="#"><img src="/img/icon-facebook-dark.svg" alt /></a>
