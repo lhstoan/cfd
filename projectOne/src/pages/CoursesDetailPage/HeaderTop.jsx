@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import Button from '../../components/Button';
 
 const HeaderTop = ({ id, image, name, teacherInfo = {}, price, orderLink }) => {
-	console.log('first', name)
+
 	useEffect(() => {
 		function showHeadCourseDetail() {
 			let buttonRegister = $(".herodetail .btn");

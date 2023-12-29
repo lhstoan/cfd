@@ -1,18 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import PATHS from "./config/config-path";
 import MainLayout from "./layout/MainLayout";
+import Page404 from "./pages/404Page";
+import AboutPage from "./pages/AboutPage";
+import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
+import CoursesOrderPage from "./pages/CourseOrderPage";
+import CoursesDetailPage from "./pages/CoursesDetailPage";
+import CoursePage from './pages/CoursesPage/';
 import HomePage from './pages/HomePage/';
 import ProfilePage from "./pages/ProfilePage";
 import MyCourse from './pages/ProfilePage/MyCourse';
 import MyInfo from './pages/ProfilePage/MyInfo';
 import MyPayment from './pages/ProfilePage/MyPayment';
-import Page404 from "./pages/404Page";
-import BlogPage from "./pages/BlogPage";
-import CoursePage from './pages/CoursesPage/';
-import AboutPage from "./pages/AboutPage";
-import PATHS from "./config/config-path";
-import PrivateRoute from "./components/PrivateRoute";
-import CoursesDetailPage from "./pages/CoursesDetailPage";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
 					<Route path={PATHS.BLOG.INDEX} element={<BlogPage />} />
 					<Route path={PATHS.COURSE.INDEX} element={<CoursePage />} />
 					<Route path={PATHS.COURSE.DETAIL} element={<CoursesDetailPage />} />
+					<Route path={PATHS.COURSE.ORDER} element={<CoursesOrderPage />} />
 					<Route path={PATHS.ABOUT} element={<AboutPage />} />
 
 					<Route path="*" element={<Page404 />} />

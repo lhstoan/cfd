@@ -1,22 +1,42 @@
-import React from 'react'
 
-const MyPayment=() => {
+import React from 'react';
+import { PAYMENTS } from '../../config/config-general';
+import { useAuthContext } from '../../context/AuthContext';
+import { formatCurrency, formatDate } from '../../utils/format';
+
+const MyPayment = () => {
+	const { paymentInfo } = useAuthContext();
 	return (
-		<div className="tab__content-item" style={{display: 'block'}}>
-			<div className="itemhistory">
-				<div className="name">Frontend Newbie</div>
-				<div className="payment">Chuyển khoản</div>
-				<div className="date">05/01/2022</div>
-				<div className="money">4.500.000 VND</div>
-			</div>
-			<div className="itemhistory">
-				<div className="name">Web Responsive</div>
-				<div className="payment">Tiền mặt</div>
-				<div className="date">14/07/2022</div>
-				<div className="money">4.900.000 VND</div>
-			</div>
-		</div>
+		<div className="tab__content-item" style={{ display: 'block' }}>
+			{paymentInfo?.length > 0 &&
+				paymentInfo
+					.map((payment, index) => {
+						return <PaymentItem key={payment?.id || index} payment={payment} />
+					})
+			}
+		</div >
 	)
 }
 
 export default MyPayment
+
+
+const PaymentItem = ({ payment }) => {
+	const {
+		course,
+		paymentMethod, createdAt
+	} = payment || "";
+	const dateOrder = formatDate(createdAt || "");
+	const labelPayment = PAYMENTS.find((item) => item.id === paymentMethod)?.label;
+
+
+	return (
+		<div className="itemhistory">
+			<div className="name">{course.name || ""}</div>
+			<div className="payment">{labelPayment || ""}</div>
+			<div className="date">{dateOrder}</div>
+			<div className="money">{formatCurrency(course.price)} VND</div>
+		</div>
+	)
+
+}

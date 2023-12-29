@@ -1,9 +1,9 @@
-import {NavLink,Outlet} from "react-router-dom"
-import {useAuthContext} from "../../context/AuthContext";
+import { NavLink, Outlet } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 
-const ProfilePage=() => {
-	const {profile}=useAuthContext();
-	const {email,lastName,firstName}=profile||"";
+const ProfilePage = () => {
+	const { profile } = useAuthContext();
+	const { email, lastName, firstName } = profile || "";
 	return (
 		<main className="mainwrapper profilepage">
 			<div className="container">
@@ -23,15 +23,15 @@ const ProfilePage=() => {
 								coding, listening to
 								music, traveling and coding.</p>
 							<ul>
-								<li><img src="/img/icon-mail-outline.svg" alt="icon" /><span>{email}</span></li>
-								<li><img src="/img/icon-phone-outline.svg" alt="icon" /><span>098 9596 913</span></li>
-								<li><img src="/img/icon-link.svg" alt="icon" /><a href="#" target="_blank">https://nghiatran.info</a></li>
+								<li><img src="/img/icon-mail-outline.svg" alt="icon" style={{ top: 1 }} /><span>{email}</span></li>
+								{/* <li><img src="/img/icon-phone-outline.svg" alt="icon" /><span>098 9596 913</span></li>
+								<li><img src="/img/icon-link.svg" alt="icon" /><a href="#" target="_blank">https://nghiatran.info</a></li> */}
 							</ul>
-							<div className="social">
+							{/* <div className="social">
 								<a href="#"><img src="/img/icon-facebook-dark.svg" alt /></a>
 								<a href="#"><img src="/img/icon-linkedin-dark.svg" alt /></a>
 								<a href="#"><img src="/img/icon-youtube-dark.svg" alt /></a>
-							</div>
+							</div> */}
 						</div>
 					</div>
 					<div className="tabwrap">

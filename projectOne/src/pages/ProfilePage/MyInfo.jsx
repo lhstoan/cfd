@@ -1,48 +1,108 @@
-const MyInfo=() => {
+import { useEffect } from "react";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import TextArea from "../../components/TextArea";
+import { useAuthContext } from "../../context/AuthContext";
+import useForm from "../../hooks/useForm";
+import { regrexRule, requireRule } from "../../utils/validate";
+
+const MyInfo = () => {
+	const { profile } = useAuthContext();
+	// variant form field 
+	const {
+		firstName: profileName,
+		email: profileEmail,
+		phone: profilePhone,
+		lastName: profileLName
+	} = profile || {};
+
+	// Handle profile form
+	const { form, registerInput, validate, setForm } = useForm(
+		{
+			name: "",
+			email: "",
+			phone: "",
+			type: "",
+		},
+		{
+			name: [requireRule("Vui lòng nhập tên")],
+			email: [
+				requireRule("Vui lòng nhập email"),
+				regrexRule("email", "Vui lòng nhập đúng định dạng email"),
+			],
+			phone: [
+				requireRule("Vui lòng nhập phone"),
+				regrexRule("phone", "Vui lòng nhập đúng định dạng phone"),
+			],
+			type: [requireRule("Vui lòng chọn hình thức học")],
+		}
+	);
+	useEffect(() => {
+		setForm({
+			name: profileName + " " + profileLName,
+			email: profileEmail,
+			phone: profilePhone,
+			type: "",
+		});
+	}, [profileName, profileEmail, profilePhone, profileLName]);
+
+	const _onUpdateProfile = () => {
+		const profileErr = validate();
+	}
 	return (
-		<div className="tab__content-item" style={{display: 'block'}}>
-			<form action="#" className="form">
+		<div className="tab__content-item" style={{ display: 'block' }}>
+			<form className="form" onSubmit={_onUpdateProfile}>
 				<div className="form-container">
-					<div className="form-group">
-						<label className="label">Họ và tên <span>*</span></label>
-						<input defaultValue="Nghĩa Trần" type="text" className="form__input formerror" />
-						<div className="error">Vui lòng nhập họ và tên</div>
-					</div>
-					<div className="form-group">
-						<label className="label">Số điện thoại <span>*</span></label>
-						<input defaultValue="0989596913" type="text" className="form__input" />
-					</div>
+					<Input
+						label="Họ và tên"
+						isRequired
+						placeholder="Họ và tên"
+						{...registerInput("name")}
+					/>
+					<Input
+						label="Số điện thoại"
+						isRequired
+						placeholder="Số điện thoại"
+						{...registerInput("phone")}
+					/>
 				</div>
 				<div className="form-container">
-					<div className="form-group">
-						<label className="label">Email <span>*</span></label>
-						<input defaultValue="trannghia2018@gmail.com" disabled type="email" className="form__input" />
-					</div>
-					<div className="form-group">
-						<div className="form-grouppass">
-							<label className="label">Mật khẩu <span>*</span></label>
-							<div className="textchange btnmodal" data-modal="mdchangepass">Đổi mật khẩu
-							</div>
-						</div>
-						<input defaultValue="12345568900" type="password" disabled className="form__input" />
-					</div>
+					<Input
+						label="Email"
+						isRequired
+						placeholder="email"
+						disabled
+						{...registerInput("email")}
+					/>
+					<Input
+						label="Mật khẩu"
+						isRequired
+						isChangePass
+						placeholder="*******"
+						disabled
+						{...registerInput("password")}
+					/>
+
 				</div>
-				<div className="form-group">
-					<label className="label">Facebook URL</label>
-					<input defaultValue="https://nghiatran.info" type="text" className="form__input" placeholder />
-				</div>
-				<div className="form-group">
-					<label className="label">Website</label>
-					<input defaultValue type="text" className="form__input" />
-				</div>
-				<div className="form-container textarea">
-					<label className="label">Giới thiệu bản thân</label>
-					<textarea className="form__input" name="content" defaultValue={""} />
-				</div>
-				<p className="noti">Cập nhận thông tin thành công</p>
+				<Input
+					label="Facebook URL"
+					placeholder="https://nghiatran.info"
+					{...registerInput("url")}
+				/>
+				<Input
+					label="Website"
+					placeholder="www.com"
+					{...registerInput("website")}
+				/>
+				<Input label="Giới thiệu bản thân"
+					renderProps={(props) =>
+						<TextArea {...props} />
+					}
+					{...registerInput("content")}
+				/>
 				<div className="form-group">
 					<div className="btnsubmit">
-						<button className="btn btn--primary">Lưu lại</button>
+						<Button variant="primary" type="submit">Lưu lại</Button>
 					</div>
 				</div>
 			</form>

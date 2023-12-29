@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { authService } from './../services/authService';
 import { message } from 'antd';
-import tokenMethod from './../utils/token';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PATHS from '../config/config-path';
+import { orderService } from '../services/orderService';
+import { authService } from './../services/authService';
+import tokenMethod from './../utils/token';
 
 const AuthContext = createContext()
 
@@ -11,11 +12,15 @@ const AuthContextProvider = ({ children }) => {
 	const navigate = useNavigate();
 	const [showModal, setShowModal] = useState("");
 	const [profile, setProfile] = useState({});
+	const [courseInfo, setCourseInfo] = useState([]);
+	const [paymentInfo, setPaymentInfo] = useState([]);
 
 	useEffect(() => {
 		const accessToken = !!tokenMethod.get()?.accessToken
 		if (accessToken) {
 			handleGetProfile();
+			handleGetProfileCourse();
+			handleGetProfilePayment();
 		}
 		return () => {
 
@@ -107,9 +112,36 @@ const AuthContextProvider = ({ children }) => {
 			callback?.();
 		}
 	}
+	const handleGetProfileCourse = async () => {
+		try {
+			const res = await orderService.getCourseHistories();
+			const orderedCourses = res?.data?.data?.orders || [];
+			setCourseInfo(orderedCourses);
+		} catch (error) {
+			console.log("getCourseHistories error", error);
+		}
+	};
 
+	const handleGetProfilePayment = async () => {
+		try {
+			const res = await orderService.getPaymentHistories();
+			const payments = res?.data?.data?.orders || [];
+			setPaymentInfo(payments);
+		} catch (error) {
+			console.log("getPaymentHistories error", error);
+		}
+	};
 	return (
-		<AuthContext.Provider value={{ showModal, profile, handleShowModal, handleCloseModal, handleLogin, handleRegister, handleLogout }}>
+		<AuthContext.Provider value={{
+			showModal, profile, courseInfo, paymentInfo,
+			handleShowModal,
+			handleCloseModal,
+			handleLogin,
+			handleRegister,
+			handleLogout,
+			handleGetProfileCourse,
+			handleGetProfilePayment
+		}}>
 			{children}
 		</AuthContext.Provider>
 	)
