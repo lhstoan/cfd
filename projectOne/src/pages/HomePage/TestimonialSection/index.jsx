@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 function testimonialSlider() {
 	if ($('.testimonial__slider').length) {
@@ -98,7 +98,7 @@ const TestimonialSection=() => {
 										</div>
 										<div className="bottom">
 											<span className="label">Học viên CFD1</span>
-											<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg" alt /></a>
+											<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg"alt="cfd"/></a>
 										</div>
 									</div>
 									<div className="ct ct-2">
@@ -114,7 +114,7 @@ const TestimonialSection=() => {
 										</div>
 										<div className="bottom">
 											<span className="label">Học viên CFD2</span>
-											<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg" alt /></a>
+											<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg"alt="cfd"/></a>
 										</div>
 									</div>
 									<div className="ct ct-3">
@@ -133,7 +133,7 @@ const TestimonialSection=() => {
 										</div>
 										<div className="bottom">
 											<span className="label">Học viên CFD1</span>
-											<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg" alt /></a>
+											<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg"alt="cfd"/></a>
 										</div>
 									</div>
 									<div className="ct ct-4">
@@ -149,7 +149,7 @@ const TestimonialSection=() => {
 										</div>
 										<div className="bottom">
 											<span className="label">Học viên CFD1</span>
-											<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg" alt /></a>
+											<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg"alt="cfd"/></a>
 										</div>
 									</div>
 								</div>
@@ -159,7 +159,7 @@ const TestimonialSection=() => {
 											<div className="img">
 												<picture>
 													<source media="(max-width: 767px)" srcSet="https://cfdcircle.vn/files/testimonial/1648229180-thanh-tung.jpg" />
-													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/1648229180-thanh-tung.jpg" alt />
+													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/1648229180-thanh-tung.jpg"alt="cfd"/>
 												</picture>
 											</div>
 											<div className="ct_m">
@@ -179,7 +179,7 @@ const TestimonialSection=() => {
 												</div>
 												<div className="bottom">
 													<span className="label">Học viên CFD1</span>
-													<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg" alt /></a>
+													<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg"alt="cfd"/></a>
 												</div>
 											</div>
 										</div>
@@ -187,7 +187,7 @@ const TestimonialSection=() => {
 											<div className="img">
 												<picture>
 													<source media="(max-width: 767px)" srcSet="https://cfdcircle.vn/files/testimonial/kiet.jpg" />
-													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/kiet.jpg" alt />
+													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/kiet.jpg"alt="cfd"/>
 												</picture>
 											</div>
 											<div className="info">
@@ -203,14 +203,14 @@ const TestimonialSection=() => {
 											</div>
 											<div className="bottom">
 												<span className="label">Học viên CFD2</span>
-												<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg" alt /></a>
+												<a href="https://www.facebook.com/" target="_blank" rel="noreferrer" ><img src="/img/facebook.svg"alt="cfd"/></a>
 											</div>
 										</div>
 										<div className="carousel-cell">
 											<div className="img">
 												<picture>
 													<source media="(max-width: 767px)" srcSet="https://cfdcircle.vn/files/testimonial/1648229287-anh-tuan.jpg" />
-													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/1648229287-anh-tuan.jpg" alt />
+													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/1648229287-anh-tuan.jpg"alt="cfd"/>
 												</picture>
 											</div>
 											<div className="ct_m">
@@ -232,7 +232,7 @@ const TestimonialSection=() => {
 												</div>
 												<div className="bottom">
 													<span className="label">Học viên CFD1</span>
-													<a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="/img/facebook.svg" alt /></a>
+													<a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="/img/facebook.svg"alt="cfd"/></a>
 												</div>
 											</div>
 										</div>
@@ -240,7 +240,7 @@ const TestimonialSection=() => {
 											<div className="img">
 												<picture>
 													<source media="(max-width: 767px)" srcSet="https://cfdcircle.vn/files/testimonial/tuan.jpg" />
-													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/tuan.jpg" alt />
+													<img data-flickity-lazyload="https://cfdcircle.vn/files/testimonial/tuan.jpg"alt="cfd"/>
 												</picture>
 											</div>
 											<div className="ct_m">
@@ -257,7 +257,7 @@ const TestimonialSection=() => {
 												</div>
 												<div className="bottom">
 													<span className="label">Học viên CFD1</span>
-													<a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="/img/facebook.svg" alt /></a>
+													<a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="/img/facebook.svg"alt="cfd"/></a>
 												</div>
 											</div>
 										</div>

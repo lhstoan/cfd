@@ -1,13 +1,9 @@
-import { useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
 	const { profile } = useAuthContext();
 	const { email, lastName, firstName, introduce, phone, website, facebookURL } = profile || "";
-	useEffect(() => {
-
-	}, [profile]);
 
 	return (
 		<main className="mainwrapper profilepage">
@@ -17,7 +13,7 @@ const ProfilePage = () => {
 						<div className="sidebar__info">
 							<div className="useravatar">
 								<div className="avatar">
-									<div className="img"><img src="/img/avatar_nghia.jpg" alt="avatar" /></div>
+									<div className="img"><img  src="/img/cfd-share-thumbnail-facebook.png" alt="avatar" /></div>
 								</div>
 								<h3 className="title --t3">{firstName}</h3>
 							</div>
@@ -28,12 +24,12 @@ const ProfilePage = () => {
 							<ul>
 								<li><img src="/img/icon-mail-outline.svg" alt="icon" style={{ top: 1 }} /><span>{email}</span></li>
 								<li><img src="/img/icon-phone-outline.svg" alt="icon" style={{ top: 1 }} /><span>{phone}</span></li>
-								<li><img src="/img/icon-link.svg" alt="icon" style={{ top: 1 }} /><a href="#" target="_blank">{facebookURL}</a></li>
+								<li><img src="/img/icon-link.svg" alt="icon" style={{ top: 1 }} /><a href="#" target="_blank">{website}</a></li>
 							</ul>
 							{/* <div className="social">
-								<a href="#"><img src="/img/icon-facebook-dark.svg" alt /></a>
-								<a href="#"><img src="/img/icon-linkedin-dark.svg" alt /></a>
-								<a href="#"><img src="/img/icon-youtube-dark.svg" alt /></a>
+								<a href="#"><img src="/img/icon-facebook-dark.svg"alt="cfd"/></a>
+								<a href="#"><img src="/img/icon-linkedin-dark.svg"alt="cfd"/></a>
+								<a href="#"><img src="/img/icon-youtube-dark.svg"alt="cfd"/></a>
 							</div> */}
 						</div>
 					</div>

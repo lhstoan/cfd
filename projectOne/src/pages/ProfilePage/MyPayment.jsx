@@ -8,6 +8,7 @@ const MyPayment = () => {
 	const { paymentInfo } = useAuthContext();
 	return (
 		<div className="tab__content-item" style={{ display: 'block' }}>
+			{!!!paymentInfo.length && <p>Không có dữ liệu.</p>}
 			{paymentInfo?.length > 0 &&
 				paymentInfo
 					.map((payment, index) => {

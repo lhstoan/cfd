@@ -1,12 +1,10 @@
 import { message } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
 import { orderService } from '../../services/orderService';
-import { regrexRule, requireRule } from '../../utils/validate';
 import Button from './../../components/Button/index';
 import { Roles } from './../../config/config-roles';
-import useForm from './../../hooks/useForm';
 import useMutation from './../../hooks/useMutation';
 import { courseService } from './../../services/courseService';
 import { formatCurrency } from './../../utils/format';
@@ -19,6 +17,7 @@ const CoursesOrderPage = () => {
 	const { courseSlug } = useParams();
 	const [paymentMethod, setPaymentMethod] = useState("");
 	const navigate = useNavigate();
+	const FormOrderRef = useRef();
 	const isDone = courseInfo.some((item) => item?.course?.slug === courseSlug);
 	const activeCourse = courseInfo.find((item) => item?.course?.slug === courseSlug)
 	// call api
@@ -44,49 +43,9 @@ const CoursesOrderPage = () => {
 		price: formatCurrency(price),
 	};
 
-	// variant form field 
-	const {
-		firstName: profileName,
-		email: profileEmail,
-		phone: profilePhone,
-		lastName: profileLName
-	} = profile || {};
-
-	// Handle profile form
-	const { form, registerInput, validate, setForm } = useForm(
-		{
-			name: "",
-			email: "",
-			phone: "",
-			type: "",
-		},
-		{
-			name: [requireRule("Vui lòng nhập tên")],
-			email: [
-				requireRule("Vui lòng nhập email"),
-				regrexRule("email", "Vui lòng nhập đúng định dạng email"),
-			],
-			phone: [
-				requireRule("Vui lòng nhập phone"),
-				regrexRule("phone", "Vui lòng nhập đúng định dạng phone"),
-			],
-			type: [requireRule("Vui lòng chọn hình thức học")],
-		}
-	);
-	useEffect(() => {
-		setForm({
-			name: profileName + " " + profileLName,
-			email: profileEmail,
-			phone: profilePhone || activeCourse.phone,
-			type: activeCourse.type,
-
-		});
-	}, [profileName, profileEmail, profilePhone, profileLName, activeCourse]);
-
-
 	const _onOrder = () => {
-		const profileError = validate();
-
+		const profileError = FormOrderRef.current.validate();
+		const form = FormOrderRef.current.form;
 		if (!Object.keys(profileError).length > 0) {
 			if (paymentMethod) {
 				// setup payload
@@ -124,7 +83,7 @@ const CoursesOrderPage = () => {
 			<section className="sccourseorder">
 				<div className="container small">
 					<InfoOrder {...InfoOrderProps} />
-					<FormOrder registerInput={registerInput} types={tags} disabled={isDone} />
+					<FormOrder profile={profile} types={tags} disabled={isDone} ref={FormOrderRef} />
 					{!!!isDone && <PaymentOrder handleChange={handlePaymentMethodChange} selectedPayment={paymentMethod} />}
 					<Button style={{ width: "100%" }} onClick={_onOrder} loading={orderLoading} disabled={isDone} >
 						<span>{isDone ? "Đã đăng ký" : "Đăng ký khoá học"}</span>

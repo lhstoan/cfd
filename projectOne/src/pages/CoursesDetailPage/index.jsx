@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { Roles } from "../../config/config-roles"
+import { useAuthContext } from "../../context/AuthContext"
 import useDebounce from "../../hooks/useDebounce"
 import useMutation from "../../hooks/useMutation"
 import useQuery from "../../hooks/useQuery"
@@ -17,7 +18,8 @@ import HeroDetailSection from "./HeroDetailSection"
 const CoursesDetailPage = () => {
 	const params = useParams();
 	const { courseSlug } = params;
-
+	const {courseInfo} = useAuthContext();
+	const activeCourse = courseInfo.find((item) => item?.course?.slug === courseSlug)
 	const { data: questionsData, loading: questionLoading } = useQuery(
 		questionService.getQuestions
 	);
@@ -60,9 +62,9 @@ const CoursesDetailPage = () => {
 	}
 	return (
 		<>
-			<HeaderTop {...modifiedProps} />
+			<HeaderTop {...modifiedProps} activeCourse={activeCourse}/>
 			<main className="mainwrapper coursedetailpage">
-				<HeroDetailSection {...modifiedProps} />
+				<HeroDetailSection {...modifiedProps} activeCourse={activeCourse}/>
 				<ContentDetailSection {...modifiedProps} />
 				<FeaturedSection {...modifiedProps} />
 				<FaqSection questions={questions} loading={questionLoading} />

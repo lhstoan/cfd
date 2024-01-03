@@ -7,6 +7,7 @@ const MyCourse = () => {
 	return (
 		<div className="tab__content-item" style={{ display: 'block' }}>
 			<div className="courses__list">
+				{!!!courseInfo.length && <p>Không có dữ liệu.</p>}
 				{courseInfo?.length > 0 &&
 					courseInfo
 						.map((course, index) => {

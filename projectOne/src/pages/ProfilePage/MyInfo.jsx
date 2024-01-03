@@ -1,42 +1,30 @@
-import { message } from "antd";
 import { useEffect } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import { useAuthContext } from "../../context/AuthContext";
 import useForm from "../../hooks/useForm";
-import useMutation from "../../hooks/useMutation";
-import { authService } from "../../services/authService";
 import { regrexRule, requireRule } from "../../utils/validate";
 
 const MyInfo = () => {
-	const { profile } = useAuthContext();
-	const { loading: orderLoading, execute: updateProfile } = useMutation(
-		authService.updateProfile
-	);
-	// variant form field 
-	const {
-		firstName: profileName,
-		lastName: profileLName,
-		email: profileEmail,
-		phone: profilePhone,
-		website: website,
-		introduce: content,
-		facebookURL: url,
-	} = profile || {};
+	const { profile, handleUpdateProfile } = useAuthContext();
+	
+
 
 	// Handle profile form
 	const { form, registerInput, validate, setForm } = useForm(
 		{
-			name: "",
+			firstName: "",
+			email: "",
 			phone: "",
-			url: "",
+			password: "********",
+			facebookURL: "",
 			website: "",
-			content: "",
+			introduce: "",
 		},
 		{
-			name: [requireRule("Vui lòng nhập tên")],
-			content: [requireRule("Vui lòng nhập giới thiệu bản thân !!!")],
+			firstName: [requireRule("Vui lòng nhập tên")],
+			introduce: [requireRule("Vui lòng nhập giới thiệu bản thân !!!")],
 			website: [
 				requireRule("Vui lòng nhập website !!!"),
 				regrexRule("website", "Vui lòng nhập đúng định dạng link!!!"),
@@ -49,47 +37,34 @@ const MyInfo = () => {
 				requireRule("Vui lòng nhập phone"),
 				regrexRule("phone", "Vui lòng nhập đúng định dạng phone"),
 			],
-			url: [
+			facebookURL: [
 				requireRule("Vui lòng điền đường dẫn facebook !!!"),
 				regrexRule("facebook", "Vui lòng nhập đúng định dạng link facebook !!!"),
 			],
 		}
 	);
-	useEffect(() => {
-		setForm({
-			name: profileName,
-			email: profileEmail,
-			phone: profilePhone,
-			url: url,
-			website: website,
-			content: content,
-		});
-	}, [profileName, profileEmail, profilePhone, profileLName, url, website, content]);
-
-	const _onUpdateProfile = (e) => {
-		e.stopPropagation();
-		const profileErr = validate();
-		if (!Object.keys(profileErr).length > 0) {
-			// setup payload
-			const payload = {
-				firstName: form?.name,
-				lastName: profileLName,
-				facebookURL: form?.url,
-				website: form?.website,
-				phone: form?.phone,
-				introduce: form?.content,
-			};
-			updateProfile(payload, {
-				onSuccess: async () => {
-					message.success("Cập nhật thành công!");
-				},
-				onFail: () => {
-					message.error("Cập nhật thất bại !!!")
-				},
-			})
-
+	const _onSubmit = (e) => {
+		e.preventDefault();
+		const errorObject = validate();
+		if (Object.keys(errorObject).length > 0) {
+			console.log("Submit error: ", errorObject);
+		} else {
+			handleUpdateProfile?.(form);
 		}
-	}
+	};
+	const ProfileRef = useRef({});
+	const isFormDiff = useRef(false);
+	useEffect(() => {
+		if (profile) {
+			setForm({ ...form, ...profile });
+			ProfileRef.current = { ...form, ...profile };
+		}
+	}, [profile]);
+
+	useEffect(() => {
+		
+	});
+
 	return (
 		<div className="tab__content-item" style={{ display: 'block' }} >
 			<div className="form" >
@@ -98,7 +73,7 @@ const MyInfo = () => {
 						label="Họ và tên"
 						isRequired
 						placeholder="Họ và tên"
-						{...registerInput("name")}
+						{...registerInput("firstName")}
 					/>
 					<Input
 						label="Số điện thoại"
@@ -129,7 +104,7 @@ const MyInfo = () => {
 					label="Facebook URL"
 					isRequired
 					placeholder="https://nghiatran.info"
-					{...registerInput("url")}
+					{...registerInput("facebookURL")}
 				/>
 				<Input
 					label="Website"
@@ -142,11 +117,11 @@ const MyInfo = () => {
 					renderProps={(props) =>
 						<TextArea {...props} />
 					}
-					{...registerInput("content")}
+					{...registerInput("introduce")}
 				/>
 				<div className="form-group">
 					<div className="btnsubmit">
-						<Button variant="primary" onClick={_onUpdateProfile}>Lưu lại</Button>
+						<Button variant="primary" onClick={_onSubmit}>Lưu lại</Button>
 					</div>
 				</div>
 			</div>

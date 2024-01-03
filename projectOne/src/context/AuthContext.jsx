@@ -1,6 +1,7 @@
 import { message } from 'antd';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MODAL_TYPES } from '../config/config-general';
 import PATHS from '../config/config-path';
 import { orderService } from '../services/orderService';
 import { authService } from './../services/authService';
@@ -31,7 +32,9 @@ const AuthContextProvider = ({ children }) => {
 		if (!!!tokenMethod.get()) {
 			setShowModal(modalType || "");
 		}
-
+		if(modalType==MODAL_TYPES.pass && !!tokenMethod.get()){
+			setShowModal(modalType || "");
+		}
 	};
 
 	const handleCloseModal = (e) => {
@@ -131,6 +134,38 @@ const AuthContextProvider = ({ children }) => {
 			console.log("getPaymentHistories error", error);
 		}
 	};
+
+	const handleUpdateProfile = async (profileData) => {
+		try {
+			const {
+				firstName,
+				email,
+				password,
+				facebookURL,
+				introduce,
+				phone,
+				website,
+			} = profileData;
+			const payload = {
+				firstName: firstName,
+				lastName: "",
+				email,
+				password,
+				facebookURL,
+				website,
+				introduce,
+				phone,
+			};
+			const res = await authService.updateProfile(payload);
+			if (res?.data?.data?.id) {
+				message.success("Cập nhật thông tin thành công");
+				handleGetProfile();
+			}
+		} catch (error) {
+			console.log("error", error);
+		}
+	};
+
 	return (
 		<AuthContext.Provider value={{
 			showModal, profile, courseInfo, paymentInfo,
@@ -140,7 +175,8 @@ const AuthContextProvider = ({ children }) => {
 			handleRegister,
 			handleLogout,
 			handleGetProfileCourse,
-			handleGetProfilePayment
+			handleGetProfilePayment,
+			handleUpdateProfile
 		}}>
 			{children}
 		</AuthContext.Provider>

@@ -9,7 +9,7 @@ const InfoOrder = ({ image, name, teacherInfo, price }) => {
 				<div className="boxorder__col">
 					<label className="label">{name}</label>
 					<div className="boxorder__col-course">
-						<div className="img"><img src={image || ""} alt /></div>
+						<div className="img"><img src={image || ""}alt="cfd"/></div>
 						<div className="info">
 							<p className="name"><strong>{name}</strong></p>
 							<p>{teacherInfo?.name || ""}</p>

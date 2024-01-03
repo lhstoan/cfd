@@ -16,6 +16,9 @@ const Button = ({ children, link, disabled, variant = "primary", loading, ...res
 		case "regcourse":
 			btnClass = "btn btn--primary btn-regcourse";
 			break;
+		case "disable":
+			btnClass = "btn btn--primary btn-regcourse --disable";
+			break;
 		default:
 			break;
 	}

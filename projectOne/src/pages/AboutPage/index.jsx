@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const AboutPage=() => {
 	return (
@@ -17,7 +17,7 @@ const AboutPage=() => {
 			<section className="aboutstory">
 				<div className="container">
 					<div className="aboutstory__img">
-						<img src="/img/cfd-circle-team.jpg" alt />
+						<img src="/img/cfd-circle-team.jpg"alt="cfd"/>
 					</div>
 					<div className="aboutstory__content">
 						<h1 className="title --t2"><span className="color--primary">Câu chuyện</span> CFD Circle</h1>
@@ -114,7 +114,7 @@ const AboutPage=() => {
 				<div className="container">
 					<h2 className="aboutstudy__title title --t2"><span className="color--primary">Hình thức học</span> đa dạng</h2>
 					<div className="aboutstudy__item">
-						<div className="aboutstudy__item-img"><img src="/img/cfd-circle-offline.jpg" alt /></div>
+						<div className="aboutstudy__item-img"><img src="/img/cfd-circle-offline.jpg"alt="cfd"/></div>
 						<div className="aboutstudy__item-content">
 							<h4 className="title --t3">Học offline tại văn phòng</h4>
 							<div className="text">
@@ -128,7 +128,7 @@ const AboutPage=() => {
 						</div>
 					</div>
 					<div className="aboutstudy__item">
-						<div className="aboutstudy__item-img"><img src="/img/cfd-circle-online.jpg" alt /></div>
+						<div className="aboutstudy__item-img"><img src="/img/cfd-circle-online.jpg"alt="cfd"/></div>
 						<div className="aboutstudy__item-content">
 							<h4 className="title --t3">Học online với lớp offline.</h4>
 							<div className="text">
@@ -140,7 +140,7 @@ const AboutPage=() => {
 						</div>
 					</div>
 					<div className="aboutstudy__item">
-						<div className="aboutstudy__item-img"><img src="/img/cfd-circle-video.jpg" alt /></div>
+						<div className="aboutstudy__item-img"><img src="/img/cfd-circle-video.jpg"alt="cfd"/></div>
 						<div className="aboutstudy__item-content">
 							<h4 className="title --t3">Học qua video &amp; live hỗ trợ 24/7</h4>
 							<div className="text">

@@ -1,15 +1,14 @@
-import {MODAL_TYPES} from "../../config/config-general";
-import {useAuthContext} from "../../context/AuthContext";
+import ReactDOM from 'react-dom';
+import { MODAL_TYPES } from "../../config/config-general";
+import { useAuthContext } from "../../context/AuthContext";
 import FormChangePass from "./FormChangePass";
 import FormLogin from "./FormLogin";
 import FormRegister from "./FormRegister";
-import ReactDOM from 'react-dom'
 
 const Auth=() => {
 
 	const {showModal,handleCloseModal}=useAuthContext();
-
-
+	
 	return ReactDOM.createPortal(
 		<div className={`modal modallogin ${showModal? "open":""}`} >
 			<div className="modal__wrapper">

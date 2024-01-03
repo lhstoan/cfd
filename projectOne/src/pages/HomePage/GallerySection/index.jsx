@@ -1,5 +1,5 @@
-import {Empty} from 'antd';
-import {useEffect} from 'react';
+import { Empty } from 'antd';
+import { useEffect } from 'react';
 function teamSlider() {
 	let $carouselGallery=$(".gallery .list"),
 		$progressBar=$('.gallery .timeline .process');
@@ -51,7 +51,7 @@ const GallerySection=({data=[],loading=false}) => {
 				<Empty description="Nothing!!" style={{margin: "0 auto"}} />
 			):(
 				<div className="list">
-					{data?.map((img,index) => (<img data-flickity-lazyload={img} alt key={index} />))}
+					{data?.map((img,index) => (<img data-flickity-lazyload={img}alt="cfd"key={index} />))}
 				</div>
 			)}
 			<div className="controls">

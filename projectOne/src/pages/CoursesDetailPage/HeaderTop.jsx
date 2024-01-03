@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Button from '../../components/Button';
 
-const HeaderTop = ({ id, image, name, teacherInfo = {}, price, orderLink }) => {
+const HeaderTop = ({ id, image, name, teacherInfo = {}, price, orderLink, activeCourse }) => {
 
 	useEffect(() => {
 		function showHeadCourseDetail() {
@@ -41,7 +41,7 @@ const HeaderTop = ({ id, image, name, teacherInfo = {}, price, orderLink }) => {
 			<div className="container-fluid">
 				<div className="headtop__left">
 					<div className="headtop__left-avatar">
-						<img src={image || ""} alt />
+						<img src={image || ""} alt="cfd" />
 					</div>
 					<div className="headtop__left-title">
 						<strong>{name || ""}</strong>
@@ -52,9 +52,9 @@ const HeaderTop = ({ id, image, name, teacherInfo = {}, price, orderLink }) => {
 					<div className="headtop__right-price">
 						<strong>{price} VND</strong>
 					</div>
-					<Button link={orderLink} variant='regcourse'>
-						Đăng ký học
-					</Button>
+					{!!!activeCourse && <Button link={orderLink} variant="regcourse">Đăng ký</Button>}
+					{/* Đã đăng ký */}
+					{!!activeCourse && <Button variant="disable" >Đã đăng ký</Button>}
 				</div>
 			</div>
 			<div className="headtop__progress" />

@@ -1,7 +1,7 @@
 import { message } from "antd";
 import Button from "../../components/Button";
 
-const HeroDetailSection = ({ image, name, title, startDate, teacherInfo = {}, price, orderLink, duration, tagsJoin }) => {
+const HeroDetailSection = ({ image, name, title, startDate, teacherInfo = {}, price, orderLink, duration, tagsJoin ,activeCourse}) => {
 
 	const _onCopyLink = (e) => {
 		e.preventDefault();
@@ -30,12 +30,12 @@ const HeroDetailSection = ({ image, name, title, startDate, teacherInfo = {}, pr
 						</div>
 					</div>
 					{/* Chưa đăng ký */}
-					<Button link={orderLink} variant="regcourse">
-						Đăng ký
-					</Button>
+
+					{!!!activeCourse&&<Button link={orderLink} variant="regcourse">Đăng ký</Button>}
 
 					{/* Đã đăng ký */}
-					{/* <div class="btn btn--primary btn-regcourse --disable">Đã đăng ký</div> */}
+					
+					{!!activeCourse&&<Button variant="disable" >Đã đăng ký</Button>}
 				</div>
 			</div>
 			<div className="hero__bottom">
