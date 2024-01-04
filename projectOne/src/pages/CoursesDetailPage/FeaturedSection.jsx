@@ -3,7 +3,7 @@ import React from 'react'
 const FeaturedSection = () => {
 	return (
 		<section className="featured">
-			<img src="img/icon-cfd.svg"alt="cfd"className="featured__c" />
+			<img src="/img/icon-cfd.svg"alt="cfd"className="featured__c" />
 			<div className="container">
 				<div className="featured__title">
 					<h2 className="title --t2 --white"><span>Ưu điểm</span><br />của
