@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
@@ -61,9 +61,9 @@ const MyInfo = () => {
 		}
 	}, [profile]);
 
-	useEffect(() => {
+	// useEffect(() => {
 		
-	});
+	// });
 
 	return (
 		<div className="tab__content-item" style={{ display: 'block' }} >
