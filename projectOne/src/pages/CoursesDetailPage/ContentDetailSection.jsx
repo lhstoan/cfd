@@ -26,15 +26,7 @@ const ContentDetailSection = ({
 					<div className="contentrow ctintro">
 						<h3 className="contentrow__title title --t3">Giới thiệu</h3>
 						<div className="contenteditor" dangerouslySetInnerHTML={{ __html: description }} />
-						<div className="videowrap">
-							<iframe
-								title="YouTube video player"
-								src="https://www.youtube.com/embed/C7GoVPoamdM?rel=0"
-								width={560}
-								height={315}
-								allowFullScreen="allowfullscreen"
-							/>
-						</div>
+						
 					</div>
 
 					<div className="contentrow ctschedule">
