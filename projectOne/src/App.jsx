@@ -28,15 +28,14 @@ function App() {
 							<Route path={PATHS.PROFILE.MY_COURSE} element={<MyCourse />} />
 							<Route path={PATHS.PROFILE.MY_PAYMENT} element={<MyPayment />} />
 						</Route>
+						<Route path={PATHS.COURSE.ORDER} element={<CoursesOrderPage />} />
 					</Route>
 
 					<Route path={PATHS.CONTACT} element={<ContactPage />} />
 					<Route path={PATHS.BLOG.INDEX} element={<BlogPage />} />
 					<Route path={PATHS.COURSE.INDEX} element={<CoursePage />} />
 					<Route path={PATHS.COURSE.DETAIL} element={<CoursesDetailPage />} />
-					<Route path={PATHS.COURSE.ORDER} element={<CoursesOrderPage />} />
 					<Route path={PATHS.ABOUT} element={<AboutPage />} />
-
 					<Route path="*" element={<Page404 />} />
 				</Route>
 			</Routes>
