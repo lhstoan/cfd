@@ -20,7 +20,7 @@ const HomePage = () => {
                                                           }">
 									<div className="intro-slide">
 										<figure className="slide-image">
-											<img src="assets/images/demos/demo-3/slider/slide-1.jpg" alt="Image Desc" />
+											<img src="/assets/images/demos/demo-3/slider/slide-1.jpg" alt="Image Desc" />
 										</figure>
 										<div className="intro-content">
 											<h3 className="intro-subtitle text-primary">Daily Deals</h3>
@@ -38,7 +38,7 @@ const HomePage = () => {
 									</div>
 									<div className="intro-slide">
 										<figure className="slide-image">
-											<img src="assets/images/demos/demo-3/slider/slide-2.jpg" alt="Image Desc" />
+											<img src="/assets/images/demos/demo-3/slider/slide-2.jpg" alt="Image Desc" />
 										</figure>
 										<div className="intro-content">
 											<h3 className="intro-subtitle text-primary">Deals and Promotions</h3>
@@ -62,7 +62,7 @@ const HomePage = () => {
 							<div className="intro-banners">
 								<div className="banner mb-lg-1 mb-xl-2">
 									<a href="#">
-										<img src="assets/images/demos/demo-3/banners/banner-1.jpg" alt="Banner" />
+										<img src="/assets/images/demos/demo-3/banners/banner-1.jpg" alt="Banner" />
 									</a>
 									<div className="banner-content">
 										<h3 className="banner-title">

@@ -42,7 +42,7 @@ const HeaderComponent = () => {
 								<i className="icon-bars" />
 							</button>
 							<a href="index.html" className="logo">
-								<img src="assets/images/logo.svg" alt="Molla Logo" width={160} />
+								<img src="/assets/images/logo.svg" alt="Molla Logo" width={160} />
 							</a>
 						</div>
 						<nav className="main-nav">
@@ -93,7 +93,7 @@ const HeaderComponent = () => {
 											</div>
 											<figure className="product-image-container">
 												<a href="product-detail.html" className="product-image">
-													<img src="assets/images/products/cart/product-1.jpg" alt="product" />
+													<img src="/assets/images/products/cart/product-1.jpg" alt="product" />
 												</a>
 											</figure>
 											<a href="#" className="btn-remove" title="Remove Product">
@@ -110,7 +110,7 @@ const HeaderComponent = () => {
 											</div>
 											<figure className="product-image-container">
 												<a href="product-detail.html" className="product-image">
-													<img src="assets/images/products/cart/product-2.jpg" alt="product" />
+													<img src="/assets/images/products/cart/product-2.jpg" alt="product" />
 												</a>
 											</figure>
 											<a href="#" className="btn-remove" title="Remove Product">

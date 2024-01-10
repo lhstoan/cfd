@@ -9,7 +9,7 @@ const FooterComponent = () => {
 						<div className="row">
 							<div className="col-sm-6 col-lg-5">
 								<div className="widget widget-about">
-									<img src="assets/images/logo.svg" className="footer-logo" alt="Footer Logo" width={120} />
+									<img src="/assets/images/logo.svg" className="footer-logo" alt="Footer Logo" width={120} />
 									<p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
 									<div className="widget-call">
 										<i className="icon-phone" /> Got Question? Call us 24/7 <a href="tel:#">098 9596 912</a>
@@ -80,7 +80,7 @@ const FooterComponent = () => {
 					<div className="container">
 						<p className="footer-copyright">Copyright © 2023 <a href="https://cfdcircle.vn/" target="_blank" rel="noreferrer"><strong>CFD Circle</strong></a>. All Rights Reserved.</p>
 						<figure className="footer-payments">
-							<img src="assets/images/payments.png" alt="Payment methods" width={272} height={20} />
+							<img src="/assets/images/payments.png" alt="Payment methods" width={272} height={20} />
 						</figure>
 					</div>
 				</div>
