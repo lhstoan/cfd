@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { useParams } from "react-router-dom"
 import { Roles } from "../../config/config-roles"
 import { useAuthContext } from "../../context/AuthContext"
@@ -18,7 +18,7 @@ import HeroDetailSection from "./HeroDetailSection"
 const CoursesDetailPage = () => {
 	const params = useParams();
 	const { courseSlug } = params;
-	const {courseInfo} = useAuthContext();
+	const { courseInfo } = useAuthContext();
 	const activeCourse = courseInfo.find((item) => item?.course?.slug === courseSlug)
 	const { data: questionsData, loading: questionLoading } = useQuery(
 		questionService.getQuestions
@@ -44,14 +44,16 @@ const CoursesDetailPage = () => {
 	const courses = courseData?.courses || [];
 	const orderLink = `/course-order/` + courseSlug;
 	const { teams, startDate, price, tags } = courseDetailData || {};
-	const modifiedProps = {
-		...courseDetailData,
-		teacherInfo: teams?.find((item) => item.tags.includes(Roles.Teacher)),
-		startDate: formatDate(startDate || ""),
-		price: formatCurrency(price),
-		orderLink,
-		tagsJoin: tags?.map((tag) => (tag)).join(' | ')
-	};
+	const modifiedProps = useMemo(() => (
+		{
+			...courseDetailData,
+			teacherInfo: teams?.find((item) => item.tags.includes(Roles.Teacher)),
+			startDate: formatDate(startDate || ""),
+			price: formatCurrency(price),
+			orderLink,
+			tagsJoin: tags?.map((tag) => (tag)).join(' | ')
+		}
+	), [courseDetailData, teams, startDate, price, tagsJoin, orderLink, Roles])
 
 	const apiLoading = courseDetailLoading || questionLoading || courseLoading;
 
@@ -62,9 +64,9 @@ const CoursesDetailPage = () => {
 	}
 	return (
 		<>
-			<HeaderTop {...modifiedProps} activeCourse={activeCourse}/>
+			<HeaderTop {...modifiedProps} activeCourse={activeCourse} />
 			<main className="mainwrapper coursedetailpage">
-				<HeroDetailSection {...modifiedProps} activeCourse={activeCourse}/>
+				<HeroDetailSection {...modifiedProps} activeCourse={activeCourse} />
 				<ContentDetailSection {...modifiedProps} />
 				<FeaturedSection {...modifiedProps} />
 				<FaqSection questions={questions} loading={questionLoading} />
