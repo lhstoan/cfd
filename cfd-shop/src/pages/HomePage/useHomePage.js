@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { productService } from '../../services/productService';
 import useQuery from './../../hooks/useQuery';
 import { pageService } from './../../services/pageServices';
@@ -46,8 +47,8 @@ const useHomePage = () => {
 
 
 	// const [selectedCateSlug, setSelectedCateSlug] = useState("all");
-	// const cateSlug = useSelector(((state) => state.featured));
-
+	const cateSlug = useSelector(((state) => state.featured));
+	console.log(cateSlug);
 	const featuredProps = {
 		categories: [{ name: "All", slug: "all" }, ...categories],
 	}
