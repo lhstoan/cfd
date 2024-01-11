@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "../config/config-environment";
+import { BASE_URL } from './../constants/environment';
 import tokenMethod from "./token";
 
 
@@ -15,13 +15,13 @@ axiosInstance.interceptors.response.use(
 	async (error) => {
 		const originalRequest = error.config;
 		if (
-			(error.response ? .status === 403 || error.response ? .status === 401) &&
+			(error.response?.status === 403 || error.response?.status === 401) &&
 			!!!originalRequest._retry
 		) {
 			originalRequest._retry = true;
 			try {
 				const res = await axiosInstance.put("/customer/refresh", {
-					refreshToken: tokenMethod.get() ? .refreshToken,
+					refreshToken: tokenMethod.get()?.refreshToken,
 				});
 				const { token: accessToken, refreshToken } = res.data.data || {};
 

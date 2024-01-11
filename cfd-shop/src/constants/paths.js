@@ -1,17 +1,17 @@
-const COURSE_PATH = "/course";
+const PRODUCTS_PATH = "/product";
 const PROFILE_PATH = "/profile";
 const BLOG_PATH = "/blog";
 
 const PATHS = {
 	HOME: "/",
-	COURSE: {
-		INDEX: COURSE_PATH,
-		DETAIL: COURSE_PATH + '/:courseSlug',
-		ORDER: '/course-order/:courseSlug',
+	PRODUCTS: {
+		INDEX: PRODUCTS_PATH,
+		DETAIL: PRODUCTS_PATH + '/:slug',
+		ORDER: '/course-order/:slug',
 	},
 	BLOG: {
 		INDEX: BLOG_PATH,
-		DETAIL: BLOG_PATH + '/:blogSlug'
+		DETAIL: BLOG_PATH + '/:slug'
 	},
 	PROFILE: {
 		INDEX: PROFILE_PATH,
